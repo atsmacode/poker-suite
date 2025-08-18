@@ -22,7 +22,6 @@ return new class extends Migration
         Schema::create('actions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->timestamps();
         });
 
         Schema::create('player_actions', function (Blueprint $table) {
