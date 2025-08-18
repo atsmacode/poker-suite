@@ -18,7 +18,7 @@ class Hand extends Model
         'game_type_id'
     ];
 
-    public function handTable(): BelongsTo
+    public function game(): BelongsTo
     {
         return $this->belongsTo(Game::class);
     }
