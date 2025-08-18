@@ -20,14 +20,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('abbreviation');
             $table->integer('ranking');
-            $table->timestamps();
         });
 
         Schema::create('suits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('abbreviation');
-            $table->timestamps();
         });
 
         Schema::create('cards', function (Blueprint $table) {
@@ -35,7 +33,6 @@ return new class extends Migration
             $table->foreignIdFor(Rank::class);
             $table->foreignIdFor(Suit::class);
             $table->unique(['rank_id', 'suit_id']);
-            $table->timestamps();
         });
     }
 
