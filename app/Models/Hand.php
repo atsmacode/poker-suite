@@ -43,7 +43,7 @@ class Hand extends Model
         return $this->hasOne(Pot::class);
     }
 
-    public function complete()
+    public function complete(): void
     {
         $this->completed_on = now();
         $this->save();
