@@ -42,11 +42,11 @@ class TableSeatFactory extends Factory
         });
     }
 
-    public function isDealer(bool $dealer = false): Factory
+    public function isDealer(bool $isDealer = false): Factory
     {
-        return $this->state(function (array $attributes) use ($dealer) {
+        return $this->state(function (array $attributes) use ($isDealer) {
             return [
-                'is_dealer' => (int) $dealer,
+                'is_dealer' => (int) $isDealer,
             ];
         });
     }
