@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Card extends Model
 {
+    public $timestamps = false;
+
     public function rank(): HasOne
     {
         return $this->hasOne(Rank::class);
