@@ -13,7 +13,6 @@ class Table extends Model
 
     protected $fillable = [
         'name',
-        'seats'
     ];
 
     public function tableSeats(): HasMany

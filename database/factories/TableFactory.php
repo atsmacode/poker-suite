@@ -15,16 +15,6 @@ class TableFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'seats' => 6,
         ];
-    }
-
-    public function seats(int $count): Factory
-    {
-        return $this->state(function (array $attributes) use ($count) {
-            return [
-                'seats' => $count,
-            ];
-        });
     }
 }

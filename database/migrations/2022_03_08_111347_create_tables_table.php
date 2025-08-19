@@ -18,7 +18,6 @@ return new class extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('seats');
             $table->timestamps();
         });
 
