@@ -13,8 +13,7 @@ class Hand extends Model
     use HasFactory;
 
     protected $fillable = [
-        'table_id',
-        'game_type_id'
+        'game_id',
     ];
 
     public function game(): BelongsTo

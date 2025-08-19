@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PlayerAction extends Model
 {
@@ -22,14 +21,14 @@ class PlayerAction extends Model
         'big_blind'
     ];
 
-    public function hand(): HasOne
+    public function hand(): BelongsTo
     {
-        return $this->hasOne(Hand::class);
+        return $this->belongsTo(Hand::class);
     }
 
-    public function action(): HasOne
+    public function action(): BelongsTo
     {
-        return $this->hasOne(Action::class);
+        return $this->belongsTo(Action::class);
     }
 
     public function player(): BelongsTo
@@ -37,8 +36,8 @@ class PlayerAction extends Model
         return $this->belongsTo(Player::class);
     }
 
-    public function tableSeat(): HasOne
+    public function tableSeat(): BelongsTo
     {
-        return $this->hasOne(TableSeat::class);
+        return $this->belongsTo(TableSeat::class);
     }
 }

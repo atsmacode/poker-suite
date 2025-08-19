@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class WholeCard extends Model
 {
@@ -16,8 +16,8 @@ class WholeCard extends Model
         'hand_id'
     ];
 
-    public function card(): HasOne
+    public function card(): BelongsTo
     {
-        return $this->hasOne(Card::class);
+        return $this->belongsTo(Card::class);
     }
 }
