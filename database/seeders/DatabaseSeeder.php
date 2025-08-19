@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
         }
 
         foreach (config('handtypes') as $handType) {
-            HandType::factory([
+            HandType::create([
                 'name' => $handType['name'],
                 'ranking' => $handType['ranking']
-            ])->create();
+            ]);
         }
 
         foreach (config('streets') as $street) {
