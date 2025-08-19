@@ -2,7 +2,6 @@
 
 use App\Models\Action;
 use App\Models\Hand;
-use App\Models\HandStreet;
 use App\Models\Player;
 use App\Models\PlayerAction;
 use App\Models\TableSeat;
@@ -29,7 +28,6 @@ return new class extends Migration
             $table->foreignIdFor(Action::class);
             $table->foreignIdFor(Player::class);
             $table->foreignIdFor(Hand::class);
-            $table->foreignIdFor(HandStreet::class);
             $table->foreignIdFor(TableSeat::class);
             $table->float('bet_amount')->nullable();
             $table->boolean('active')->default(0);
@@ -44,7 +42,6 @@ return new class extends Migration
             $table->foreignIdFor(Action::class);
             $table->foreignIdFor(Player::class);
             $table->foreignIdFor(Hand::class);
-            $table->foreignIdFor(HandStreet::class);
             $table->foreignIdFor(TableSeat::class);
             $table->float('bet_amount')->nullable();
             $table->boolean('active')->default(0);

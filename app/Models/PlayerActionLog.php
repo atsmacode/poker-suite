@@ -15,7 +15,6 @@ class PlayerActionLog extends Model
         'player_action_id',
         'player_id',
         'table_seat_id',
-        'hand_street_id',
         'action_id',
         'bet_amount',
         'hand_id',
