@@ -45,14 +45,7 @@ class Hand extends Model
 
     public function handStreetCards(): HasManyThrough
     {
-        return $this->hasManyThrough(
-            HandStreetCard::class,
-            HandStreet::class,
-            'hand_id',
-            'hand_street_id',
-            'id',
-            'id'
-        );
+        return $this->hasManyThrough(HandStreetCard::class,HandStreet::class);
     }
 
     public function complete(): void

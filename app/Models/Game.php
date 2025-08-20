@@ -11,7 +11,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    public function hand(): HasMany
+    public function hands(): HasMany
     {
         return $this->hasMany(Hand::class);
     }

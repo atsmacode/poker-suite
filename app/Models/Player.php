@@ -20,7 +20,7 @@ class Player extends Model
         return $this->hasMany(WholeCard::class);
     }
 
-    public function actions(): HasMany
+    public function playerActions(): HasMany
     {
         return $this->hasMany(PlayerAction::class);
     }
