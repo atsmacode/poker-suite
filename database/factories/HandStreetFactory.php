@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\Street;
+use App\Models\Hand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HandStreetFactory extends Factory
@@ -14,7 +16,7 @@ class HandStreetFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'street_id' => Street::random()->toArray()['id'],
         ];
     }
 }

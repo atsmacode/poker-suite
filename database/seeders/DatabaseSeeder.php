@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Action;
 use App\Models\Card;
+use App\Models\GameType;
 use App\Models\HandType;
 use App\Models\Player;
 use App\Models\Rank;
@@ -65,5 +66,7 @@ class DatabaseSeeder extends Seeder
         }
 
         Player::factory(6)->create();
+
+        GameType::create(['name' => 'Pot-limit Texas Hold-em']);
     }
 }

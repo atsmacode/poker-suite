@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Table;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GameFactory extends Factory
@@ -14,7 +15,9 @@ class GameFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'table_id' => Table::factory(),
+            'game_type_id' => 1,
+            'mode' => 1,
         ];
     }
 }

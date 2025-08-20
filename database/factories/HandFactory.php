@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Game;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HandFactory extends Factory
@@ -14,7 +15,8 @@ class HandFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'game_id' => Game::factory(),
+            'completed_on' => null,
         ];
     }
 }
