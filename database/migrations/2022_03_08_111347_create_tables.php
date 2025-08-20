@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('number');
             $table->boolean('can_continue')->default(0);
             $table->boolean('is_dealer')->default(0);
+            $table->unique(['number', 'table_id']);
             $table->timestamps();
         });
     }
