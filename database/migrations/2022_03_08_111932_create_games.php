@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\GameMode;
 use App\Models\GameType;
 use App\Models\Table;
 use Illuminate\Database\Migrations\Migration;
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->increments('id');
             $table->foreignIdFor(Table::class);
             $table->foreignIdFor(GameType::class);
-            $table->tinyInteger('mode'); // TODO: Make Enum
+            $table->foreignIdFor(GameMode::class);
             $table->dateTime('completed_on')->nullable();
             $table->timestamps();
         });
@@ -43,6 +44,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('game_modes');
         Schema::dropIfExists('game_types');
         Schema::dropIfExists('games');
     }
