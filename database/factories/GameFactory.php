@@ -16,8 +16,8 @@ class GameFactory extends Factory
     {
         return [
             'table_id' => Table::factory(),
-            'game_type_id' => 1,
-            'mode' => 1,
+            'game_style_id' => 1,
+            'game_mode_id' => 1,
         ];
     }
 }

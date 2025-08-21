@@ -4,121 +4,71 @@ namespace App\Enums;
 
 use App\Concerns\CanRandomiseCases;
 
-enum Rank: string
+enum Rank: int
 {
     use CanRandomiseCases;
 
-    case ACE   = 'ace';
-    case DEUCE = 'deuce';
-    case THREE = 'three';
-    case FOUR  = 'four';
-    case FIVE  = 'five';
-    case SIX   = 'six';
-    case SEVEN = 'seven';
-    case EIGHT = 'eight';
-    case NINE  = 'nine';
-    case TEN   = 'ten';
-    case JACK  = 'jack';
-    case QUEEN = 'queen';
-    case KING  = 'king';
+    case ACE   = 1;
+    case DEUCE = 2;
+    case THREE = 3;
+    case FOUR  = 4;
+    case FIVE  = 5;
+    case SIX   = 6;
+    case SEVEN = 7;
+    case EIGHT = 8;
+    case NINE  = 9;
+    case TEN   = 10;
+    case JACK  = 11;
+    case QUEEN = 12;
+    case KING  = 13;
 
-    public const ACE_RANK_ID   = 1;
-    public const DEUCE_RANK_ID = 2;
-    public const THREE_RANK_ID = 3;
-    public const FOUR_RANK_ID  = 4;
-    public const FIVE_RANK_ID  = 5;
-    public const SIX_RANK_ID   = 6;
-    public const SEVEN_RANK_ID = 7;
-    public const EIGHT_RANK_ID = 8;
-    public const NINE_RANK_ID  = 9;
-    public const TEN_RANK_ID   = 10;
-    public const JACK_RANK_ID  = 11;
-    public const QUEEN_RANK_ID = 12;
-    public const KING_RANK_ID  = 13;
-
-    public const ACE_HIGH_RANK_ID = 14;
+    public const ACE_HIGH = 14;
 
     public function toArray(): array
     {
+        return [
+            'rank_id'     => $this->value,
+            'rank'        => $this->name(),
+            'ranking'     => $this->value,
+            'rank_abbrev' => $this->abbreviation(),
+        ];
+    }
+
+    public function name(): string
+    {
         return match ($this) {
-            self::ACE => [
-                'rank_id' => self::ACE_RANK_ID,
-                'rank' => 'Ace',
-                'ranking' => 1,
-                'rank_abbrev' => 'A',
-            ],
-            self::DEUCE => [
-                'rank_id' => self::DEUCE_RANK_ID,
-                'rank' => 'Deuce',
-                'ranking' => 2,
-                'rank_abbrev' => '2',
-            ],
-            self::THREE => [
-                'rank_id' => self::THREE_RANK_ID,
-                'rank' => 'Three',
-                'ranking' => 3,
-                'rank_abbrev' => '3',
-            ],
-            self::FOUR => [
-                'rank_id' => self::FOUR_RANK_ID,
-                'rank' => 'Four',
-                'ranking' => 4,
-                'rank_abbrev' => '4',
-            ],
-            self::FIVE => [
-                'rank_id' => self::FIVE_RANK_ID,
-                'rank' => 'Five',
-                'ranking' => 5,
-                'rank_abbrev' => '5',
-            ],
-            self::SIX => [
-                'rank_id' => self::SIX_RANK_ID,
-                'rank' => 'Six',
-                'ranking' => 6,
-                'rank_abbrev' => '6',
-            ],
-            self::SEVEN => [
-                'rank_id' => self::SEVEN_RANK_ID,
-                'rank' => 'Seven',
-                'ranking' => 7,
-                'rank_abbrev' => '7',
-            ],
-            self::EIGHT => [
-                'rank_id' => self::EIGHT_RANK_ID,
-                'rank' => 'Eight',
-                'ranking' => 8,
-                'rank_abbrev' => '8',
-            ],
-            self::NINE => [
-                'rank_id' => self::NINE_RANK_ID,
-                'rank' => 'Nine',
-                'ranking' => 9,
-                'rank_abbrev' => '9',
-            ],
-            self::TEN => [
-                'rank_id' => self::TEN_RANK_ID,
-                'rank' => 'Ten',
-                'ranking' => 10,
-                'rank_abbrev' => '10',
-            ],
-            self::JACK => [
-                'rank_id' => self::JACK_RANK_ID,
-                'rank' => 'Jack',
-                'ranking' => 11,
-                'rank_abbrev' => 'J',
-            ],
-            self::QUEEN => [
-                'rank_id' => self::QUEEN_RANK_ID,
-                'rank' => 'Queen',
-                'ranking' => 12,
-                'rank_abbrev' => 'Q',
-            ],
-            self::KING => [
-                'rank_id' => self::KING_RANK_ID,
-                'rank' => 'King',
-                'ranking' => 13,
-                'rank_abbrev' => 'K',
-            ],
+            self::ACE   => 'Ace',
+            self::DEUCE => 'Deuce',
+            self::THREE => 'Three',
+            self::FOUR  => 'Four',
+            self::FIVE  => 'Five',
+            self::SIX   => 'Six',
+            self::SEVEN => 'Seven',
+            self::EIGHT => 'Eight',
+            self::NINE  => 'Nine',
+            self::TEN   => 'Ten',
+            self::JACK  => 'Jack',
+            self::QUEEN => 'Queen',
+            self::KING  => 'King',
+        };
+    }
+
+    public function abbreviation(): string
+    {
+        return match ($this) {
+            self::ACE   => 'A',
+            self::DEUCE => '2',
+            self::THREE => '3',
+            self::FOUR  => '4',
+            self::FIVE  => '5',
+            self::SIX   => '6',
+            self::SEVEN => '7',
+            self::EIGHT => '8',
+            self::NINE  => '9',
+            self::TEN   => '10',
+            self::JACK  => 'J',
+            self::QUEEN => 'Q',
+            self::KING  => 'K',
         };
     }
 }

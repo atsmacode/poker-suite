@@ -18,7 +18,7 @@ class PlayerActionFactory extends Factory
     public function definition()
     {
         return [
-            'action_id' => Action::random()->toArray()['id'],
+            'action_id' => Action::random()->value,
             'player_id' => Player::factory(),
             'hand_id' => Hand::factory(),
             'table_seat_id' => TableSeat::factory(),

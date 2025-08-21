@@ -15,7 +15,7 @@ class HandStreetFactory extends Factory
     public function definition()
     {
         return [
-            'street_id' => Street::random()->toArray()['id'],
+            'street_id' => Street::random()->value,
         ];
     }
 }

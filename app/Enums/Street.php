@@ -4,39 +4,30 @@ namespace App\Enums;
 
 use App\Concerns\CanRandomiseCases;
 
-enum Street: string
+enum Street: int
 {
     use CanRandomiseCases;
 
-    case PRE_FLOP = 'pre_flop';
-    case FLOP = 'flop';
-    case TURN = 'turn';
-    case RIVER = 'river';
-
-    public const PRE_FLOP_ID = 1;
-    public const FLOP_ID = 2;
-    public const TURN_ID = 3;
-    public const RIVER_ID = 4;
+    case PRE_FLOP = 1;
+    case FLOP     = 2;
+    case TURN     = 3;
+    case RIVER    = 4;
 
     public function toArray(): array
     {
+        return [
+            'id'   => $this->value,
+            'name' => $this->name(),
+        ];
+    }
+
+    public function name(): string
+    {
         return match ($this) {
-            self::PRE_FLOP => [
-                'id' => self::PRE_FLOP_ID,
-                'name' => 'Pre-flop',
-            ],
-            self::FLOP => [
-                'id' => self::FLOP_ID,
-                'name' => 'Flop',
-            ],
-            self::TURN => [
-                'id' => self::TURN_ID,
-                'name' => 'Turn',
-            ],
-            self::RIVER => [
-                'id' => self::RIVER_ID,
-                'name' => 'River',
-            ]
+            self::PRE_FLOP => 'Pre-flop',
+            self::FLOP     => 'Flop',
+            self::TURN     => 'Turn',
+            self::RIVER    => 'River',
         };
     }
 }

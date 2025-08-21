@@ -20,7 +20,7 @@ class PlayerActionLogFactory extends Factory
     {
         return [
             'player_action_id' => PlayerAction::factory(),
-            'action_id' => Action::random()->toArray()['id'],
+            'action_id' => Action::random()->value,
             'player_id' => Player::factory(),
             'hand_id' => Hand::factory(),
             'table_seat_id' => TableSeat::factory(),
