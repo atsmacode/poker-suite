@@ -11,6 +11,7 @@ class TableSeat extends Pivot
     use HasFactory;
 
     protected $table = 'table_seats';
+    public $incrementing = true; // To use Pivot in factory relations
 
     protected $fillable = [
         'table_id',
