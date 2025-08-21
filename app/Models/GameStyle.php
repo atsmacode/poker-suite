@@ -4,6 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GameType extends Model
+class GameStyle extends Model
 {
 }

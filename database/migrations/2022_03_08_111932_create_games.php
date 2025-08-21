@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\GameMode;
-use App\Models\GameType;
+use App\Models\GameStyle;
 use App\Models\Table;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('game_types', function (Blueprint $table) {
+        Schema::create('game_styles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -25,7 +25,7 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignIdFor(Table::class);
-            $table->foreignIdFor(GameType::class);
+            $table->foreignIdFor(GameStyle::class);
             $table->foreignIdFor(GameMode::class);
             $table->dateTime('completed_on')->nullable();
             $table->timestamps();
@@ -45,7 +45,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('game_modes');
-        Schema::dropIfExists('game_types');
+        Schema::dropIfExists('game_styles');
         Schema::dropIfExists('games');
     }
 };

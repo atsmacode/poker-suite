@@ -2,11 +2,9 @@
 
 use App\Models\Card;
 use App\Models\Game;
-use App\Models\GameType;
 use App\Models\Hand;
 use App\Models\HandStreet;
 use App\Models\Street;
-use App\Models\Table;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

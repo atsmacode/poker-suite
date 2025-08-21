@@ -10,7 +10,7 @@ use App\Enums\Suit as EnumsSuit;
 use App\Models\Action;
 use App\Models\Card;
 use App\Models\GameMode;
-use App\Models\GameType;
+use App\Models\GameStyle;
 use App\Models\HandType;
 use App\Models\Player;
 use App\Models\Rank;
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
 
         Player::factory(6)->create();
 
-        GameType::create(['name' => 'Pot-limit Texas Hold-em']);
+        GameStyle::create(['name' => 'Pot-limit Texas Hold-em']);
 
         foreach (EnumsMode::cases() as $mode) {
             GameMode::create(['name' => $mode->value]);
