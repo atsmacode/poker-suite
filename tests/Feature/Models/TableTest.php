@@ -3,7 +3,7 @@
 use App\Models\Player;
 use App\Models\Table;
 
-test('a table can haves players', function() {
+test('a table can have players', function() {
     $players = Player::factory(6)->create();
     $table = Table::factory()
         ->hasAttached($players, fn() => [
