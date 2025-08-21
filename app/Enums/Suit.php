@@ -24,22 +24,22 @@ enum Suit: string
             'clubs' => [
                 'suit_id' => self::CLUBS_SUIT_ID,
                 'suit' => 'Clubs',
-                'suitAbbreviation' => 'C',
+                'suit_abbrev' => 'C',
             ],
             'diamonds' => [
                 'suit_id' => self::DIAMONDS_SUIT_ID,
                 'suit' => 'Diamonds',
-                'suitAbbreviation' => 'D',
+                'suit_abbrev' => 'D',
             ],
             'hearts' => [
                 'suit_id' => self::HEARTS_SUIT_ID,
                 'suit' => 'Hearts',
-                'suitAbbreviation' => 'H',
+                'suit_abbrev' => 'H',
             ],
             'spades' => [
                 'suit_id' => self::SPADES_SUIT_ID,
                 'suit' => 'Spades',
-                'suitAbbreviation' => 'S',
+                'suit_abbrev' => 'S',
             ],
         };
     }

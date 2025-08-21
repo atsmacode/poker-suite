@@ -126,67 +126,68 @@ enum Card: string
     public const KING_SPADES_ID  = 52;
 
     public function toArray(): array
-    {
-        return match ($this) {
-            // Clubs
-            self::ACE_CLUBS   => ['id' => self::ACE_CLUBS_ID,   'rank' => Rank::ACE,   'suit' => Suit::CLUBS],
-            self::DEUCE_CLUBS => ['id' => self::DEUCE_CLUBS_ID, 'rank' => Rank::DEUCE, 'suit' => Suit::CLUBS],
-            self::THREE_CLUBS => ['id' => self::THREE_CLUBS_ID, 'rank' => Rank::THREE, 'suit' => Suit::CLUBS],
-            self::FOUR_CLUBS  => ['id' => self::FOUR_CLUBS_ID,  'rank' => Rank::FOUR,  'suit' => Suit::CLUBS],
-            self::FIVE_CLUBS  => ['id' => self::FIVE_CLUBS_ID,  'rank' => Rank::FIVE,  'suit' => Suit::CLUBS],
-            self::SIX_CLUBS   => ['id' => self::SIX_CLUBS_ID,   'rank' => Rank::SIX,   'suit' => Suit::CLUBS],
-            self::SEVEN_CLUBS => ['id' => self::SEVEN_CLUBS_ID, 'rank' => Rank::SEVEN, 'suit' => Suit::CLUBS],
-            self::EIGHT_CLUBS => ['id' => self::EIGHT_CLUBS_ID, 'rank' => Rank::EIGHT, 'suit' => Suit::CLUBS],
-            self::NINE_CLUBS  => ['id' => self::NINE_CLUBS_ID,  'rank' => Rank::NINE,  'suit' => Suit::CLUBS],
-            self::TEN_CLUBS   => ['id' => self::TEN_CLUBS_ID,   'rank' => Rank::TEN,   'suit' => Suit::CLUBS],
-            self::JACK_CLUBS  => ['id' => self::JACK_CLUBS_ID,  'rank' => Rank::JACK,  'suit' => Suit::CLUBS],
-            self::QUEEN_CLUBS => ['id' => self::QUEEN_CLUBS_ID, 'rank' => Rank::QUEEN, 'suit' => Suit::CLUBS],
-            self::KING_CLUBS  => ['id' => self::KING_CLUBS_ID,  'rank' => Rank::KING,  'suit' => Suit::CLUBS],
+{
+    return match ($this) {
+        // Clubs
+        self::ACE_CLUBS   => array_merge(['id' => self::ACE_CLUBS_ID], Rank::ACE->toArray(), Suit::CLUBS->toArray()),
+        self::DEUCE_CLUBS => array_merge(['id' => self::DEUCE_CLUBS_ID], Rank::DEUCE->toArray(), Suit::CLUBS->toArray()),
+        self::THREE_CLUBS => array_merge(['id' => self::THREE_CLUBS_ID], Rank::THREE->toArray(), Suit::CLUBS->toArray()),
+        self::FOUR_CLUBS  => array_merge(['id' => self::FOUR_CLUBS_ID],  Rank::FOUR->toArray(),  Suit::CLUBS->toArray()),
+        self::FIVE_CLUBS  => array_merge(['id' => self::FIVE_CLUBS_ID],  Rank::FIVE->toArray(),  Suit::CLUBS->toArray()),
+        self::SIX_CLUBS   => array_merge(['id' => self::SIX_CLUBS_ID],   Rank::SIX->toArray(),   Suit::CLUBS->toArray()),
+        self::SEVEN_CLUBS => array_merge(['id' => self::SEVEN_CLUBS_ID], Rank::SEVEN->toArray(), Suit::CLUBS->toArray()),
+        self::EIGHT_CLUBS => array_merge(['id' => self::EIGHT_CLUBS_ID], Rank::EIGHT->toArray(), Suit::CLUBS->toArray()),
+        self::NINE_CLUBS  => array_merge(['id' => self::NINE_CLUBS_ID],  Rank::NINE->toArray(),  Suit::CLUBS->toArray()),
+        self::TEN_CLUBS   => array_merge(['id' => self::TEN_CLUBS_ID],   Rank::TEN->toArray(),   Suit::CLUBS->toArray()),
+        self::JACK_CLUBS  => array_merge(['id' => self::JACK_CLUBS_ID],  Rank::JACK->toArray(),  Suit::CLUBS->toArray()),
+        self::QUEEN_CLUBS => array_merge(['id' => self::QUEEN_CLUBS_ID], Rank::QUEEN->toArray(), Suit::CLUBS->toArray()),
+        self::KING_CLUBS  => array_merge(['id' => self::KING_CLUBS_ID],  Rank::KING->toArray(),  Suit::CLUBS->toArray()),
 
-            // Diamonds
-            self::ACE_DIAMONDS   => ['id' => self::ACE_DIAMONDS_ID,   'rank' => Rank::ACE,   'suit' => Suit::DIAMONDS],
-            self::DEUCE_DIAMONDS => ['id' => self::DEUCE_DIAMONDS_ID, 'rank' => Rank::DEUCE, 'suit' => Suit::DIAMONDS],
-            self::THREE_DIAMONDS => ['id' => self::THREE_DIAMONDS_ID, 'rank' => Rank::THREE, 'suit' => Suit::DIAMONDS],
-            self::FOUR_DIAMONDS  => ['id' => self::FOUR_DIAMONDS_ID,  'rank' => Rank::FOUR,  'suit' => Suit::DIAMONDS],
-            self::FIVE_DIAMONDS  => ['id' => self::FIVE_DIAMONDS_ID,  'rank' => Rank::FIVE,  'suit' => Suit::DIAMONDS],
-            self::SIX_DIAMONDS   => ['id' => self::SIX_DIAMONDS_ID,   'rank' => Rank::SIX,   'suit' => Suit::DIAMONDS],
-            self::SEVEN_DIAMONDS => ['id' => self::SEVEN_DIAMONDS_ID, 'rank' => Rank::SEVEN, 'suit' => Suit::DIAMONDS],
-            self::EIGHT_DIAMONDS => ['id' => self::EIGHT_DIAMONDS_ID, 'rank' => Rank::EIGHT, 'suit' => Suit::DIAMONDS],
-            self::NINE_DIAMONDS  => ['id' => self::NINE_DIAMONDS_ID,  'rank' => Rank::NINE,  'suit' => Suit::DIAMONDS],
-            self::TEN_DIAMONDS   => ['id' => self::TEN_DIAMONDS_ID,   'rank' => Rank::TEN,   'suit' => Suit::DIAMONDS],
-            self::JACK_DIAMONDS  => ['id' => self::JACK_DIAMONDS_ID,  'rank' => Rank::JACK,  'suit' => Suit::DIAMONDS],
-            self::QUEEN_DIAMONDS => ['id' => self::QUEEN_DIAMONDS_ID, 'rank' => Rank::QUEEN, 'suit' => Suit::DIAMONDS],
-            self::KING_DIAMONDS  => ['id' => self::KING_DIAMONDS_ID,  'rank' => Rank::KING,  'suit' => Suit::DIAMONDS],
+        // Diamonds
+        self::ACE_DIAMONDS   => array_merge(['id' => self::ACE_DIAMONDS_ID],   Rank::ACE->toArray(),   Suit::DIAMONDS->toArray()),
+        self::DEUCE_DIAMONDS => array_merge(['id' => self::DEUCE_DIAMONDS_ID], Rank::DEUCE->toArray(), Suit::DIAMONDS->toArray()),
+        self::THREE_DIAMONDS => array_merge(['id' => self::THREE_DIAMONDS_ID], Rank::THREE->toArray(), Suit::DIAMONDS->toArray()),
+        self::FOUR_DIAMONDS  => array_merge(['id' => self::FOUR_DIAMONDS_ID],  Rank::FOUR->toArray(),  Suit::DIAMONDS->toArray()),
+        self::FIVE_DIAMONDS  => array_merge(['id' => self::FIVE_DIAMONDS_ID],  Rank::FIVE->toArray(),  Suit::DIAMONDS->toArray()),
+        self::SIX_DIAMONDS   => array_merge(['id' => self::SIX_DIAMONDS_ID],   Rank::SIX->toArray(),   Suit::DIAMONDS->toArray()),
+        self::SEVEN_DIAMONDS => array_merge(['id' => self::SEVEN_DIAMONDS_ID], Rank::SEVEN->toArray(), Suit::DIAMONDS->toArray()),
+        self::EIGHT_DIAMONDS => array_merge(['id' => self::EIGHT_DIAMONDS_ID], Rank::EIGHT->toArray(), Suit::DIAMONDS->toArray()),
+        self::NINE_DIAMONDS  => array_merge(['id' => self::NINE_DIAMONDS_ID],  Rank::NINE->toArray(),  Suit::DIAMONDS->toArray()),
+        self::TEN_DIAMONDS   => array_merge(['id' => self::TEN_DIAMONDS_ID],   Rank::TEN->toArray(),   Suit::DIAMONDS->toArray()),
+        self::JACK_DIAMONDS  => array_merge(['id' => self::JACK_DIAMONDS_ID],  Rank::JACK->toArray(),  Suit::DIAMONDS->toArray()),
+        self::QUEEN_DIAMONDS => array_merge(['id' => self::QUEEN_DIAMONDS_ID], Rank::QUEEN->toArray(), Suit::DIAMONDS->toArray()),
+        self::KING_DIAMONDS  => array_merge(['id' => self::KING_DIAMONDS_ID],  Rank::KING->toArray(),  Suit::DIAMONDS->toArray()),
 
-            // Hearts
-            self::ACE_HEARTS   => ['id' => self::ACE_HEARTS_ID,   'rank' => Rank::ACE,   'suit' => Suit::HEARTS],
-            self::DEUCE_HEARTS => ['id' => self::DEUCE_HEARTS_ID, 'rank' => Rank::DEUCE, 'suit' => Suit::HEARTS],
-            self::THREE_HEARTS => ['id' => self::THREE_HEARTS_ID, 'rank' => Rank::THREE, 'suit' => Suit::HEARTS],
-            self::FOUR_HEARTS  => ['id' => self::FOUR_HEARTS_ID,  'rank' => Rank::FOUR,  'suit' => Suit::HEARTS],
-            self::FIVE_HEARTS  => ['id' => self::FIVE_HEARTS_ID,  'rank' => Rank::FIVE,  'suit' => Suit::HEARTS],
-            self::SIX_HEARTS   => ['id' => self::SIX_HEARTS_ID,   'rank' => Rank::SIX,   'suit' => Suit::HEARTS],
-            self::SEVEN_HEARTS => ['id' => self::SEVEN_HEARTS_ID, 'rank' => Rank::SEVEN, 'suit' => Suit::HEARTS],
-            self::EIGHT_HEARTS => ['id' => self::EIGHT_HEARTS_ID, 'rank' => Rank::EIGHT, 'suit' => Suit::HEARTS],
-            self::NINE_HEARTS  => ['id' => self::NINE_HEARTS_ID,  'rank' => Rank::NINE,  'suit' => Suit::HEARTS],
-            self::TEN_HEARTS   => ['id' => self::TEN_HEARTS_ID,   'rank' => Rank::TEN,   'suit' => Suit::HEARTS],
-            self::JACK_HEARTS  => ['id' => self::JACK_HEARTS_ID,  'rank' => Rank::JACK,  'suit' => Suit::HEARTS],
-            self::QUEEN_HEARTS => ['id' => self::QUEEN_HEARTS_ID, 'rank' => Rank::QUEEN, 'suit' => Suit::HEARTS],
-            self::KING_HEARTS  => ['id' => self::KING_HEARTS_ID,  'rank' => Rank::KING,  'suit' => Suit::HEARTS],
+        // Hearts
+        self::ACE_HEARTS   => array_merge(['id' => self::ACE_HEARTS_ID],   Rank::ACE->toArray(),   Suit::HEARTS->toArray()),
+        self::DEUCE_HEARTS => array_merge(['id' => self::DEUCE_HEARTS_ID], Rank::DEUCE->toArray(), Suit::HEARTS->toArray()),
+        self::THREE_HEARTS => array_merge(['id' => self::THREE_HEARTS_ID], Rank::THREE->toArray(), Suit::HEARTS->toArray()),
+        self::FOUR_HEARTS  => array_merge(['id' => self::FOUR_HEARTS_ID],  Rank::FOUR->toArray(),  Suit::HEARTS->toArray()),
+        self::FIVE_HEARTS  => array_merge(['id' => self::FIVE_HEARTS_ID],  Rank::FIVE->toArray(),  Suit::HEARTS->toArray()),
+        self::SIX_HEARTS   => array_merge(['id' => self::SIX_HEARTS_ID],   Rank::SIX->toArray(),   Suit::HEARTS->toArray()),
+        self::SEVEN_HEARTS => array_merge(['id' => self::SEVEN_HEARTS_ID], Rank::SEVEN->toArray(), Suit::HEARTS->toArray()),
+        self::EIGHT_HEARTS => array_merge(['id' => self::EIGHT_HEARTS_ID], Rank::EIGHT->toArray(), Suit::HEARTS->toArray()),
+        self::NINE_HEARTS  => array_merge(['id' => self::NINE_HEARTS_ID],  Rank::NINE->toArray(),  Suit::HEARTS->toArray()),
+        self::TEN_HEARTS   => array_merge(['id' => self::TEN_HEARTS_ID],   Rank::TEN->toArray(),   Suit::HEARTS->toArray()),
+        self::JACK_HEARTS  => array_merge(['id' => self::JACK_HEARTS_ID],  Rank::JACK->toArray(),  Suit::HEARTS->toArray()),
+        self::QUEEN_HEARTS => array_merge(['id' => self::QUEEN_HEARTS_ID], Rank::QUEEN->toArray(), Suit::HEARTS->toArray()),
+        self::KING_HEARTS  => array_merge(['id' => self::KING_HEARTS_ID],  Rank::KING->toArray(),  Suit::HEARTS->toArray()),
 
-            // Spades
-            self::ACE_SPADES   => ['id' => self::ACE_SPADES_ID,   'rank' => Rank::ACE,   'suit' => Suit::SPADES],
-            self::DEUCE_SPADES => ['id' => self::DEUCE_SPADES_ID, 'rank' => Rank::DEUCE, 'suit' => Suit::SPADES],
-            self::THREE_SPADES => ['id' => self::THREE_SPADES_ID, 'rank' => Rank::THREE, 'suit' => Suit::SPADES],
-            self::FOUR_SPADES  => ['id' => self::FOUR_SPADES_ID,  'rank' => Rank::FOUR,  'suit' => Suit::SPADES],
-            self::FIVE_SPADES  => ['id' => self::FIVE_SPADES_ID,  'rank' => Rank::FIVE,  'suit' => Suit::SPADES],
-            self::SIX_SPADES   => ['id' => self::SIX_SPADES_ID,   'rank' => Rank::SIX,   'suit' => Suit::SPADES],
-            self::SEVEN_SPADES => ['id' => self::SEVEN_SPADES_ID, 'rank' => Rank::SEVEN, 'suit' => Suit::SPADES],
-            self::EIGHT_SPADES => ['id' => self::EIGHT_SPADES_ID, 'rank' => Rank::EIGHT, 'suit' => Suit::SPADES],
-            self::NINE_SPADES  => ['id' => self::NINE_SPADES_ID,  'rank' => Rank::NINE,  'suit' => Suit::SPADES],
-            self::TEN_SPADES   => ['id' => self::TEN_SPADES_ID,   'rank' => Rank::TEN,   'suit' => Suit::SPADES],
-            self::JACK_SPADES  => ['id' => self::JACK_SPADES_ID,  'rank' => Rank::JACK,  'suit' => Suit::SPADES],
-            self::QUEEN_SPADES => ['id' => self::QUEEN_SPADES_ID, 'rank' => Rank::QUEEN, 'suit' => Suit::SPADES],
-            self::KING_SPADES  => ['id' => self::KING_SPADES_ID,  'rank' => Rank::KING,  'suit' => Suit::SPADES],
-        };
-    }
+        // Spades
+        self::ACE_SPADES   => array_merge(['id' => self::ACE_SPADES_ID],   Rank::ACE->toArray(),   Suit::SPADES->toArray()),
+        self::DEUCE_SPADES => array_merge(['id' => self::DEUCE_SPADES_ID], Rank::DEUCE->toArray(), Suit::SPADES->toArray()),
+        self::THREE_SPADES => array_merge(['id' => self::THREE_SPADES_ID], Rank::THREE->toArray(), Suit::SPADES->toArray()),
+        self::FOUR_SPADES  => array_merge(['id' => self::FOUR_SPADES_ID],  Rank::FOUR->toArray(),  Suit::SPADES->toArray()),
+        self::FIVE_SPADES  => array_merge(['id' => self::FIVE_SPADES_ID],  Rank::FIVE->toArray(),  Suit::SPADES->toArray()),
+        self::SIX_SPADES   => array_merge(['id' => self::SIX_SPADES_ID],   Rank::SIX->toArray(),   Suit::SPADES->toArray()),
+        self::SEVEN_SPADES => array_merge(['id' => self::SEVEN_SPADES_ID], Rank::SEVEN->toArray(), Suit::SPADES->toArray()),
+        self::EIGHT_SPADES => array_merge(['id' => self::EIGHT_SPADES_ID], Rank::EIGHT->toArray(), Suit::SPADES->toArray()),
+        self::NINE_SPADES  => array_merge(['id' => self::NINE_SPADES_ID],  Rank::NINE->toArray(),  Suit::SPADES->toArray()),
+        self::TEN_SPADES   => array_merge(['id' => self::TEN_SPADES_ID],   Rank::TEN->toArray(),   Suit::SPADES->toArray()),
+        self::JACK_SPADES  => array_merge(['id' => self::JACK_SPADES_ID],  Rank::JACK->toArray(),  Suit::SPADES->toArray()),
+        self::QUEEN_SPADES => array_merge(['id' => self::QUEEN_SPADES_ID], Rank::QUEEN->toArray(), Suit::SPADES->toArray()),
+        self::KING_SPADES  => array_merge(['id' => self::KING_SPADES_ID],  Rank::KING->toArray(),  Suit::SPADES->toArray()),
+    };
+}
+
 }

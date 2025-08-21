@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             Rank::create([
                 'id' => $rank['rank_id'],
                 'name' => $rank['rank'],
-                'abbreviation' => $rank['rankAbbreviation'],
+                'abbreviation' => $rank['rank_abbrev'],
                 'ranking' => $rank['ranking'],
             ]);
         }
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
             Suit::create([
                 'id' => $suit['suit_id'],
                 'name' => $suit['suit'],
-                'abbreviation' => $suit['suitAbbreviation']
+                'abbreviation' => $suit['suit_abbrev']
             ]);
         }
 
