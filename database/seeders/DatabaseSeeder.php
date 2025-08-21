@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Action as EnumsAction;
+use App\Enums\Rank as EnumsRank;
+use App\Enums\Street as EnumsStreet;
+use App\Enums\Suit as EnumsSuit;
 use App\Models\Action;
 use App\Models\Card;
 use App\Models\GameType;
@@ -26,8 +30,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        foreach (config('actions') as $action) {
-            Action::create(['name' => $action]);
+        foreach (EnumsAction::cases() as $action) {
+            $action = $action->toArray();
+            Action::create(['id' => $action['id'], 'name' => $action['name']]);
         }
 
         foreach (config('handtypes') as $handType) {
@@ -37,22 +42,27 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (config('streets') as $street) {
-            Street::create(['name' => $street]);
+        foreach (EnumsStreet::cases() as $street) {
+            $street = $street->toArray();
+            Street::create(['id' => $street['id'], 'name' => $street['name']]);
         }
 
-        foreach (config('ranks') as $rank) {
+        foreach (EnumsRank::cases() as $rank) {
+            $rank = $rank->toArray();
             Rank::create([
-                'name' => $rank['name'],
-                'abbreviation' => $rank['abbreviation'],
+                'id' => $rank['rank_id'],
+                'name' => $rank['rank'],
+                'abbreviation' => $rank['rankAbbreviation'],
                 'ranking' => $rank['ranking'],
             ]);
         }
 
-        foreach (config('suits') as $suit) {
+        foreach (EnumsSuit::cases() as $suit) {
+            $suit = $suit->toArray();
             Suit::create([
-                'name' => $suit['name'],
-                'abbreviation' => $suit['abbreviation']
+                'id' => $suit['suit_id'],
+                'name' => $suit['suit'],
+                'abbreviation' => $suit['suitAbbreviation']
             ]);
         }
 
