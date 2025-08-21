@@ -132,6 +132,4 @@ enum Card: string
             self::KING_SPADES  => array_merge(['id' => 52], Rank::KING->toArray(),  Suit::SPADES->toArray()),
         };
     }
-
-
 }
