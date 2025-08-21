@@ -2,10 +2,12 @@
 
 namespace App\Enums;
 
-use Illuminate\Support\Arr;
+use App\Concerns\CanRandomiseCases;
 
 enum Street: string
 {
+    use CanRandomiseCases;
+
     case PRE_FLOP = 'pre_flop';
     case FLOP = 'flop';
     case TURN = 'turn';
@@ -36,10 +38,5 @@ enum Street: string
                 'name' => 'River',
             ]
         };
-    }
-
-    public static function random(): self
-    {
-        return Arr::random(self::cases());
     }
 }

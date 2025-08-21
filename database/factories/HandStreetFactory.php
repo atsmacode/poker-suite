@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Enums\Street;
-use App\Models\Hand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HandStreetFactory extends Factory
