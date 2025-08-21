@@ -3,11 +3,13 @@
 namespace Database\Seeders;
 
 use App\Enums\Action as EnumsAction;
+use App\Enums\Mode as EnumsMode;
 use App\Enums\Rank as EnumsRank;
 use App\Enums\Street as EnumsStreet;
 use App\Enums\Suit as EnumsSuit;
 use App\Models\Action;
 use App\Models\Card;
+use App\Models\GameMode;
 use App\Models\GameType;
 use App\Models\HandType;
 use App\Models\Player;
@@ -17,6 +19,7 @@ use App\Models\Suit;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Mode;
 
 class DatabaseSeeder extends Seeder
 {
@@ -78,5 +81,9 @@ class DatabaseSeeder extends Seeder
         Player::factory(6)->create();
 
         GameType::create(['name' => 'Pot-limit Texas Hold-em']);
+
+        foreach (EnumsMode::cases() as $mode) {
+            GameMode::create(['name' => $mode->value]);
+        }
     }
 }

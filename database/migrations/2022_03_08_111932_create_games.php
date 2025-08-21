@@ -29,6 +29,11 @@ return new class extends Migration
             $table->dateTime('completed_on')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('game_modes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+        });
     }
 
     /**
