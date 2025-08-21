@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\Action as EnumsAction;
+use App\Enums\Card as EnumsCard;
 use App\Enums\Mode as EnumsMode;
 use App\Enums\Rank as EnumsRank;
 use App\Enums\Street as EnumsStreet;
@@ -19,7 +20,6 @@ use App\Models\Suit;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Mode;
 
 class DatabaseSeeder extends Seeder
 {
@@ -69,13 +69,12 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (Suit::all() as $suit) {
-            foreach (Rank::all() as $rank) {
-                Card::create([
-                    'rank_id' => $rank->id,
-                    'suit_id' => $suit->id,
-                ]);
-            }
+        foreach (EnumsCard::cases() as $card) {
+            $card = $card->toArray();
+            Card::create([
+                'rank_id' => $card['rank_id'],
+                'suit_id' => $card['suit_id'],
+            ]);
         }
 
         Player::factory(6)->create();
