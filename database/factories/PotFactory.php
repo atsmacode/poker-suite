@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Hand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PotFactory extends Factory
@@ -14,7 +15,8 @@ class PotFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'hand_id' => Hand::factory(),
+            'amount' => fake()->numberBetween(100, 1000),
         ];
     }
 }

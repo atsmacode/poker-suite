@@ -2,6 +2,8 @@
 
 use App\Models\Player;
 use App\Models\PlayerAction;
+use App\Models\Stack;
+use App\Models\Table;
 use App\Models\WholeCard;
 
 test('a player can have whole cards', function() {
@@ -18,4 +20,17 @@ test('a player can have actions', function() {
     $player->loadCount('playerActions');
 
     expect($player->player_actions_count)->toBe(2);
+});
+
+test('a player can have a stack', function() {
+    $table = Table::factory()->create();
+    $player = Player::factory()->has(
+        Stack::factory(['amount' => 550.00, 'table_id' => $table->id])
+    )->create();
+
+    $stack = $player->stacks
+        ->where('table_id', $table->id)
+        ->first();
+
+    expect($stack->amount)->toBe(550.00);
 });
