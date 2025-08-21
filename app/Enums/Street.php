@@ -20,20 +20,20 @@ enum Street: string
 
     public function toArray(): array
     {
-        return match ($this->value) {
-            'pre_flop' => [
+        return match ($this) {
+            self::PRE_FLOP => [
                 'id' => self::PRE_FLOP_ID,
                 'name' => 'Pre-flop',
             ],
-            'flop' => [
+            self::FLOP => [
                 'id' => self::FLOP_ID,
                 'name' => 'Flop',
             ],
-            'turn' => [
+            self::TURN => [
                 'id' => self::TURN_ID,
                 'name' => 'Turn',
             ],
-            'river' => [
+            self::RIVER => [
                 'id' => self::RIVER_ID,
                 'name' => 'River',
             ]

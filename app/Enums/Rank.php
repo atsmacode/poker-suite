@@ -40,80 +40,80 @@ enum Rank: string
 
     public function toArray(): array
     {
-        return match ($this->value) {
-            'ace' => [
+        return match ($this) {
+            self::ACE => [
                 'rank_id' => self::ACE_RANK_ID,
                 'rank' => 'Ace',
                 'ranking' => 1,
                 'rank_abbrev' => 'A',
             ],
-            'deuce' => [
+            self::DEUCE => [
                 'rank_id' => self::DEUCE_RANK_ID,
                 'rank' => 'Deuce',
                 'ranking' => 2,
                 'rank_abbrev' => '2',
             ],
-            'three' => [
+            self::THREE => [
                 'rank_id' => self::THREE_RANK_ID,
                 'rank' => 'Three',
                 'ranking' => 3,
                 'rank_abbrev' => '3',
             ],
-            'four' => [
+            self::FOUR => [
                 'rank_id' => self::FOUR_RANK_ID,
                 'rank' => 'Four',
                 'ranking' => 4,
                 'rank_abbrev' => '4',
             ],
-            'five' => [
+            self::FIVE => [
                 'rank_id' => self::FIVE_RANK_ID,
                 'rank' => 'Five',
                 'ranking' => 5,
                 'rank_abbrev' => '5',
             ],
-            'six' => [
+            self::SIX => [
                 'rank_id' => self::SIX_RANK_ID,
                 'rank' => 'Six',
                 'ranking' => 6,
                 'rank_abbrev' => '6',
             ],
-            'seven' => [
+            self::SEVEN => [
                 'rank_id' => self::SEVEN_RANK_ID,
                 'rank' => 'Seven',
                 'ranking' => 7,
                 'rank_abbrev' => '7',
             ],
-            'eight' => [
+            self::EIGHT => [
                 'rank_id' => self::EIGHT_RANK_ID,
                 'rank' => 'Eight',
                 'ranking' => 8,
                 'rank_abbrev' => '8',
             ],
-            'nine' => [
+            self::NINE => [
                 'rank_id' => self::NINE_RANK_ID,
                 'rank' => 'Nine',
                 'ranking' => 9,
                 'rank_abbrev' => '9',
             ],
-            'ten' => [
+            self::TEN => [
                 'rank_id' => self::TEN_RANK_ID,
                 'rank' => 'Ten',
                 'ranking' => 10,
                 'rank_abbrev' => '10',
             ],
-            'jack' => [
+            self::JACK => [
                 'rank_id' => self::JACK_RANK_ID,
                 'rank' => 'Jack',
                 'ranking' => 11,
                 'rank_abbrev' => 'J',
             ],
-            'queen' => [
+            self::QUEEN => [
                 'rank_id' => self::QUEEN_RANK_ID,
                 'rank' => 'Queen',
                 'ranking' => 12,
                 'rank_abbrev' => 'Q',
             ],
-            'king' => [
+            self::KING => [
                 'rank_id' => self::KING_RANK_ID,
                 'rank' => 'King',
                 'ranking' => 13,

@@ -22,24 +22,24 @@ enum Action: string
 
     public function toArray(): array
     {
-        return match ($this->value) {
-            'fold' => [
+        return match ($this) {
+            self::FOLD => [
                 'id' => self::FOLD_ID,
                 'name' => 'Fold',
             ],
-            'check' => [
+            self::CHECK => [
                 'id' => self::CHECK_ID,
                 'name' => 'Check',
             ],
-            'call' => [
+            self::CALL => [
                 'id' => self::CALL_ID,
                 'name' => 'Call',
             ],
-            'bet' => [
+            self::BET => [
                 'id' => self::BET_ID,
                 'name' => 'Bet',
             ],
-            'raise' => [
+            self::RAISE => [
                 'id' => self::RAISE_ID,
                 'name' => 'Raise',
             ],

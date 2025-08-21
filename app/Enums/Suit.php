@@ -20,23 +20,23 @@ enum Suit: string
 
     public function toArray(): array
     {
-        return match ($this->value) {
-            'clubs' => [
+        return match ($this) {
+            self::CLUBS => [
                 'suit_id' => self::CLUBS_SUIT_ID,
                 'suit' => 'Clubs',
                 'suit_abbrev' => 'C',
             ],
-            'diamonds' => [
+            self::DIAMONDS => [
                 'suit_id' => self::DIAMONDS_SUIT_ID,
                 'suit' => 'Diamonds',
                 'suit_abbrev' => 'D',
             ],
-            'hearts' => [
+            self::HEARTS => [
                 'suit_id' => self::HEARTS_SUIT_ID,
                 'suit' => 'Hearts',
                 'suit_abbrev' => 'H',
             ],
-            'spades' => [
+            self::SPADES => [
                 'suit_id' => self::SPADES_SUIT_ID,
                 'suit' => 'Spades',
                 'suit_abbrev' => 'S',
