@@ -2,9 +2,18 @@
 
 namespace App\Enums;
 
-enum Mode: string
+enum Mode: int
 {
-    case TEST = 'test';
-    case REAL = 'real';
-    case AI = 'ai';
+    case TEST = 1;
+    case REAL = 2;
+    case AI = 3;
+
+    public function name(): string
+    {
+        return match ($this) {
+            self::TEST => 'test',
+            self::REAL => 'real',
+            self::AI => 'ai',
+        };
+    }
 }

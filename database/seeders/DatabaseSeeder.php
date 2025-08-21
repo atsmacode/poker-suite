@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
         GameStyle::create(['name' => 'Pot-limit Texas Hold-em']);
 
         foreach (EnumsMode::cases() as $mode) {
-            GameMode::create(['name' => $mode->value]);
+            GameMode::create(['id' => $mode->value, 'name' => $mode->name()]);
         }
     }
 }
