@@ -20,4 +20,14 @@ class WholeCard extends Model
     {
         return $this->belongsTo(Card::class);
     }
+
+    public function hand(): BelongsTo
+    {
+        return $this->belongsTo(Hand::class);
+    }
+
+    public function player(): BelongsTo
+    {
+        return $this->belongsTo(Player::class);
+    }
 }
