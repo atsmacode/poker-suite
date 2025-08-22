@@ -30,9 +30,6 @@ return new class extends Migration
             $table->foreignIdFor(Hand::class);
             $table->foreignIdFor(TableSeat::class, 'table_seat_id');
             $table->float('bet_amount')->nullable();
-            $table->boolean('active')->default(0);
-            $table->boolean('big_blind')->default(0);
-            $table->boolean('small_blind')->default(0);
             $table->timestamps();
         });
 
@@ -44,9 +41,10 @@ return new class extends Migration
             $table->foreignIdFor(Hand::class);
             $table->foreignIdFor(TableSeat::class, 'table_seat_id');
             $table->float('bet_amount')->nullable();
-            $table->boolean('active')->default(0);
-            $table->boolean('big_blind')->default(0);
+            $table->boolean('can_continue')->default(0);
+            $table->boolean('is_dealer')->default(0);
             $table->boolean('small_blind')->default(0);
+            $table->boolean('big_blind')->default(0);
             $table->timestamps();
         });
     }

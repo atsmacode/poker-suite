@@ -19,8 +19,11 @@ class TableSeatFactory extends Factory
             'player_id' => Player::factory(),
             'table_id' => Table::factory(),
             'number' => 1,
+            'active' => 1,
             'can_continue' => 0,
             'is_dealer' => 0,
+            'small_blind' => fake()->boolean(),
+            'big_blind' => fake()->boolean(),
         ];
     }
 

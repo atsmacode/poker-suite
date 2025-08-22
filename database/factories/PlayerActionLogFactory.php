@@ -25,7 +25,8 @@ class PlayerActionLogFactory extends Factory
             'hand_id' => Hand::factory(),
             'table_seat_id' => TableSeat::factory(),
             'bet_amount' => fake()->numberBetween(50, 150),
-            'active' => fake()->boolean(),
+            'can_continue' => 0,
+            'is_dealer' => 0,
             'big_blind' => fake()->boolean(),
             'small_blind' => fake()->boolean(),
         ];

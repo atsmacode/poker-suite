@@ -26,8 +26,11 @@ return new class extends Migration
             $table->foreignIdFor(Table::class);
             $table->foreignIdFor(Player::class);
             $table->integer('number');
+            $table->boolean('active')->default(0);
             $table->boolean('can_continue')->default(0);
             $table->boolean('is_dealer')->default(0);
+            $table->boolean('small_blind')->default(0);
+            $table->boolean('big_blind')->default(0);
             $table->unique(['number', 'table_id']);
             $table->timestamps();
         });

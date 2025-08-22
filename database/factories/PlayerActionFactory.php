@@ -23,9 +23,6 @@ class PlayerActionFactory extends Factory
             'hand_id' => Hand::factory(),
             'table_seat_id' => TableSeat::factory(),
             'bet_amount' => fake()->numberBetween(50, 150),
-            'active' => fake()->boolean(),
-            'big_blind' => fake()->boolean(),
-            'small_blind' => fake()->boolean(),
         ];
     }
 }
