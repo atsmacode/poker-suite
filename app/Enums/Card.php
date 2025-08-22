@@ -132,4 +132,9 @@ enum Card: int
             self::KS    => array_merge(['id' => 52], Rank::KING->toArray(),  Suit::SPADES->toArray()),
         };
     }
+
+    public static function toIds(): array
+    {
+        return collect(self::cases())->map(fn ($card) => $card->value)->toArray();
+    }
 }
