@@ -96,14 +96,14 @@ class Dealer
         return $this;
     }
 
-    public function dealTo(array $players, int $cardCount, ?int $handId = null): self
+    public function dealTo(array $playerIds, int $cardCount, ?int $handId = null): self
     {
         $dealtCards = 0;
 
         while ($dealtCards < $cardCount) {
-            foreach ($players as $player) {
+            foreach ($playerIds as $playerId) {
                 WholeCard::create([
-                    'player_id' => $player['player_id'],
+                    'player_id' => $playerId,
                     'card_id' => $this->pick()->getCard()->value,
                     'hand_id' => $handId ?? null,
                 ]);
