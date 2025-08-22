@@ -89,8 +89,6 @@ test('the dealer can deal a specific street card', function() {
     $handId = $handStreet->hand->id;
     $dealer = new Dealer($handId);
 
-    $dealer->saveDeckForHand($handId);
-
     $dealer->dealThisStreetCard($handId, Card::AS, $handStreet);
 
     $this->assertContains(Card::AS->value, $handStreet->handStreetCards->pluck('card_id'));
