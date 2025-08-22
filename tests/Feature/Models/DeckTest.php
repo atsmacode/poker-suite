@@ -9,7 +9,7 @@ test('a new deck has 52 cards', function() {
     expect(count($deck->cards))->toBe(52);
 });
 
-test('a deck belongs to a hand', function() {
+test('a deck can belong to a hand', function() {
     $hand = Hand::factory()->create();
     $deck = Deck::factory()->for($hand)->create();
 
