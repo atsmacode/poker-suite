@@ -68,10 +68,7 @@ class Dealer
 
     public function saveDeck(int $handId): self
     {
-        Deck::create([
-            'hand_id' => $handId,
-            'cards' => $this->deck->cards,
-        ]);
+        $this->deck = Deck::updateOrCreate(['hand_id' => $handId], ['cards' => $this->deck->cards]);
 
         return $this;
     }

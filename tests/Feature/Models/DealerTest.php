@@ -4,6 +4,8 @@ use App\Enums\Card;
 use App\GamePlay\Dealer;
 use App\Models\Deck;
 use App\Models\Hand;
+use App\Models\HandStreet;
+use App\Models\Player;
 
 test('the dealer has a deck', function() {
     $dealer = new Dealer;
@@ -59,4 +61,43 @@ test('the dealer can update the cards in a deck', function() {
         $deck->cards,
         $dealer->loadSavedDeck($handId)->getDeck()
     );
+});
+
+test('the dealer can deal whole cards', function() {
+    $dealer = new Dealer;
+    $hand = Hand::factory()->create();
+
+    $dealer->saveDeck($hand->id);
+
+    $players = Player::factory(3)->create();
+
+    $playerIds = $players->pluck('id')->toArray();
+
+    $dealer->dealTo($playerIds, 2, $hand->id);
+
+    $players->each(fn ($player) => expect($player->wholeCards->where('hand_id', $hand->id)->count())->toBe(2));
+});
+
+test('the dealer can deal street cards', function() {
+    $dealer = new Dealer;
+    $handStreet = HandStreet::factory()->create();
+    $handId = $handStreet->hand->id;
+
+    $dealer->saveDeck($handId);
+
+    $dealer->dealStreetCards($handId, $handStreet, 3);
+
+    expect($handStreet->handStreetCards->count())->toBe(3);
+});
+
+test('the dealer can deal a specific street card', function() {
+    $dealer = new Dealer;
+    $handStreet = HandStreet::factory()->create();
+    $handId = $handStreet->hand->id;
+
+    $dealer->saveDeck($handId);
+
+    $dealer->dealThisStreetCard($handId, Card::AS, $handStreet);
+
+    $this->assertContains(Card::AS->value, $handStreet->handStreetCards->pluck('card_id'));
 });
