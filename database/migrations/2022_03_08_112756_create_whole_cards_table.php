@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('whole_cards', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignIdFor(Card::class);
-            $table->foreignIdFor(Hand::class);
+            $table->foreignIdFor(Hand::class)->nullable();
             $table->foreignIdFor(Player::class);
             $table->timestamps();
         });
