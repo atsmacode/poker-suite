@@ -13,14 +13,14 @@ class Dealer
     private Deck $deck;
     private Card $card;
 
-    public function __construct()
+    public function __construct(?int $handId = null)
     {
-        $this->setDeck();
+        $this->setDeck($handId);
     }
 
-    public function setDeck(?Deck $deck = null): self
+    public function setDeck(?int $handId = null): self
     {
-        $this->deck = $deck ?? Deck::new();
+        $this->deck = Deck::new($handId);
 
         return $this;
     }
@@ -62,13 +62,6 @@ class Dealer
         $this->card = Card::tryFrom($cardId);
 
         $this->deck->cards = $cards;
-
-        return $this;
-    }
-
-    public function saveDeck(int $handId): self
-    {
-        $this->deck = Deck::updateOrCreate(['hand_id' => $handId], ['cards' => $this->deck->cards]);
 
         return $this;
     }

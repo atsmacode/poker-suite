@@ -36,22 +36,19 @@ test('a picked card is no longer in the deck', function() {
     $this->assertNotContains($card->value, $dealer->pick($card)->getCards());
 });
 
-test('the dealer can save a deck', function() {
-    $dealer = new Dealer;
+test('the dealer can save a deck for a hand', function() {
     $hand = Hand::factory()->create();
     $handId = $hand->id;
 
-    $dealer->saveDeck($handId);
+    new Dealer($handId);
 
     $this->assertDatabaseHas('decks', ['hand_id' => $handId]);
 });
 
 test('the dealer can update the cards in a deck', function() {
-    $dealer = new Dealer;
     $hand = Hand::factory()->create();
     $handId = $hand->id;
-
-    $dealer->saveDeck($handId);
+    $dealer = new Dealer($handId);
 
     $deck = $dealer->getDeck();
 
@@ -64,10 +61,9 @@ test('the dealer can update the cards in a deck', function() {
 });
 
 test('the dealer can deal whole cards', function() {
-    $dealer = new Dealer;
     $hand = Hand::factory()->create();
-
-    $dealer->saveDeck($hand->id);
+    $handId = $hand->id;
+    $dealer = new Dealer($handId);
 
     $players = Player::factory(3)->create();
 
@@ -79,11 +75,9 @@ test('the dealer can deal whole cards', function() {
 });
 
 test('the dealer can deal street cards', function() {
-    $dealer = new Dealer;
     $handStreet = HandStreet::factory()->create();
     $handId = $handStreet->hand->id;
-
-    $dealer->saveDeck($handId);
+    $dealer = new Dealer($handId);
 
     $dealer->dealStreetCards($handId, $handStreet, 3);
 
@@ -91,11 +85,11 @@ test('the dealer can deal street cards', function() {
 });
 
 test('the dealer can deal a specific street card', function() {
-    $dealer = new Dealer;
     $handStreet = HandStreet::factory()->create();
     $handId = $handStreet->hand->id;
+    $dealer = new Dealer($handId);
 
-    $dealer->saveDeck($handId);
+    $dealer->saveDeckForHand($handId);
 
     $dealer->dealThisStreetCard($handId, Card::AS, $handStreet);
 
