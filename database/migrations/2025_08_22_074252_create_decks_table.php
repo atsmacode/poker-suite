@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('decks', function (Blueprint $table) {
             $table->id();
             $table->json('cards');
-            $table->foreignIdFor(Hand::class);
+            $table->foreignIdFor(Hand::class)->nullable();
             $table->timestamps();
         });
     }

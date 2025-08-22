@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Card;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,5 +20,15 @@ class Deck extends Model
         return [
             'cards' => 'array',
         ];
+    }
+
+    protected $fillable = [
+        'cards',
+        'hand_id',
+    ];
+
+    public static function new(): self
+    {
+        return self::create(['cards' => Card::toIds()]);
     }
 }
