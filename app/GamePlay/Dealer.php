@@ -7,6 +7,7 @@ use App\Models\Deck;
 use App\Models\HandStreet;
 use App\Models\HandStreetCard;
 use App\Models\WholeCard;
+use Illuminate\Database\Eloquent\Collection;
 
 class Dealer
 {
@@ -86,14 +87,14 @@ class Dealer
         return $this;
     }
 
-    public function dealTo(array $playerIds, int $cardCount, ?int $handId = null): self
+    public function dealTo(Collection $players, int $cardCount, ?int $handId = null): self
     {
         $dealtCards = 0;
 
         while ($dealtCards < $cardCount) {
-            foreach ($playerIds as $playerId) {
+            foreach ($players as $player) {
                 WholeCard::create([
-                    'player_id' => $playerId,
+                    'player_id' => $player->id,
                     'card_id' => $this->pick()->getCard()->value,
                     'hand_id' => $handId ?? null,
                 ]);
@@ -105,7 +106,7 @@ class Dealer
         return $this->updateCards($handId);
     }
 
-    public function dealStreetCards(int $handId, HandStreet $handStreet, int $cardCount): self
+    public function dealStreetCards(HandStreet $handStreet, int $cardCount): self
     {
         $dealtCards = 0;
 
@@ -120,10 +121,10 @@ class Dealer
             ++$dealtCards;
         }
 
-        return $this->updateCards($handId);
+        return $this->updateCards($handStreet->hand->id);
     }
 
-    public function dealThisStreetCard(int $handId, Card $card, HandStreet $handStreet): self
+    public function dealThisStreetCard(Card $card, HandStreet $handStreet): self
     {
         $card = $this->pick($card)->getCard();
 
@@ -132,6 +133,6 @@ class Dealer
             'hand_street_id' => $handStreet->id,
         ]);
 
-        return $this->updateCards($handId);
+        return $this->updateCards($handStreet->hand->id);
     }
 }

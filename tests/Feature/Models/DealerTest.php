@@ -67,29 +67,25 @@ test('the dealer can deal whole cards', function() {
 
     $players = Player::factory(3)->create();
 
-    $playerIds = $players->pluck('id')->toArray();
-
-    $dealer->dealTo($playerIds, 2, $hand->id);
+    $dealer->dealTo($players, 2, $hand->id);
 
     $players->each(fn ($player) => expect($player->wholeCards->where('hand_id', $hand->id)->count())->toBe(2));
 });
 
 test('the dealer can deal street cards', function() {
     $handStreet = HandStreet::factory()->create();
-    $handId = $handStreet->hand->id;
-    $dealer = new Dealer($handId);
+    $dealer = new Dealer($handStreet->hand->id);
 
-    $dealer->dealStreetCards($handId, $handStreet, 3);
+    $dealer->dealStreetCards($handStreet, 3);
 
     expect($handStreet->handStreetCards->count())->toBe(3);
 });
 
 test('the dealer can deal a specific street card', function() {
     $handStreet = HandStreet::factory()->create();
-    $handId = $handStreet->hand->id;
-    $dealer = new Dealer($handId);
+    $dealer = new Dealer($handStreet->hand->id);
 
-    $dealer->dealThisStreetCard($handId, Card::AS, $handStreet);
+    $dealer->dealThisStreetCard(Card::AS, $handStreet);
 
     $this->assertContains(Card::AS->value, $handStreet->handStreetCards->pluck('card_id'));
 });
