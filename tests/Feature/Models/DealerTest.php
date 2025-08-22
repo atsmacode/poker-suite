@@ -3,6 +3,7 @@
 use App\Enums\Card;
 use App\GamePlay\Dealer;
 use App\Models\Deck;
+use App\Models\Hand;
 
 test('the dealer has a deck', function() {
     $dealer = new Dealer;
@@ -31,4 +32,31 @@ test('a picked card is no longer in the deck', function() {
     $card = Card::AS;
 
     $this->assertNotContains($card->value, $dealer->pick($card)->getCards());
+});
+
+test('the dealer can save a deck', function() {
+    $dealer = new Dealer;
+    $hand = Hand::factory()->create();
+    $handId = $hand->id;
+
+    $dealer->saveDeck($handId);
+
+    $this->assertDatabaseHas('decks', ['hand_id' => $handId]);
+});
+
+test('the dealer can update the cards in a deck', function() {
+    $dealer = new Dealer;
+    $hand = Hand::factory()->create();
+    $handId = $hand->id;
+
+    $dealer->saveDeck($handId);
+
+    $deck = $dealer->getDeck();
+
+    $dealer->shuffle()->updateCards($handId);
+
+    $this->assertNotSame(
+        $deck->cards,
+        $dealer->loadSavedDeck($handId)->getDeck()
+    );
 });
