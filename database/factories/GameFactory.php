@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\GameMode;
+use App\Enums\GameStyle;
 use App\Models\Table;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,7 +18,7 @@ class GameFactory extends Factory
     {
         return [
             'table_id' => Table::factory(),
-            'game_style_id' => 1,
+            'game_style_id' => GameStyle::PLHE->value,
             'game_mode_id' => GameMode::TEST->value,
         ];
     }
