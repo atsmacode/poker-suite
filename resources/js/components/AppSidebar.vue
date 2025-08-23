@@ -14,6 +14,11 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+    {
+        title: 'Scenarios',
+        href: '/scenarios',
+        icon: LayoutGrid,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
