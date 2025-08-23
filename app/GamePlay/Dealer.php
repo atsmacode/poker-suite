@@ -58,7 +58,7 @@ class Dealer
 
         $cardId = $choice->value ?? array_shift($cards);
 
-        $cards = $choice ? collect($cards)->reject(fn ($card) => $card === $choice->value) : $cards;
+        $cards = $choice ? collect($cards)->reject(fn ($card) => $card === $cardId) : $cards;
 
         $this->card = Card::tryFrom($cardId);
 
