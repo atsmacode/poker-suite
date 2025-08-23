@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('stacks', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('amount');
+            $table->decimal('amount', 14, 2);
             $table->foreignIdFor(Player::class);
             $table->foreignIdFor(Table::class);
             $table->timestamps();

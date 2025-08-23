@@ -20,7 +20,7 @@ test('a hand can have street cards', function () {
 });
 
 test('a hand can have a pot', function() {
-    $hand = Hand::factory()->has(Pot::factory(['amount' => 750.00]))->create();
+    $hand = Hand::factory()->has(Pot::factory(['amount' => 750]))->create();
 
-    expect($hand->pot->amount)->toBe(750.00);
+    expect($hand->pot->amount)->toBe(750);
 });
