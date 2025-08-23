@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Scenario extends Model
 {
-    public function hand(): BelongsTo
+    public function game(): BelongsTo
     {
-        return $this->belongsTo(Hand::class);
+        return $this->belongsTo(Game::class);
     }
 }

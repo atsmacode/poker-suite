@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Input\GameSetupInput;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ScenarioRequest extends FormRequest
@@ -22,7 +23,18 @@ class ScenarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'table.name' => ['required', 'string'],
+            'table.seats' => ['required', 'integer'],
+            'game.style' => ['required', 'string'],
         ];
+    }
+
+    public function toInput(): GameSetupInput
+    {
+        return new GameSetupInput(
+            tableName: $this->input('table.name'),
+            seats: $this->input('table.seats'),
+            gameStyle: $this->input('game.style')
+        );
     }
 }

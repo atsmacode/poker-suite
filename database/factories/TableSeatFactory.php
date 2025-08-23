@@ -18,7 +18,7 @@ class TableSeatFactory extends Factory
         return [
             'player_id' => Player::factory(),
             'table_id' => Table::factory(),
-            'number' => 1,
+            'number' => fake()->unique()->numberBetween(1, 10),
         ];
     }
 

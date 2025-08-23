@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\Action as EnumsAction;
 use App\Enums\Card as EnumsCard;
-use App\Enums\Mode as EnumsMode;
+use App\Enums\GameMode as EnumsMode;
 use App\Enums\Rank as EnumsRank;
 use App\Enums\Street as EnumsStreet;
 use App\Enums\Suit as EnumsSuit;
