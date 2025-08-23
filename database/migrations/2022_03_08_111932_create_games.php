@@ -19,6 +19,7 @@ return new class extends Migration
         Schema::create('game_styles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('abbreviation');
             $table->timestamps();
         });
 

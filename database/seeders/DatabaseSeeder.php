@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\Action as EnumsAction;
 use App\Enums\Card as EnumsCard;
 use App\Enums\GameMode as EnumsMode;
+use App\Enums\GameStyle as EnumsGameStyle;
 use App\Enums\Rank as EnumsRank;
 use App\Enums\Street as EnumsStreet;
 use App\Enums\Suit as EnumsSuit;
@@ -79,7 +80,13 @@ class DatabaseSeeder extends Seeder
 
         Player::factory(6)->create();
 
-        GameStyle::create(['name' => 'Pot-limit Texas Hold-em']);
+        foreach (EnumsGameStyle::cases() as $style) {
+            GameStyle::create([
+                'id' => $style->value,
+                'name' => $style->name(),
+                'abbreviation' => $style->abbreviation(),
+            ]);
+        }
 
         foreach (EnumsMode::cases() as $mode) {
             GameMode::create(['id' => $mode->value, 'name' => $mode->name()]);

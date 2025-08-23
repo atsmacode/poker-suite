@@ -7,7 +7,7 @@ enum GameStyle: int
     case PLHE = 1;
     case NLHE = 2; 
 
-    public function name(): string
+    public function abbreviation(): string
     {
         return match ($this) {
             self::PLHE => 'plhe',
@@ -15,11 +15,19 @@ enum GameStyle: int
         };
     }
 
-    public static function fromName(string $name): self
+    public static function fromAbbrev(string $abbreviation): self
     {
-        return match ($name) {
+        return match ($abbreviation) {
             'plhe' => self::PLHE,
             'nlhe' => self::NLHE,
+        };
+    }
+
+    public function name(): string
+    {
+        return match ($this) {
+            self::PLHE => 'Pot-limit Texas Hold-em',
+            self::NLHE => 'No-limit Texas Hold-em',
         };
     }
 }

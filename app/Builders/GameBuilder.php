@@ -12,7 +12,7 @@ class GameBuilder
     {
         return Game::create([
             'table_id' => $tableId,
-            'game_style_id' => GameStyle::fromName($gameStyle),
+            'game_style_id' => GameStyle::fromAbbrev($gameStyle),
             'game_mode_id' => GameMode::fromName($mode)
         ]);
     }
