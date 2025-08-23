@@ -4,7 +4,9 @@ use App\Models\Card;
 use App\Models\Game;
 use App\Models\Hand;
 use App\Models\HandStreet;
+use App\Models\Player;
 use App\Models\Street;
+use App\Models\TableSeat;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -38,6 +40,19 @@ return new class extends Migration
             $table->foreignIdFor(Card::class);
             $table->timestamps();
         });
+
+        Schema::create('hand_players', function (Blueprint $table) {
+            $table->increments('id');
+            $table->foreignIdFor(Player::class);
+            $table->foreignIdFor(Hand::class);
+            $table->foreignIdFor(TableSeat::class, 'table_seat_id');
+            $table->boolean('is_dealer')->default(0);
+            $table->boolean('small_blind')->default(0);
+            $table->boolean('big_blind')->default(0);
+            $table->unique(['hand_id', 'player_id']);
+            $table->unique(['hand_id', 'table_seat_id']);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -47,6 +62,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('hand_players');
         Schema::dropIfExists('hand_street_cards');
         Schema::dropIfExists('hand_streets');
         Schema::dropIfExists('hands');

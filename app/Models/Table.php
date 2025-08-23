@@ -24,7 +24,6 @@ class Table extends Model
     {
         return $this->belongsToMany(Player::class, 'table_seats')
             ->using(TableSeat::class)
-            ->withPivot(['number', 'can_continue', 'is_dealer'])
             ->as('tableSeat');
     }
 

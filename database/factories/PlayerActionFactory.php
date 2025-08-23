@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Enums\Action;
 use App\Models\Hand;
+use App\Models\HandPlayer;
+use App\Models\HandStreet;
 use App\Models\Player;
 use App\Models\TableSeat;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,10 +21,11 @@ class PlayerActionFactory extends Factory
     {
         return [
             'action_id' => Action::random()->value,
-            'player_id' => Player::factory(),
+            'hand_player_id' => HandPlayer::factory(),
+            'hand_street_id' => HandStreet::factory(),
             'hand_id' => Hand::factory(),
-            'table_seat_id' => TableSeat::factory(),
             'bet_amount' => fake()->numberBetween(50, 150),
+            'sequence' => fake()->unique()->numberBetween(1, 20),
         ];
     }
 }

@@ -16,7 +16,6 @@ class TableSeat extends Pivot
     protected $fillable = [
         'table_id',
         'player_id',
-        'can_continue',
     ];
 
     public function player(): BelongsTo

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('abbreviation');
-            $table->integer('ranking');
+            $table->unsignedTinyInteger('ranking');
         });
 
         Schema::create('suits', function (Blueprint $table) {

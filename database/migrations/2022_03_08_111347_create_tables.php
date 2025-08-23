@@ -24,13 +24,8 @@ return new class extends Migration
         Schema::create('table_seats', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignIdFor(Table::class);
-            $table->foreignIdFor(Player::class);
-            $table->integer('number');
-            $table->boolean('active')->default(0);
-            $table->boolean('can_continue')->default(0);
-            $table->boolean('is_dealer')->default(0);
-            $table->boolean('small_blind')->default(0);
-            $table->boolean('big_blind')->default(0);
+            $table->foreignIdFor(Player::class)->nullable();
+            $table->unsignedTinyInteger('number');
             $table->unique(['number', 'table_id']);
             $table->timestamps();
         });

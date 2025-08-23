@@ -8,8 +8,6 @@ test('a table can have players', function() {
     $table = Table::factory()
         ->hasAttached($players, fn() => [
             'number' => fake()->unique()->numberBetween(1, 10),
-            'can_continue' => 0,
-            'is_dealer' => 0,
         ])
         ->create();
 
