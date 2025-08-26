@@ -27,12 +27,12 @@ class ScenarioController extends Controller
 
     public function show(Scenario $scenario)
     {
-        return Inertia::render('Scenarios/Edit', ['scenario' => $scenario]);
+        return Inertia::render('Scenarios/Show', ['scenario' => $scenario]);
     }
 
     public function edit(Scenario $scenario)
     {
-        return Inertia::render('Scenarios/Edit', ['scenario' => $scenario]);
+        return Inertia::render('Scenarios/Show', ['scenario' => $scenario]);
     }
 
     public function update(ScenarioRequest $request)

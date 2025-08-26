@@ -3,7 +3,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 
-defineProps({scenario: Object});
+const { scenario } = defineProps({scenario: Object});
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,13 +11,13 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/scenarios',
     },
     {
-        title: 'Edit Scenario',
-        href: '/scenarios/edit/',
+        title: scenario.name,
+        href: '/scenarios/' + scenario.id,
     },
 ];
 </script>
 <template>
-    <Head title="Edit Scenario" />
+    <Head title="View Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
