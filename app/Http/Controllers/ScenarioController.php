@@ -10,7 +10,9 @@ class ScenarioController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Scenarios/Index');
+        return Inertia::render('Scenarios/Index', [
+            'scenarios' => Scenario::all()
+        ]);
     }
 
     public function create()
@@ -25,12 +27,12 @@ class ScenarioController extends Controller
 
     public function show(Scenario $scenario)
     {
-        //
+        return Inertia::render('Scenarios/Edit', ['scenario' => $scenario]);
     }
 
     public function edit(Scenario $scenario)
     {
-        //
+        return Inertia::render('Scenarios/Edit', ['scenario' => $scenario]);
     }
 
     public function update(ScenarioRequest $request)

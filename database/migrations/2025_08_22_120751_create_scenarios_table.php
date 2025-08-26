@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('scenarios', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Game::class);
+            $table->string('name');
             $table->timestamps();
         });
     }

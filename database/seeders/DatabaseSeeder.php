@@ -16,6 +16,7 @@ use App\Models\GameStyle;
 use App\Models\HandType;
 use App\Models\Player;
 use App\Models\Rank;
+use App\Models\Scenario;
 use App\Models\Street;
 use App\Models\Suit;
 use App\Models\User;
@@ -91,5 +92,7 @@ class DatabaseSeeder extends Seeder
         foreach (EnumsMode::cases() as $mode) {
             GameMode::create(['id' => $mode->value, 'name' => $mode->name()]);
         }
+
+        Scenario::factory(20)->create();
     }
 }
