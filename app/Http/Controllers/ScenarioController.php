@@ -15,7 +15,7 @@ class ScenarioController extends Controller
 
     public function create()
     {
-        //
+        return Inertia::render('Scenarios/Create');
     }
 
     public function store(ScenarioRequest $request)

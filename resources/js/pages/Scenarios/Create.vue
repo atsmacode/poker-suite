@@ -3,25 +3,22 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import PlaceholderPattern from '../../components/PlaceholderPattern.vue';
-import TextLink from '@/components/TextLink.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Scenarios',
         href: '/scenarios',
     },
+    {
+        title: 'Create Scenario',
+        href: '/scenarios/create',
+    },
 ];
 </script>
 <template>
-    <Head title="Scenarios" />
+    <Head title="Create Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex flex-row p-4">
-            <div class="basis-64">
-                <TextLink :href="route('scenarios.create')">Create Scenario</TextLink>
-            </div>
-        </div>
-
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
             <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                 <PlaceholderPattern />
