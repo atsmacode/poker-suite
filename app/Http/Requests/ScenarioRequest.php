@@ -23,9 +23,10 @@ class ScenarioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'table.name' => ['required', 'string'],
+            'table.name' => ['string'],
             'table.seats' => ['required', 'integer'],
-            'game.style' => ['required', 'string'],
+            'game.style' => ['string'],
+            'game.id' => ['nullable', 'integer'],
         ];
     }
 
@@ -34,7 +35,8 @@ class ScenarioRequest extends FormRequest
         return new GameSetupInput(
             tableName: $this->input('table.name'),
             seats: $this->input('table.seats'),
-            gameStyle: $this->input('game.style')
+            gameStyle: $this->input('game.style'),
+            gameId: $this->input('game.id')
         );
     }
 }

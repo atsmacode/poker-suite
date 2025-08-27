@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ScenarioRequest;
 use App\Models\Scenario;
+use App\Services\GameSetupService;
 use Inertia\Inertia;
 
 class ScenarioController extends Controller
 {
+    public function __construct(private GameSetupService $gameSetup)
+    {
+    }
+
     public function index()
     {
         return Inertia::render('Scenarios/Index', [
@@ -17,7 +22,9 @@ class ScenarioController extends Controller
 
     public function create()
     {
-        return Inertia::render('Scenarios/Create');
+        return Inertia::render('Scenarios/Create', [
+            'token' => csrf_token()
+        ]);
     }
 
     public function store(ScenarioRequest $request)
@@ -43,5 +50,10 @@ class ScenarioController extends Controller
     public function destroy(Scenario $scenario)
     {
         //
+    }
+
+    public function generate(ScenarioRequest $request)
+    {
+        return $this->gameSetup->setup($request->toInput());
     }
 }

@@ -16,6 +16,10 @@ class GameSetupService
 
     public function setup(GameSetupInput $input): Game
     {
+        if ($input->gameId) {
+            return Game::find($input->gameId);
+        }
+
         $table = $this->tableBuilder->build(
             $input->tableName,
             $input->seats
@@ -24,7 +28,8 @@ class GameSetupService
         return $this->gameBuilder->build(
             $table->id,
             $input->gameStyle,
-            $input->gameMode
+            $input->gameMode,
+            $input->gameId
         );
     }
 }
