@@ -24,12 +24,10 @@ const changeSeats = async () => {
     const res = await axios.post(route('scenarios.generate'), {
         '_token': token,
         table: {
-            name: "Test Table",
             seats: seats.value
         },
         game: {
-            id: gameId.value,
-            style: 'plhe'
+            id: gameId.value
         }
     });
 

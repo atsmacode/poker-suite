@@ -7,7 +7,7 @@ use App\Models\TableSeat;
 
 class TableBuilder
 {
-    public function build(string $tableName = 'Test Table', int $seats): Table
+    public function build(string $tableName, int $seats): Table
     {
         $table = Table::create(['name' => $tableName]);
 

@@ -33,10 +33,8 @@ class ScenarioRequest extends FormRequest
     public function toInput(): GameSetupInput
     {
         return new GameSetupInput(
-            tableName: $this->input('table.name'),
-            seats: $this->input('table.seats'),
-            gameStyle: $this->input('game.style'),
-            gameId: $this->input('game.id')
+            gameId: $this->input('game.id'),
+            seats: $this->input('table.seats')
         );
     }
 }
