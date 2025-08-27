@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ScenarioRequest;
 use App\Models\Scenario;
-use App\Services\GameSetupService;
+use App\Services\ScenarioSetupService;
 use Inertia\Inertia;
 
 class ScenarioController extends Controller
 {
-    public function __construct(private GameSetupService $gameSetup)
+    public function __construct(private ScenarioSetupService $setup)
     {
     }
 
@@ -52,8 +52,8 @@ class ScenarioController extends Controller
         //
     }
 
-    public function generate(ScenarioRequest $request)
+    public function generate(ScenarioRequest $request): Scenario
     {
-        return $this->gameSetup->setup($request->toInput());
+        return $this->setup->generate($request->toInput());
     }
 }

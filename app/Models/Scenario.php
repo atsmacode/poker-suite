@@ -10,6 +10,10 @@ class Scenario extends Model
 {
     use HasFactory;
 
+    protected $fillable  = [
+        'game_id',
+    ];
+
     public function game(): BelongsTo
     {
         return $this->belongsTo(Game::class);
