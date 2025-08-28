@@ -18,6 +18,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const { token } = defineProps({'token': String});
 const seatCount = defineModel('seatCount', {type: Number, default: 2});
+const scenarioId = ref(null);
 const gameId = ref(null);
 const tableSeats = ref([]);
 
@@ -25,6 +26,7 @@ const changeSeats = async () => {
     const res = await axios.post(
         route('scenarios.generate'),
         {
+            id: scenarioId.value,
             table: {seats: seatCount.value},
             game: {id: gameId.value}
         },
@@ -37,6 +39,7 @@ const changeSeats = async () => {
 
     let scenario = res.data.data;
 
+    scenarioId.value = scenario.id;
     gameId.value = scenario.game_id;
     tableSeats.value = scenario.seats;
 }

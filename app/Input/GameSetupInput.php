@@ -9,6 +9,7 @@ class GameSetupInput
         public string $tableName = 'Test Table',
         public int $seats = 6,
         public string $gameStyle = 'plhe',
-        public string $gameMode = 'test'
+        public string $gameMode = 'test',
+        public ?int $scenarioId = null
     ) {}
 }
