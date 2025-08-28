@@ -17,7 +17,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const { token } = defineProps({'token': String});
-const seatCount = defineModel('seatCount', {type: Number, default: 2});
+const seatCount = defineModel('seatCount', {type: Number, default: 6});
 const scenarioId = ref(null);
 const gameId = ref(null);
 const tableSeats = ref([]);
@@ -52,8 +52,8 @@ changeSeats();
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="rounded-xl m-4 p-4 border rounded-xl">
             <form>
-                <label for="seats">Select seat count</label>
-                <select id="seats" name="seats" @change="changeSeats" v-model="seatCount">
+                <label hidden for="seats">Select seat count</label>
+                <select hidden disabled id="seats" name="seats" @change="changeSeats" v-model="seatCount">
                     <option v-for="n in [2,3,4,5,6]" :value="n">{{ n }}</option>
                 </select>
             </form>
