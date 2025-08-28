@@ -24,6 +24,10 @@ class GameSetupService
             $game
         );
 
+        if ($game) {
+            return $game;
+        }
+
         return $this->gameBuilder->build(
             $table,
             $input->gameStyle,
