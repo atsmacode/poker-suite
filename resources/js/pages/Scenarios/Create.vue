@@ -2,7 +2,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import axios from 'axios';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -44,6 +44,13 @@ const changeSeats = async () => {
     tableSeats.value = scenario.seats;
 }
 
+const seatDisplay = computed(() => {
+    const seats = tableSeats.value ?? [];
+    const half = Math.ceil(seats.length / 2);
+
+    return [...seats.slice(0, half), ...seats.slice(half).reverse()];
+});
+
 changeSeats();
 </script>
 <template>
@@ -62,7 +69,7 @@ changeSeats();
         <div class="flex flex-row gap-4 h-full mx-4">
             <div class="gap-4 basis-1/2">
                 <div class="grid grid-cols-3 gap-4">
-                    <div v-for="seat in tableSeats" class="rounded-xl p-4 border min-h-50">Seat #{{ seat.number }}</div>
+                    <div v-for="seat in seatDisplay" class="rounded-xl p-4 border min-h-50">Seat #{{ seat.number }}</div>
                 </div>
             </div>
             <div class="basis-1/2 p-4 border rounded-xl h-full">
