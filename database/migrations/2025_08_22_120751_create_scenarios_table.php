@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Game::class);
             $table->string('name');
+            $table->boolean('draft')->default(1);
+            $table->timestamp('expires_at');
             $table->timestamps();
         });
     }
