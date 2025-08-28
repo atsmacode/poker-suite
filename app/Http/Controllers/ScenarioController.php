@@ -10,7 +10,7 @@ use Inertia\Inertia;
 
 class ScenarioController extends Controller
 {
-    public function __construct(private ScenarioSetupService $setup)
+    public function __construct(private ScenarioSetupService $scenarioSetup)
     {
     }
 
@@ -53,11 +53,11 @@ class ScenarioController extends Controller
         //
     }
 
-    public function generate(ScenarioRequest $request): ScenarioResource
+    public function setup(ScenarioRequest $request): ScenarioResource
     {
         return $this
-            ->setup
-            ->generate($request->toInput())
+            ->scenarioSetup
+            ->setup($request->toInput())
             ->toResource();
     }
 }

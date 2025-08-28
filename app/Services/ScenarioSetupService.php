@@ -11,7 +11,7 @@ class ScenarioSetupService
     {
     }
 
-    public function generate(GameSetupInput $input): Scenario
+    public function setup(GameSetupInput $input): Scenario
     {
         $game = $this->gameSetup->setup($input);
         $scenario = $input->scenarioId ? Scenario::find($input->scenarioId) : Scenario::draft();
