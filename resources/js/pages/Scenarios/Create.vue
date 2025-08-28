@@ -56,13 +56,13 @@ changeSeats();
             </form>
         </div>
 
-        <div class="flex flex-row gap-4 h-full">
+        <div class="flex flex-row gap-4 h-full mx-4">
             <div class="gap-4 basis-1/2">
                 <div class="grid grid-cols-3 gap-4">
-                    <div v-for="seat in tableSeats" class="rounded-xl m-4 p-4 border min-h-50">Seat #{{ seat.number }}</div>
+                    <div v-for="seat in tableSeats" class="rounded-xl p-4 border min-h-50">Seat #{{ seat.number }}</div>
                 </div>
             </div>
-            <div class="basis-1/2 m-4 p-4 border rounded-xl h-full">
+            <div class="basis-1/2 p-4 border rounded-xl h-full">
                 Data
             </div>
         </div>
