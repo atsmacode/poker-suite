@@ -28,8 +28,7 @@ class GameSetupService
         return $this->gameBuilder->build(
             $table,
             $input->gameStyle,
-            $input->gameMode,
-            $input->gameId
+            $input->gameMode
         );
     }
 }
