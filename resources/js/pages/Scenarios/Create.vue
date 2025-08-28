@@ -17,7 +17,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const { token } = defineProps({'token': String});
-const seatCount = defineModel('seatCount', {type: Number});
+const seatCount = defineModel('seatCount', {type: Number, default: 2});
 const gameId = ref(null);
 const tableSeats = ref([]);
 
@@ -40,6 +40,8 @@ const changeSeats = async () => {
     gameId.value = scenario.game_id;
     tableSeats.value = scenario.seats;
 }
+
+changeSeats();
 </script>
 <template>
     <Head title="Create Scenario" />
@@ -49,7 +51,6 @@ const changeSeats = async () => {
             <form>
                 <label for="seats">Select seat count</label>
                 <select id="seats" name="seats" @change="changeSeats" v-model="seatCount">
-                    <option disabled></option>
                     <option v-for="n in [2,3,4,5,6]" :value="n">{{ n }}</option>
                 </select>
             </form>
