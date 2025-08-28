@@ -22,4 +22,9 @@ class TableSeat extends Pivot
     {
         return $this->belongsTo(Player::class);
     }
+
+    public function table(): BelongsTo
+    {
+        return $this->belongsTo(Table::class);
+    }
 }

@@ -16,13 +16,11 @@ class TableBuilder
         // Delete then replace
         TableSeat::where('table_id', $table->id)->delete();
 
-        $table
-            ->tableSeats()
-            ->saveMany(
-                TableSeat::factory($seats)
-                    ->sequence(fn (Sequence $sequence) => ['number' => $sequence->index + 1])
-                    ->create(['table_id' => $table->id, 'player_id' => null])
-            );
+        TableSeat::factory($seats)
+            ->empty()
+            ->sequence(fn (Sequence $sequence) => ['number' => $sequence->index + 1])
+            ->for($table)
+            ->create();
 
         $table->refresh();
 

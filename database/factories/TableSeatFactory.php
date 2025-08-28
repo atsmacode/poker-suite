@@ -30,4 +30,13 @@ class TableSeatFactory extends Factory
             ];
         });
     }
+
+    public function empty(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'player_id' => null,
+            ];
+        });
+    }
 }
