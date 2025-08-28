@@ -9,9 +9,7 @@ test('it can build a table for a game', function() {
     
     $game = $service->setup(
         new GameSetupInput(
-            tableName: 'Test Table',
-            seats: 6,
-            gameStyle: 'plhe'
+            gameId: null
         )
     );
 

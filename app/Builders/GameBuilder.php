@@ -5,15 +5,20 @@ namespace App\Builders;
 use App\Enums\GameMode;
 use App\Enums\GameStyle;
 use App\Models\Game;
+use App\Models\Table;
 
 class GameBuilder
 {
-    public function build(int $tableId, string $gameStyle, string $mode): Game
+    public function build(Table $table, string $gameStyle, string $mode): Game
     {
-        return Game::create([
-            'table_id' => $tableId,
+        $game = new Game([
             'game_style_id' => GameStyle::fromAbbrev($gameStyle),
             'game_mode_id' => GameMode::fromName($mode)
         ]);
+
+        $game->table()->associate($table);
+        $game->save();
+
+        return $game;
     }
 }
