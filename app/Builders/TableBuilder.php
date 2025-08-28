@@ -5,6 +5,7 @@ namespace App\Builders;
 use App\Models\Game;
 use App\Models\Table;
 use App\Models\TableSeat;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class TableBuilder
 {
@@ -17,7 +18,11 @@ class TableBuilder
 
         $table
             ->tableSeats()
-            ->saveMany(TableSeat::factory($seats)->create(['table_id' => $table->id]));
+            ->saveMany(
+                TableSeat::factory($seats)
+                    ->sequence(fn (Sequence $sequence) => ['number' => $sequence->index + 1])
+                    ->create(['table_id' => $table->id, 'player_id' => null])
+            );
 
         $table->refresh();
 
