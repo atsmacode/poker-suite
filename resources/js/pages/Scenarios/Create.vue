@@ -50,7 +50,7 @@ const changeSeats = async () => {
                 <label for="seats">Select seat count</label>
                 <select id="seats" name="seats" @change="changeSeats" v-model="seatCount">
                     <option disabled></option>
-                    <option v-for="n in [2,3,4,5,6,7,8,9,10]" :value="n">{{ n }}</option>
+                    <option v-for="n in [2,3,4,5,6]" :value="n">{{ n }}</option>
                 </select>
             </form>
         </div>
