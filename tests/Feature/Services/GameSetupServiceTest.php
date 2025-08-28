@@ -9,11 +9,12 @@ test('it can build a table for a game', function() {
     
     $game = $service->setup(
         new GameSetupInput(
-            gameId: null
+            gameId: null,
+            tableName: 'Unit Test Table'
         )
     );
 
     $this->assertInstanceOf(Table::class, $game->table);
     
-    expect($game->table->name)->toBe('Test Table');
+    expect($game->table->name)->toBe('Unit Test Table');
 });
