@@ -18,10 +18,10 @@ class ScenarioSetupService
     {
         $game = $this->gameSetup->setup($input);
     
-        $scenario = new Scenario(['game_id' => $game->id]);
+        $scenario = new Scenario();
 
         $scenario->id = null;
-        $scenario->game = $game;
+        $scenario->game()->associate($game);
 
         return $scenario;
     }
