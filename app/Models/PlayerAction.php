@@ -17,13 +17,18 @@ class PlayerAction extends Model
         'action_id',
         'bet_amount',
         'hand_id',
-        'active',
-        'big_blind'
+        'hand_player_id',
+        'sequence',
     ];
 
     public function hand(): BelongsTo
     {
         return $this->belongsTo(Hand::class);
+    }
+
+    public function handPlayer(): BelongsTo
+    {
+        return $this->belongsTo(HandPlayer::class);
     }
 
     public function action(): BelongsTo

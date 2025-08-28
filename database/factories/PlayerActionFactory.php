@@ -6,8 +6,6 @@ use App\Enums\Action;
 use App\Models\Hand;
 use App\Models\HandPlayer;
 use App\Models\HandStreet;
-use App\Models\Player;
-use App\Models\TableSeat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PlayerActionFactory extends Factory
