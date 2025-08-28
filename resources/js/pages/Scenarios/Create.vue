@@ -34,10 +34,10 @@ const changeSeats = async () => {
 
     console.log(res);
 
-    let scenario = res.data;
+    let scenario = res.data.data;
 
-    gameId.value = scenario.game.id;
-    tableSeats.value = scenario.game.table.table_seats;
+    gameId.value = scenario.game_id;
+    tableSeats.value = scenario.seats;
 }
 </script>
 <template>

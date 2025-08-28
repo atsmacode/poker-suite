@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ScenarioRequest;
+use App\Http\Resources\ScenarioResource;
 use App\Models\Scenario;
 use App\Services\ScenarioSetupService;
 use Inertia\Inertia;
@@ -52,8 +53,11 @@ class ScenarioController extends Controller
         //
     }
 
-    public function generate(ScenarioRequest $request): Scenario
+    public function generate(ScenarioRequest $request): ScenarioResource
     {
-        return $this->setup->generate($request->toInput());
+        return $this
+            ->setup
+            ->generate($request->toInput())
+            ->toResource();
     }
 }
