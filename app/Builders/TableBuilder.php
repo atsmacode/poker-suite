@@ -14,7 +14,7 @@ class TableBuilder
         $table = $game->table ?? Table::create(['name' => $tableName]);
 
         // Delete then replace
-        $table->tableSeats->each(fn ($seat) => $seat->delete());
+        TableSeat::where('table_id', $table->id)->delete();
 
         $table
             ->tableSeats()
