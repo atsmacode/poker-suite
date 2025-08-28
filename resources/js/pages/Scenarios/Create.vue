@@ -51,11 +51,7 @@ const changeSeats = async () => {
                     <label for="seats">Select seat count</label>
                     <select id="seats" name="seats" @change="changeSeats" v-model="seatCount">
                         <option disabled></option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                        <option v-for="n in [2,3,4,5,6,7,8,9,10]" :value="n">{{ n }}</option>
                     </select>
                 </form>
             </div>
