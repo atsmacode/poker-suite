@@ -22,15 +22,16 @@ const gameId = ref(null);
 const tableSeats = ref([]);
 
 const changeSeats = async () => {
-    const res = await axios.post(route('scenarios.generate'), {
-        '_token': token,
-        table: {
-            seats: seatCount.value
+    const res = await axios.post(
+        route('scenarios.generate'),
+        {
+            table: {seats: seatCount.value},
+            game: {id: gameId.value}
         },
-        game: {
-            id: gameId.value
+        {
+            headers: {'X-CSRF-TOKEN' : token}
         }
-    });
+    );
 
     console.log(res);
 
