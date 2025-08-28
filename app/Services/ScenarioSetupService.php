@@ -19,9 +19,16 @@ class ScenarioSetupService
         $game = $this->gameSetup->setup($input);
     
         $scenario = new Scenario();
-
         $scenario->id = null;
-        $scenario->game()->associate($game);
+
+        $scenario
+            ->game()
+            ->associate($game);
+
+        $scenario
+            ->game
+            ->table
+            ->loadMissing('tableSeats');
 
         return $scenario;
     }

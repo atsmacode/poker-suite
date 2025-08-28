@@ -16,13 +16,12 @@ class GameSetupService
 
     public function setup(GameSetupInput $input): Game
     {
-        if ($input->gameId) {
-            return Game::find($input->gameId);
-        }
+        $game = $input->gameId ? Game::find($input->gameId) : null;
 
         $table = $this->tableBuilder->build(
             $input->tableName,
-            $input->seats
+            $input->seats,
+            $game
         );
 
         return $this->gameBuilder->build(
