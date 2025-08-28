@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Input\GameSetupInput;
 use App\Models\Scenario;
+use Carbon\Carbon;
 
 class ScenarioSetupService
 {
@@ -11,19 +12,16 @@ class ScenarioSetupService
     {
     }
 
-    /**
-     * Generate a scenario without persisting it.
-     */
     public function generate(GameSetupInput $input): Scenario
     {
         $game = $this->gameSetup->setup($input);
-    
-        $scenario = new Scenario();
-        $scenario->id = null;
+        $scenario = Scenario::draft();
 
         $scenario
             ->game()
             ->associate($game);
+
+        $scenario->save();
 
         $scenario
             ->game
