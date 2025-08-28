@@ -45,25 +45,23 @@ const changeSeats = async () => {
     <Head title="Create Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex flex-row gap-4 rounded-xl m-4 p-4 border rounded-xl">
-            <div class="flex-1 rounded-xl">
-                <form>
-                    <label for="seats">Select seat count</label>
-                    <select id="seats" name="seats" @change="changeSeats" v-model="seatCount">
-                        <option disabled></option>
-                        <option v-for="n in [2,3,4,5,6,7,8,9,10]" :value="n">{{ n }}</option>
-                    </select>
-                </form>
-            </div>
+        <div class="rounded-xl m-4 p-4 border rounded-xl">
+            <form>
+                <label for="seats">Select seat count</label>
+                <select id="seats" name="seats" @change="changeSeats" v-model="seatCount">
+                    <option disabled></option>
+                    <option v-for="n in [2,3,4,5,6,7,8,9,10]" :value="n">{{ n }}</option>
+                </select>
+            </form>
         </div>
 
         <div class="flex flex-row gap-4 h-full">
             <div class="gap-4 basis-1/2">
-                <div class="grid grid-cols-3 gap-4 basis-full">
+                <div class="grid grid-cols-3 gap-4">
                     <div v-for="seat in tableSeats" class="rounded-xl m-4 p-4 border min-h-50">Seat #{{ seat.number }}</div>
                 </div>
             </div>
-            <div class="basis-1/2 rounded-xl m-4 p-4 border rounded-xl h-full">
+            <div class="basis-1/2 m-4 p-4 border rounded-xl h-full">
                 Data
             </div>
         </div>
