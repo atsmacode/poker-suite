@@ -6,12 +6,13 @@ use App\Services\ScenarioSetupService;
 
 test('it can associate a game with a scenario', function() {
     $scenarioService = app(ScenarioSetupService::class);
+    $game = Game::factory()->create();
     
     $scenario = $scenarioService->setup(
         new GameSetupInput(
-            gameId: null
+            gameId: $game->id
         )
     );
 
-    $this->assertInstanceOf(Game::class, $scenario->game);
+    expect($scenario->game->id)->toBe($game->id);
 });
