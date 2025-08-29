@@ -24,6 +24,9 @@ class GameSetupService
             $input->seats
         );
 
+        // Add call to a PlayerBuilder class load/create players
+        // Call new method on TableBuilder to add players to seats
+
         return $this->gameBuilder->build(
             $table,
             $input->gameStyle,
