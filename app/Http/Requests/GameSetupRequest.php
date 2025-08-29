@@ -28,7 +28,7 @@ class GameSetupRequest extends FormRequest
             'table.seats' => ['required', 'integer'],
             'game.style' => ['string'],
             'scenario.id' => ['nullable', 'integer'],
-            'players' => ['array'],
+            'players' => ['nullable', 'array'],
             'players.*' => ['integer'],
         ];
     }
