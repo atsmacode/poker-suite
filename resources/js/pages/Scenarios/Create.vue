@@ -21,10 +21,11 @@ const seatCount = defineModel('seatCount', {type: Number, default: 6});
 const scenarioId = ref(null);
 const gameId = ref(null);
 const tableSeats = ref([]);
+const setupScenarioRoute = ref(route('scenarios.setup'));
 
-const changeSeats = async () => {
+const setupGame = async (route: string) => {
     const res = await axios.post(
-        route('scenarios.setup'),
+        route,
         {
             id: gameId.value,
             table: {seats: seatCount.value},
@@ -54,7 +55,7 @@ const seatOrder = computed(() => {
     ];
 });
 
-changeSeats();
+setupGame(setupScenarioRoute.value);
 </script>
 <template>
     <Head title="Create Scenario" />
@@ -63,7 +64,7 @@ changeSeats();
         <div class="rounded-xl m-4 p-4 border rounded-xl">
             <form>
                 <label for="seats">Select seat count</label>
-                <select id="seats" name="seats" @change="changeSeats" v-model="seatCount">
+                <select id="seats" name="seats" @change="setupGame(setupScenarioRoute)" v-model="seatCount">
                     <option v-for="n in [6,7,8,9]" :value="n">{{ n }}</option>
                 </select>
             </form>
