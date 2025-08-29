@@ -2,13 +2,13 @@
 
 namespace App\Http\RequestHandlers;
 
-use App\Http\Requests\GamePlayRequest;
+use App\Http\Requests\GameSetupRequest;
 use App\Http\Resources\GameStateResource;
 use App\Services\GamePlayService;
 use App\Services\GameSetupService;
 use App\Services\ScenarioSetupService;
 
-class GamePlayRequestHandler
+class GameSetupRequestHandler
 {
     public function __construct(
         private GameSetupService $gameSetup,
@@ -17,7 +17,7 @@ class GamePlayRequestHandler
     ) {
     }
 
-    public function scenario(GamePlayRequest $request): GameStateResource
+    public function scenario(GameSetupRequest $request): GameStateResource
     {
         $scenario = $this->scenarioSetup->setup($request->toInput());
         $gameState = $this->gamePlay->runScenario($scenario);
@@ -25,7 +25,7 @@ class GamePlayRequestHandler
         return GameStateResource::make($gameState);
     }
 
-    public function game(GamePlayRequest $request): void
+    public function game(GameSetupRequest $request): void
     {
         // Add call to run game
     }
