@@ -44,11 +44,14 @@ const changeSeats = async () => {
     tableSeats.value = scenario.seats;
 }
 
-const seatDisplay = computed(() => {
-    const seats = tableSeats.value ?? [];
-    const half = Math.ceil(seats.length / 2);
+const seatOrder = computed(() => {
+    const seats = tableSeats.value;
+    const half = Math.ceil(tableSeats.value.length / 2);
 
-    return [...seats.slice(0, half), ...seats.slice(half).reverse()];
+    return [
+        seats.slice(0, half), // Upper row
+        seats.slice(half).reverse() // Lower row
+    ];
 });
 
 changeSeats();
@@ -59,17 +62,17 @@ changeSeats();
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="rounded-xl m-4 p-4 border rounded-xl">
             <form>
-                <label hidden for="seats">Select seat count</label>
-                <select hidden disabled id="seats" name="seats" @change="changeSeats" v-model="seatCount">
-                    <option v-for="n in [2,3,4,5,6]" :value="n">{{ n }}</option>
+                <label for="seats">Select seat count</label>
+                <select id="seats" name="seats" @change="changeSeats" v-model="seatCount">
+                    <option v-for="n in [6,7,8,9]" :value="n">{{ n }}</option>
                 </select>
             </form>
         </div>
 
         <div class="flex flex-row gap-4 h-full mx-4">
             <div class="gap-4 basis-1/2">
-                <div class="grid grid-cols-3 gap-4">
-                    <div v-for="seat in seatDisplay" class="rounded-xl p-4 border min-h-50">Seat #{{ seat.number }}</div>
+                <div v-for="seats in seatOrder" class="flex justify-between gap-4 pb-4">
+                    <div v-for="seat in seats" class="rounded-xl p-4 border min-h-50 w-48">Seat #{{ seat.number }}</div>
                 </div>
             </div>
             <div class="basis-1/2 p-4 border rounded-xl h-full">
