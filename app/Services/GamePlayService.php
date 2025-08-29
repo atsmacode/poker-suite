@@ -8,11 +8,6 @@ use App\Models\Scenario;
 
 class GamePlayService
 {
-    public function __construct(
-        private GameSetupService $gameSetup,
-        private ScenarioSetupService $scenarioSetup
-    ) {}
-
     public function runGame(Game $game)
     {
         $gameState = GameState::fromGame($game);
