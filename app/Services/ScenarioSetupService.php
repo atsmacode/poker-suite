@@ -16,7 +16,7 @@ class ScenarioSetupService
         // Create a new draft or load one currently in use
         $scenario = $input->scenarioId ? Scenario::find($input->scenarioId) : Scenario::draft();
 
-        // Updates table seats
+        // Update or create table seats
         $game = $this->gameSetup->setupOrUpdate($input);
 
         // Return the current/updated scenario

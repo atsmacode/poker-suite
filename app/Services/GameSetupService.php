@@ -24,7 +24,7 @@ class GameSetupService
             $input->seats
         );
 
-        // Add call to a PlayerBuilder class load/create players
+        // Add call to a PlayerBuilder class to load/create players
         // Call new method on TableBuilder to add players to seats
 
         return $this->gameBuilder->build(
@@ -42,6 +42,7 @@ class GameSetupService
         $game = $input->gameId ? Game::find($input->gameId) : null;
 
         if ($game) {
+            // If a game setup is in progress, update the seats
             $this->tableBuilder->updateSeats(
                 $game->table,
                 $input->seats
@@ -50,15 +51,7 @@ class GameSetupService
             return $game;
         }
 
-        $table = $this->tableBuilder->build(
-            $input->tableName,
-            $input->seats
-        );
-
-        return $this->gameBuilder->build(
-            $table,
-            $input->gameStyle,
-            $input->gameMode
-        );
+        // Otherwise it's a new one
+        return $this->setup($input);
     }
 }
