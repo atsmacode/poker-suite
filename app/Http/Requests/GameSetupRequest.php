@@ -28,6 +28,8 @@ class GameSetupRequest extends FormRequest
             'table.seats' => ['required', 'integer'],
             'game.style' => ['string'],
             'scenario.id' => ['nullable', 'integer'],
+            'players' => ['array'],
+            'players.*' => ['integer'],
         ];
     }
 
@@ -36,7 +38,8 @@ class GameSetupRequest extends FormRequest
         return new GameSetupInput(
             scenarioId: $this->input('scenario.id'),
             gameId: $this->input('id'),
-            seats: $this->input('table.seats')
+            seats: $this->input('table.seats'),
+            players: $this->input('players')
         );
     }
 }
