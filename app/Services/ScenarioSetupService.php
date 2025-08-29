@@ -13,9 +13,12 @@ class ScenarioSetupService
 
     public function setup(GameSetupInput $input): Scenario
     {
-        $game = $this->gameSetup->setup($input);
         $scenario = $input->scenarioId ? Scenario::find($input->scenarioId) : Scenario::draft();
 
+        // Updates table seats
+        $game = $this->gameSetup->setup($input);
+
+        // Return the current/updated scenario
         if ($input->scenarioId) {
             return $scenario;
         }

@@ -24,6 +24,7 @@ class GameSetupService
             $game
         );
 
+        // Return current game
         if ($game) {
             return $game;
         }
