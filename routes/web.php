@@ -17,4 +17,4 @@ require __DIR__.'/auth.php';
 
 Route::resource('scenarios', ScenarioController::class);
 
-Route::post('/scenarios/run', [ScenarioController::class, 'run'])->name('scenarios.run');
+Route::post('/scenarios/setup', [ScenarioController::class, 'setup'])->name('scenarios.setup');

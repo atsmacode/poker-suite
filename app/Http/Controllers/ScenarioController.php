@@ -54,7 +54,7 @@ class ScenarioController extends Controller
         //
     }
 
-    public function run(GameSetupRequest $request): GameStateResource
+    public function setup(GameSetupRequest $request): GameStateResource
     {
         return $this->requestHandler->scenario($request);
     }
