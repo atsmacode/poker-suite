@@ -41,7 +41,7 @@ class ScenarioController extends Controller
 
     public function edit(Scenario $scenario)
     {
-        return Inertia::render('Scenarios/Show', ['scenario' => $scenario]);
+        //
     }
 
     public function update(GameSetupRequest $request)
