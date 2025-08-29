@@ -2,7 +2,6 @@
 
 namespace App\Builders;
 
-use App\Models\Game;
 use App\Models\Table;
 use App\Models\TableSeat;
 use Illuminate\Database\Eloquent\Factories\Sequence;
