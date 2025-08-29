@@ -24,7 +24,7 @@ const tableSeats = ref([]);
 
 const changeSeats = async () => {
     const res = await axios.post(
-        route('scenarios.setup'),
+        route('scenarios.run'),
         {
             id: gameId.value,
             table: {seats: seatCount.value},
