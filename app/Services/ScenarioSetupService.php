@@ -13,16 +13,18 @@ class ScenarioSetupService
 
     public function setup(GameSetupInput $input): Scenario
     {
+        // Create a new draft or load one currently in use
         $scenario = $input->scenarioId ? Scenario::find($input->scenarioId) : Scenario::draft();
 
         // Updates table seats
-        $game = $this->gameSetup->setup($input);
+        $game = $this->gameSetup->setupOrUpdate($input);
 
         // Return the current/updated scenario
         if ($input->scenarioId) {
             return $scenario;
         }
 
+        // Otherwise page was probably reloaded, save new scenario
         $scenario
             ->game()
             ->associate($game);
