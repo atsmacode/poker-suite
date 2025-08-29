@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ScenarioRequest;
-use App\Http\Resources\ScenarioResource;
+use App\Http\RequestHandlers\GamePlayRequestHandler;
+use App\Http\Requests\GamePlayRequest;
+use App\Http\Resources\GameStateResource;
 use App\Models\Scenario;
-use App\Services\ScenarioSetupService;
 use Inertia\Inertia;
 
 class ScenarioController extends Controller
 {
-    public function __construct(private ScenarioSetupService $scenarioSetup)
-    {
+    public function __construct(
+        private GamePlayRequestHandler $requestHandler
+    ) {
     }
 
     public function index()
@@ -28,7 +29,7 @@ class ScenarioController extends Controller
         ]);
     }
 
-    public function store(ScenarioRequest $request)
+    public function store(GamePlayRequest $request)
     {
         //
     }
@@ -43,7 +44,7 @@ class ScenarioController extends Controller
         return Inertia::render('Scenarios/Show', ['scenario' => $scenario]);
     }
 
-    public function update(ScenarioRequest $request)
+    public function update(GamePlayRequest $request)
     {
         //
     }
@@ -53,11 +54,8 @@ class ScenarioController extends Controller
         //
     }
 
-    public function setup(ScenarioRequest $request): ScenarioResource
+    public function setup(GamePlayRequest $request): GameStateResource
     {
-        return $this
-            ->scenarioSetup
-            ->setup($request->toInput())
-            ->toResource();
+        return $this->requestHandler->scenario($request);
     }
 }

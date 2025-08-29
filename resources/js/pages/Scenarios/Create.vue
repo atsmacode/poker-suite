@@ -26,9 +26,9 @@ const changeSeats = async () => {
     const res = await axios.post(
         route('scenarios.setup'),
         {
-            id: scenarioId.value,
+            id: gameId.value,
             table: {seats: seatCount.value},
-            game: {id: gameId.value}
+            scenario: {id: scenarioId.value}
         },
         {
             headers: {'X-CSRF-TOKEN' : token}
@@ -37,11 +37,11 @@ const changeSeats = async () => {
 
     console.log(res);
 
-    let scenario = res.data.data;
+    let gameResponse = res.data.data;
 
-    scenarioId.value = scenario.id;
-    gameId.value = scenario.game_id;
-    tableSeats.value = scenario.seats;
+    scenarioId.value = gameResponse.scenario?.id;
+    gameId.value = gameResponse.id;
+    tableSeats.value = gameResponse.seats;
 }
 
 const seatOrder = computed(() => {

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Input\GameSetupInput;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ScenarioRequest extends FormRequest
+class GamePlayRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,15 +27,15 @@ class ScenarioRequest extends FormRequest
             'table.name' => ['string'],
             'table.seats' => ['required', 'integer'],
             'game.style' => ['string'],
-            'game.id' => ['nullable', 'integer'],
+            'scenario.id' => ['nullable', 'integer'],
         ];
     }
 
     public function toInput(): GameSetupInput
     {
         return new GameSetupInput(
-            scenarioId: $this->input('id'),
-            gameId: $this->input('game.id'),
+            scenarioId: $this->input('scenario.id'),
+            gameId: $this->input('id'),
             seats: $this->input('table.seats')
         );
     }
