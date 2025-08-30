@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ScenarioController;
-use App\Http\Controllers\ScenarioPlayerController;
+use App\Http\Controllers\Scenarios\ScenarioController;
+use App\Http\Controllers\Scenarios\ScenarioPlayerController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

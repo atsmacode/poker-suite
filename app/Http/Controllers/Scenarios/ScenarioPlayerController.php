@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Scenarios;
 
 use App\GamePlay\GameState;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ScenarioPlayerDeleteRequest;
 use App\Http\Requests\ScenarioPlayerStoreRequest;
 use App\Http\Resources\GameStateResource;

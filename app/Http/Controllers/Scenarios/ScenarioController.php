@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Scenarios;
 
+use App\Http\Controllers\Controller;
 use App\Http\RequestHandlers\GameSetupRequestHandler;
 use App\Http\Requests\GameSetupRequest;
 use App\Http\Resources\GameStateResource;
