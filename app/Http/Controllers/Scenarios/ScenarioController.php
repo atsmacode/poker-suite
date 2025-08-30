@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Scenarios;
 
+use App\Handlers\EditScenarioHandler;
 use App\Http\Controllers\Controller;
 use App\Http\RequestHandlers\GameSetupRequestHandler;
 use App\Http\Requests\GameSetupRequest;
@@ -12,7 +13,8 @@ use Inertia\Inertia;
 class ScenarioController extends Controller
 {
     public function __construct(
-        private GameSetupRequestHandler $requestHandler
+        private GameSetupRequestHandler $requestHandler,
+        private EditScenarioHandler $editScenario
     ) {
     }
 
@@ -40,7 +42,12 @@ class ScenarioController extends Controller
 
     public function edit(Scenario $scenario)
     {
-        return Inertia::render('Scenarios/Edit', ['scenario' => $scenario]);
+        $gameState = $this->editScenario->handle($scenario);
+
+        return Inertia::render('Scenarios/Edit', [
+            'scenario' => $scenario,
+            'gameState' => $gameState
+        ]);
     }
 
     /**

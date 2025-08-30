@@ -39,7 +39,7 @@ class GameController extends Controller
         $gameState = $this->showGame->handle($game);
 
         return Inertia::render('Games/Show', [
-            'game' => $gameState->getGame(),
+            'game' => $game,
             'gameState' => $gameState
         ]);
     }
