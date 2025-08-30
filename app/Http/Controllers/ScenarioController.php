@@ -29,6 +29,9 @@ class ScenarioController extends Controller
         ]);
     }
 
+    /**
+     * Persist a draft scenario (draft = 0, expires_at = null).
+     */
     public function store(GameSetupRequest $request)
     {
         //
@@ -39,21 +42,26 @@ class ScenarioController extends Controller
         return Inertia::render('Scenarios/Show', ['scenario' => $scenario]);
     }
 
-    public function edit(Scenario $scenario)
-    {
-        //
-    }
-
+    /**
+     * Update a persisted scenario. Separate from setup() because we
+     * may need to reset Hands/HandPlayers if seat counts change.
+     */
     public function update(GameSetupRequest $request)
     {
-        //
+        // 
     }
 
+    /**
+     * Delete a persisted scenario.
+     */
     public function destroy(Scenario $scenario)
     {
         //
     }
 
+    /**
+     * Setup or change a draft scenario.
+     */
     public function setup(GameSetupRequest $request): GameStateResource
     {
         return $this->requestHandler->scenario($request);
