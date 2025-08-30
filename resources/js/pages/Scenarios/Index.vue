@@ -16,7 +16,7 @@ const { scenarios } = defineProps({scenarios: Object});
 
 const saveDraft = async (scenarioId: number) => {
     try {
-        let res = await axios.post(route('scenarios.store'), {scenario_id: scenarioId});
+        let res = await axios.post(route('scenarios.save_draft'), {scenario_id: scenarioId});
 
         console.log(res.data);
 

@@ -38,7 +38,7 @@ class ScenarioController extends Controller
     /**
      * Save a draft scenario (draft = 0, expires_at = null).
      */
-    public function store(ScenarioSaveDraftRequest $request)
+    public function saveDraft(ScenarioSaveDraftRequest $request)
     {
         $scenario = Scenario::find($request->input('scenario_id'));
 

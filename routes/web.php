@@ -17,9 +17,13 @@ Route::get('dashboard', function () {
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
 
-Route::resource('scenarios', ScenarioController::class)->except('show');
-
 Route::prefix('scenarios')->name('scenarios.')->group(function () {
+    Route::get('/create', [ScenarioController::class, 'create'])->name('create');
+    Route::delete('/destroy/{scenario}', [ScenarioController::class, 'create'])->name('destroy');
+    Route::post('/draft', [ScenarioController::class, 'saveDraft'])->name('save_draft');
+    Route::get('/{scenario}/edit', [ScenarioController::class, 'edit'])->name('edit');
+    Route::get('/', [ScenarioController::class, 'index'])->name('index');
+    Route::patch('/{scenario}', [ScenarioController::class, 'update'])->name('update');
     Route::post('/setup', [ScenarioController::class, 'setup'])->name('setup');
 
     Route::prefix('players')->name('players.')->group(function() {
