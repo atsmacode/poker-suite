@@ -24,25 +24,29 @@ const tableSeats = ref([]);
 const setupScenarioRoute = ref(route('scenarios.setup'));
 
 const setupGame = async (route: string) => {
-    const res = await axios.post(
-        route,
-        {
-            id: gameId.value,
-            table: {seats: seatCount.value},
-            scenario: {id: scenarioId.value}
-        },
-        {
-            headers: {'X-CSRF-TOKEN' : token}
-        }
-    );
+    try {
+        const res = await axios.post(
+            route,
+            {
+                id: gameId.value,
+                table: {seats: seatCount.value},
+                scenario: {id: scenarioId.value}
+            },
+            {
+                headers: {'X-CSRF-TOKEN' : token}
+            }
+        );
 
-    console.log(res);
+        console.log(res.data);
 
-    let gameResponse = res.data.data;
+        let gameState = res.data.data;
 
-    scenarioId.value = gameResponse.scenario?.id;
-    gameId.value = gameResponse.id;
-    tableSeats.value = gameResponse.seats;
+        scenarioId.value = gameState.scenario?.id;
+        gameId.value = gameState.id;
+        tableSeats.value = gameState.seats;
+    } catch (err: any) {
+        console.log(err.response.data);
+    }
 }
 
 const seatOrder = computed(() => {
