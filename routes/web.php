@@ -28,4 +28,4 @@ Route::prefix('scenarios')->name('scenarios.')->group(function () {
     });
 });
 
-Route::resource('games', GameController::class)->except('edit');
+Route::resource('games', GameController::class)->except(['edit', 'update']);
