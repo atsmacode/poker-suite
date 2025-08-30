@@ -22,7 +22,7 @@ Route::prefix('scenarios')
     ->controller(ScenarioController::class)
     ->group(function () {
         Route::get('/create', 'create')->name('create');
-        Route::delete('/{scenario}', 'create')->name('destroy');
+        Route::delete('/{scenario}', 'destroy')->name('destroy');
         Route::post('/draft', 'saveDraft')->name('save_draft');
         Route::get('/{scenario}/edit', 'edit')->name('edit');
         Route::get('/', 'index')->name('index');
