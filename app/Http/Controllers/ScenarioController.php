@@ -32,7 +32,7 @@ class ScenarioController extends Controller
     /**
      * Persist a draft scenario (draft = 0, expires_at = null).
      */
-    public function store(GameSetupRequest $request)
+    public function store(Scenario $scenario)
     {
         //
     }
