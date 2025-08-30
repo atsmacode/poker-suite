@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ScenarioController;
+use App\Http\Controllers\ScenarioPlayerController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,4 +20,9 @@ Route::resource('scenarios', ScenarioController::class)->except('show');
 
 Route::prefix('scenarios')->name('scenarios.')->group(function () {
     Route::post('/setup', [ScenarioController::class, 'setup'])->name('setup');
+
+    Route::prefix('players')->name('players.')->group(function() {
+        Route::post('/', [ScenarioPlayerController::class, 'store'])->name('store');
+        Route::delete('/{player}', [ScenarioPlayerController::class, 'destroy'])->name('destroy');
+    });
 });
