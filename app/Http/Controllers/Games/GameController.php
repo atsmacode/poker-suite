@@ -19,7 +19,7 @@ class GameController extends Controller
 
     public function index()
     {
-        return Inertia::render('Games/Index', ['games' => Game::all()]);
+        return Inertia::render('Games/Index', ['games' => Game::withoutDrafts()->get()]);
     }
 
     public function create()

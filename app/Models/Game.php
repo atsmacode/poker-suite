@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Game extends Model
 {
@@ -25,5 +28,18 @@ class Game extends Model
     public function table(): BelongsTo
     {
         return $this->belongsTo(Table::class);
+    }
+
+    public function scenario(): HasOne
+    {
+        return $this->hasOne(Scenario::class);
+    }
+
+    #[Scope]
+    protected function withoutDrafts(Builder $query): void
+    {
+        $query
+            ->join('scenarios', 'games.id', '=', 'scenarios.game_id')
+            ->where('scenarios.draft', 0);
     }
 }
