@@ -11,6 +11,7 @@ use App\Http\Resources\GameStateResource;
 use App\Http\Resources\ScenarioResource;
 use App\Models\Scenario;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class ScenarioController extends Controller
 {
@@ -40,9 +41,14 @@ class ScenarioController extends Controller
     public function store(ScenarioSaveDraftRequest $request)
     {
         $scenario = Scenario::find($request->input('scenario_id'));
+
+        if (! $scenario) {
+            return response()->json(['message' => 'Scenario not found'], Response::HTTP_NOT_FOUND);
+        }
+
         $scenario->saveDraft();
 
-        return response()->json(['Scenario draft saved']);
+        return response()->json(['message' => 'Scenario draft saved']);
     }
 
     public function edit(Scenario $scenario)
