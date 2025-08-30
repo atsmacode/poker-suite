@@ -21,7 +21,7 @@ class Scenario extends Model
      * @var array
      */
     protected $attributes = [
-        'name' => 'Test Scenario',
+        'name' => 'Draft Scenario',
         'expires_at' => null,
     ];
 
