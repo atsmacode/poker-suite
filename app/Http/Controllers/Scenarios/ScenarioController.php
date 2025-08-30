@@ -20,16 +20,12 @@ class ScenarioController extends Controller
 
     public function index()
     {
-        return Inertia::render('Scenarios/Index', [
-            'scenarios' => Scenario::all()
-        ]);
+        return Inertia::render('Scenarios/Index', ['scenarios' => Scenario::all()]);
     }
 
     public function create()
     {
-        return Inertia::render('Scenarios/Create', [
-            'token' => csrf_token()
-        ]);
+        return Inertia::render('Scenarios/Create', ['token' => csrf_token()]);
     }
 
     /**
