@@ -33,11 +33,13 @@ class ScenarioController extends Controller
     }
 
     /**
-     * Persist a draft scenario (draft = 0, expires_at = null).
+     * Save a draft scenario (draft = 0, expires_at = null).
      */
     public function store(Scenario $scenario)
     {
-        //
+        $scenario->saveDraft();
+
+        return response()->json(['Scenario draft saved']);
     }
 
     public function edit(Scenario $scenario)
@@ -51,7 +53,7 @@ class ScenarioController extends Controller
     }
 
     /**
-     * Update a persisted scenario. Separate from setup() because we
+     * Update a saved scenario. Separate from setup() because we
      * may need to reset Hands/HandPlayers if seat counts change.
      */
     public function update(GameSetupRequest $request)
@@ -60,7 +62,7 @@ class ScenarioController extends Controller
     }
 
     /**
-     * Delete a persisted scenario.
+     * Delete a saved scenario.
      */
     public function destroy(Scenario $scenario)
     {

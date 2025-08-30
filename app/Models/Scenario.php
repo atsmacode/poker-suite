@@ -38,4 +38,11 @@ class Scenario extends Model
 
         return $scenario;
     }
+
+    public function saveDraft(): void
+    {
+        $this->draft = 0;
+        $this->expires_at = null;
+        $this->save();
+    }
 }
