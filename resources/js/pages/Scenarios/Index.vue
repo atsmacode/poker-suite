@@ -38,7 +38,7 @@ defineProps({scenarios: Object});
                             {{ scenario.name }}
                         </td>
                         <td>
-                            <TextLink :href="route('scenarios.show', scenario.id )">View</TextLink>
+                            <TextLink :href="route('scenarios.edit', scenario.id )">Open</TextLink>
                         </td>
                     </tr>
                 </tbody>

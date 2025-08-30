@@ -15,6 +15,8 @@ Route::get('dashboard', function () {
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
 
-Route::resource('scenarios', ScenarioController::class);
+Route::resource('scenarios', ScenarioController::class)->except('show');
 
-Route::post('/scenarios/setup', [ScenarioController::class, 'setup'])->name('scenarios.setup');
+Route::prefix('scenarios')->name('scenarios.')->group(function () {
+    Route::post('/setup', [ScenarioController::class, 'setup'])->name('setup');
+});
