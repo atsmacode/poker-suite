@@ -17,19 +17,22 @@ Route::get('dashboard', function () {
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
 
-Route::prefix('scenarios')->name('scenarios.')->group(function () {
-    Route::get('/create', [ScenarioController::class, 'create'])->name('create');
-    Route::delete('/destroy/{scenario}', [ScenarioController::class, 'create'])->name('destroy');
-    Route::post('/draft', [ScenarioController::class, 'saveDraft'])->name('save_draft');
-    Route::get('/{scenario}/edit', [ScenarioController::class, 'edit'])->name('edit');
-    Route::get('/', [ScenarioController::class, 'index'])->name('index');
-    Route::patch('/{scenario}', [ScenarioController::class, 'update'])->name('update');
-    Route::post('/setup', [ScenarioController::class, 'setup'])->name('setup');
+Route::prefix('scenarios')
+    ->name('scenarios.')
+    ->controller(ScenarioController::class)
+    ->group(function () {
+        Route::get('/create', 'create')->name('create');
+        Route::delete('/{scenario}', 'create')->name('destroy');
+        Route::post('/draft', 'saveDraft')->name('save_draft');
+        Route::get('/{scenario}/edit', 'edit')->name('edit');
+        Route::get('/', 'index')->name('index');
+        Route::patch('/{scenario}', 'update')->name('update');
+        Route::post('/setup', 'setup')->name('setup');
 
-    Route::prefix('players')->name('players.')->group(function() {
-        Route::post('/', [ScenarioPlayerController::class, 'store'])->name('store');
-        Route::delete('/{player}', [ScenarioPlayerController::class, 'destroy'])->name('destroy');
+        Route::prefix('players')->name('players.')->group(function() {
+            Route::post('/', [ScenarioPlayerController::class, 'store'])->name('store');
+            Route::delete('/{player}', [ScenarioPlayerController::class, 'destroy'])->name('destroy');
+        });
     });
-});
 
 Route::resource('games', GameController::class)->except(['edit', 'update']);
