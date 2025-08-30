@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Games\GameController;
 use App\Http\Controllers\Scenarios\ScenarioController;
 use App\Http\Controllers\Scenarios\ScenarioPlayerController;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,5 @@ Route::prefix('scenarios')->name('scenarios.')->group(function () {
         Route::delete('/{player}', [ScenarioPlayerController::class, 'destroy'])->name('destroy');
     });
 });
+
+Route::resource('games', GameController::class)->except('edit');

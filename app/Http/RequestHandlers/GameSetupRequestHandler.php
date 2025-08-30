@@ -25,8 +25,11 @@ class GameSetupRequestHandler
         return GameStateResource::make($gameState);
     }
 
-    public function game(GameSetupRequest $request): void
+    public function game(GameSetupRequest $request): GameStateResource
     {
-        // Add call to run game
+        $game = $this->gameSetup->setup($request->toInput());
+        $gameState = $this->gamePlay->runGame($game);
+
+        return GameStateResource::make($gameState);
     }
 }
