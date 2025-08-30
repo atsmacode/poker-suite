@@ -22,7 +22,7 @@ class ScenarioPlayerDeleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'scenario_id' => ['required|integer'], // We will use this to validate that the table_seat is really in the scenario
+            'scenario_id' => ['required|integer'], // We will use this to validate that the table_seat+player is really in the scenario
             'player_id' => ['required|integer'],
         ];
     }
