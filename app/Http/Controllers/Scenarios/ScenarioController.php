@@ -6,7 +6,9 @@ use App\Handlers\EditScenarioHandler;
 use App\Http\Controllers\Controller;
 use App\Http\RequestHandlers\GameSetupRequestHandler;
 use App\Http\Requests\GameSetupRequest;
+use App\Http\Requests\ScenarioSaveDraftRequest;
 use App\Http\Resources\GameStateResource;
+use App\Http\Resources\ScenarioResource;
 use App\Models\Scenario;
 use Inertia\Inertia;
 
@@ -20,7 +22,11 @@ class ScenarioController extends Controller
 
     public function index()
     {
-        return Inertia::render('Scenarios/Index', ['scenarios' => Scenario::all()]);
+        return Inertia::render('Scenarios/Index', [
+            'scenarios' => ScenarioResource::collection(
+                Scenario::all()->keyBy->id
+            )
+        ]);
     }
 
     public function create()
@@ -31,8 +37,9 @@ class ScenarioController extends Controller
     /**
      * Save a draft scenario (draft = 0, expires_at = null).
      */
-    public function store(Scenario $scenario)
+    public function store(ScenarioSaveDraftRequest $request)
     {
+        $scenario = Scenario::find($request->input('scenario_id'));
         $scenario->saveDraft();
 
         return response()->json(['Scenario draft saved']);
