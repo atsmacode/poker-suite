@@ -42,7 +42,7 @@ const saveDraft = async (scenarioId: number) => {
                     <thead>
                         <tr >
                             <th>Name</th>
-                            <th>Draft</th>
+                            <th>Status</th>
                             <th>Game ID</th>
                             <th></th>
                             <th></th>
@@ -54,7 +54,7 @@ const saveDraft = async (scenarioId: number) => {
                                 {{ scenario.name }}
                             </td>
                             <td>
-                                {{ scenario.draft ? 'Yes' : 'No' }}
+                                {{ scenario.draft ? 'Draft' : 'Saved' }}
                             </td>
                             <td>
                                 {{ scenario.game_id }}

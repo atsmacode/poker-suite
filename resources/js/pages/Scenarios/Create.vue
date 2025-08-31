@@ -2,8 +2,8 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
-import axios from 'axios';
+import { ref, watch } from 'vue';
+import { useGameSetup } from '@/composables/useGameSetup';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -18,48 +18,22 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const { token } = defineProps({'token': String});
 const seatCount = defineModel('seatCount', {type: Number, default: 6});
-const scenarioId = ref(null);
-const gameId = ref(null);
-const tableSeats = ref([]);
 const setupScenarioRoute = ref(route('scenarios.setup'));
 
-const setupGame = async (route: string) => {
-    try {
-        const res = await axios.post(
-            route,
-            {
-                id: gameId.value,
-                table: {seats: seatCount.value},
-                scenario: {id: scenarioId.value}
-            },
-            {
-                headers: {'X-CSRF-TOKEN' : token}
-            }
-        );
+const {
+    tableSeatCount,
+    seatOrder,
+    setupGame,
+    setToken
+} = useGameSetup();
 
-        console.log(res.data);
-
-        let gameState = res.data.data;
-
-        scenarioId.value = gameState.scenario?.id;
-        gameId.value = gameState.id;
-        tableSeats.value = gameState.seats;
-    } catch (err: any) {
-        console.log(err.response.data);
-    }
-}
-
-const seatOrder = computed(() => {
-    const seats = tableSeats.value;
-    const half = Math.ceil(tableSeats.value.length / 2);
-
-    return [
-        seats.slice(0, half), // Upper row
-        seats.slice(half).reverse() // Lower row
-    ];
-});
-
+setToken(token ?? '');
 setupGame(setupScenarioRoute.value);
+
+watch(seatCount, (newCount) => {
+    tableSeatCount.value = newCount;
+    setupGame(setupScenarioRoute.value)
+});
 </script>
 <template>
     <Head title="Create Scenario" />
@@ -68,7 +42,7 @@ setupGame(setupScenarioRoute.value);
         <div class="rounded-xl m-4 p-4 border rounded-xl">
             <form>
                 <label for="seats">Select seat count</label>
-                <select id="seats" name="seats" @change="setupGame(setupScenarioRoute)" v-model="seatCount">
+                <select id="seats" name="seats" v-model="seatCount">
                     <option v-for="n in [6,7,8,9]" :value="n">{{ n }}</option>
                 </select>
             </form>
