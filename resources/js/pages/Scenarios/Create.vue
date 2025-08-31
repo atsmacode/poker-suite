@@ -4,6 +4,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import { useGameSetup } from '@/composables/useGameSetup';
 import SelectSeatCount from '@/components/poker-suite/SelectSeatCount.vue';
+import PokerTable from '@/components/poker-suite/PokerTable.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -43,9 +44,7 @@ setupGame();
 
         <div class="flex flex-row gap-4 h-full mx-4">
             <div class="gap-4 basis-1/2">
-                <div v-for="seats in seatOrder" class="flex justify-between gap-4 pb-4">
-                    <div v-for="seat in seats" class="rounded-xl p-4 border min-h-50 w-48">Seat #{{ seat.number }}</div>
-                </div>
+                <PokerTable :seatOrder />
             </div>
             <div class="basis-1/2 p-4 border rounded-xl h-full">
                 Data
