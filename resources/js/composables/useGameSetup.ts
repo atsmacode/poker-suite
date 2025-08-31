@@ -1,8 +1,9 @@
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import axios from "axios";
 
 export function useGameSetup() {
-    const token = ref('');
+    const url = ref('');
+    const csrfToken = ref('');
     const scenarioId = ref(null);
     const gameId = ref(null);
     const tableSeats = ref([]);
@@ -18,17 +19,17 @@ export function useGameSetup() {
         ];
     });
 
-    const setupGame = async (route: string) => {
+    const setupGame = async () => {
         try {
             const res = await axios.post(
-                route,
+                url.value ?? '/',
                 {
                     id: gameId.value,
                     table: {seats: tableSeatCount.value},
                     scenario: {id: scenarioId.value}
                 },
                 {
-                    headers: {'X-CSRF-TOKEN' : token.value}
+                    headers: {'X-CSRF-TOKEN' : csrfToken.value}
                 }
             );
 
@@ -45,13 +46,19 @@ export function useGameSetup() {
     }
 
     const setToken = (token: string) => {
-        token = token;
+        csrfToken.value = token;
     }
+    const setRoute = (route: string) => {
+        url.value = route;
+    }
+
+    watch(tableSeatCount, () => { setupGame() });
 
     return {
         tableSeatCount,
         seatOrder,
         setupGame,
-        setToken
+        setToken,
+        setRoute
     };
 };

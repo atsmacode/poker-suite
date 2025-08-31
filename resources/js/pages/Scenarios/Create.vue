@@ -2,8 +2,8 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import { ref, watch } from 'vue';
 import { useGameSetup } from '@/composables/useGameSetup';
+import SelectSeatCount from '@/components/poker-suite/SelectSeatCount.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -17,23 +17,19 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const { token } = defineProps({'token': String});
-const seatCount = defineModel('seatCount', {type: Number, default: 6});
-const setupScenarioRoute = ref(route('scenarios.setup'));
 
 const {
     tableSeatCount,
     seatOrder,
     setupGame,
-    setToken
+    setToken,
+    setRoute
 } = useGameSetup();
 
 setToken(token ?? '');
-setupGame(setupScenarioRoute.value);
+setRoute(route('scenarios.setup'));
+setupGame();
 
-watch(seatCount, (newCount) => {
-    tableSeatCount.value = newCount;
-    setupGame(setupScenarioRoute.value)
-});
 </script>
 <template>
     <Head title="Create Scenario" />
@@ -41,10 +37,7 @@ watch(seatCount, (newCount) => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="rounded-xl m-4 p-4 border rounded-xl">
             <form>
-                <label for="seats">Select seat count</label>
-                <select id="seats" name="seats" v-model="seatCount">
-                    <option v-for="n in [6,7,8,9]" :value="n">{{ n }}</option>
-                </select>
+                <SelectSeatCount @seats-changed="(n: number) => tableSeatCount = n" />
             </form>
         </div>
 
