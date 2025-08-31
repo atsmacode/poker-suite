@@ -2,12 +2,17 @@ import { computed, ref, watch } from "vue";
 import axios from "axios";
 
 export function useGameSetup() {
-    const url = ref('');
+    const postRoute = ref('');
     const csrfToken = ref('');
     const scenarioId = ref(null);
     const gameId = ref(null);
     const tableSeats = ref([]);
     const tableSeatCount = ref(6);
+    const setupRequest = ref({
+        id: gameId,
+        table: {seats: tableSeatCount},
+        scenario: {id: scenarioId}
+    });
 
     const seatOrder = computed(() => {
         const seats = tableSeats.value;
@@ -22,12 +27,8 @@ export function useGameSetup() {
     const setupGame = async () => {
         try {
             const res = await axios.post(
-                url.value ?? '/',
-                {
-                    id: gameId.value,
-                    table: {seats: tableSeatCount.value},
-                    scenario: {id: scenarioId.value}
-                },
+                postRoute.value,
+                setupRequest.value,
                 {
                     headers: {'X-CSRF-TOKEN' : csrfToken.value}
                 }
@@ -49,14 +50,20 @@ export function useGameSetup() {
         csrfToken.value = token;
     }
     const setRoute = (route: string) => {
-        url.value = route;
+        postRoute.value = route;
     }
 
-    watch(tableSeatCount, () => { setupGame() });
+    watch(tableSeatCount, () => {
+        // Only live update the seats for scenarios
+        if (scenarioId.value) {
+            setupGame();
+        }
+    });
 
     return {
         tableSeatCount,
         seatOrder,
+        setupRequest,
         setupGame,
         setToken,
         setRoute

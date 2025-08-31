@@ -2,12 +2,12 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
-import axios from 'axios';
+import { useGameSetup } from '@/composables/useGameSetup';
+import SelectSeatCount from '@/components/poker-suite/SelectSeatCount.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Games',
+        title: 'Game',
         href: '/games',
     },
     {
@@ -15,13 +15,22 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/games/create',
     },
 ];
+
+const { token } = defineProps({'token': String});
+
+const {
+    tableSeatCount,
+    setupRequest
+} = useGameSetup();
 </script>
 <template>
-    <Head title="Create Scenario" />
+    <Head title="Create Game" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="rounded-xl m-4 p-4 border rounded-xl">
-            Create game...
+            <form>
+                <SelectSeatCount @seats-changed="(n: number) => tableSeatCount = n" />
+            </form>
         </div>
     </AppLayout>
 </template>
