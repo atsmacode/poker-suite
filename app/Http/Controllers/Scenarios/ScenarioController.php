@@ -79,7 +79,7 @@ class ScenarioController extends Controller
     }
 
     /**
-     * Setup or change a draft scenario.
+     * Setup or change game/table/seats for a draft scenario.
      */
     public function setup(GameSetupRequest $request): GameStateResource
     {
