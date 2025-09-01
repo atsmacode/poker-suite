@@ -22,9 +22,8 @@ class ScenarioPlayerStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'scenario_id' => ['required|integer'], // We will use this to validate that the table_seat+player is really in the scenario
-            'player_id' => ['nullable|integer'], // Optional, a random player will be generated if omitted
-            'table_seat_id' => ['required|integer']
+            'player_id' => ['nullable', 'integer'], // Optional, a random player will be generated if omitted
+            'table_seat_id' => ['required', 'integer'],
         ];
     }
 }
