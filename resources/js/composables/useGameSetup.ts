@@ -42,7 +42,7 @@ export function useGameSetup() {
             gameId.value = gameState.id;
             tableSeats.value = gameState.seats;
         } catch (err: any) {
-            console.log(err.response.data);
+            console.log(err);
         }
     }
 

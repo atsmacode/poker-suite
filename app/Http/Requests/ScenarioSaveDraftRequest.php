@@ -22,7 +22,7 @@ class ScenarioSaveDraftRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'scenario_id' => ['required', 'integer'],
+            'draft' => ['required', 'boolean'],
         ];
     }
 }

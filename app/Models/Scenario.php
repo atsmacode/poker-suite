@@ -41,8 +41,17 @@ class Scenario extends Model
 
     public function saveDraft(): void
     {
-        $this->draft = 0;
-        $this->expires_at = null;
+        $this->changeDraftStatus(false);
+    }
+    public function setAsDraft(): void
+    {
+        $this->changeDraftStatus(true);
+    }
+
+    public function changeDraftStatus(bool $draft): void
+    {
+        $this->draft = $draft;
+        $this->expires_at = $draft ? Carbon::now()->addDay() : null;
         $this->save();
     }
 }

@@ -14,15 +14,15 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 const { scenarios } = defineProps({scenarios: Object});
 
-const saveDraft = async (scenarioId: number) => {
+const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
     try {
-        let res = await axios.post(route('scenarios.save_draft'), {scenario_id: scenarioId});
+        let res = await axios.patch(route('scenarios.draft', scenarioId), {draft: draft});
 
         console.log(res.data);
 
         scenarios.data[scenarioId].draft = 0;
     } catch (err: any) {
-        console.log(err.response.data);
+        console.log(err);
     }
 };
 </script>
@@ -63,7 +63,7 @@ const saveDraft = async (scenarioId: number) => {
                                 <TextLink :href="route('scenarios.edit', scenario.id)">Open</TextLink>
                             </td>
                             <td>
-                                <button v-if="scenario.draft" @click="saveDraft(scenario.id)">Save Draft</button>
+                                <button v-if="scenario.draft" @click="changeDraftStatus(scenario.id, true)">Save Draft</button>
                             </td>
                         </tr>
                     </tbody>

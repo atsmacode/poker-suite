@@ -36,17 +36,19 @@ class ScenarioController extends Controller
     }
 
     /**
-     * Save a draft scenario (draft = 0, expires_at = null).
+     * Save/unsave a draft scenario (draft = 0, expires_at = null).
      */
-    public function saveDraft(ScenarioSaveDraftRequest $request)
+    public function draft(ScenarioSaveDraftRequest $request, int $scenarioId)
     {
-        $scenario = Scenario::find($request->input('scenario_id'));
+        $scenario = Scenario::find($scenarioId);
 
         if (! $scenario) {
             return response()->json(['message' => 'Scenario not found'], Response::HTTP_NOT_FOUND);
         }
 
-        $scenario->saveDraft();
+        $request->input('draft')
+            ? $scenario->setAsDraft()
+            : $scenario->saveDraft();
 
         return response()->json(['message' => 'Scenario draft saved']);
     }

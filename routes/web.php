@@ -23,7 +23,7 @@ Route::prefix('scenarios')
     ->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::delete('/{scenario}', 'destroy')->name('destroy');
-        Route::post('/draft', 'saveDraft')->name('save_draft');
+        Route::patch('/{scenario}/draft', 'draft')->name('draft');
         Route::get('/{scenario}/edit', 'edit')->name('edit');
         Route::get('/', 'index')->name('index');
         Route::patch('/{scenario}', 'update')->name('update');
