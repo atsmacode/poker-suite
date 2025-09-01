@@ -17,7 +17,7 @@ class ScenarioPlayerController extends Controller
     /**
      * Adds a player to a seat.
      */
-    public function store(ScenarioPlayerStoreRequest $request): GameStateResource
+    public function store(ScenarioPlayerStoreRequest $request, int $scenarioId): GameStateResource
     {
         // Handle request...
 
@@ -27,7 +27,7 @@ class ScenarioPlayerController extends Controller
     /**
      * Removes a player from a seat.
      */
-    public function destroy(ScenarioPlayerDeleteRequest $request): GameStateResource
+    public function destroy(ScenarioPlayerDeleteRequest $request, int $scenarioId): GameStateResource
     {
         // Handle request...
 

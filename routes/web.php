@@ -29,7 +29,7 @@ Route::prefix('scenarios')
         Route::patch('/{scenario}', 'update')->name('update');
         Route::post('/setup', 'setup')->name('setup');
 
-        Route::prefix('players')->name('players.')->group(function() {
+        Route::prefix('{scenario}/players')->name('players.')->group(function() {
             Route::post('/', [ScenarioPlayerController::class, 'store'])->name('store');
             Route::delete('/{player}', [ScenarioPlayerController::class, 'destroy'])->name('destroy');
         });
