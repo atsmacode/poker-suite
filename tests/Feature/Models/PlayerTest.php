@@ -4,14 +4,14 @@ use App\Models\Player;
 use App\Models\PlayerAction;
 use App\Models\Stack;
 use App\Models\Table;
-use App\Models\WholeCard;
+use App\Models\HoleCard;
 
 test('a player can have whole cards', function() {
-    $player = Player::factory()->has(WholeCard::factory(2))->create();
+    $player = Player::factory()->has(HoleCard::factory(2))->create();
 
-    $player->loadCount('wholeCards');
+    $player->loadCount('holeCards');
 
-    expect($player->whole_cards_count)->toBe(2);
+    expect($player->hole_cards_count)->toBe(2);
 });
 
 test('a player can have actions', function() {

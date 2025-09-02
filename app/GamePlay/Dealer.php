@@ -6,7 +6,7 @@ use App\Enums\Card;
 use App\Models\Deck;
 use App\Models\HandStreet;
 use App\Models\HandStreetCard;
-use App\Models\WholeCard;
+use App\Models\HoleCard;
 use Illuminate\Database\Eloquent\Collection;
 
 class Dealer
@@ -93,7 +93,7 @@ class Dealer
 
         while ($dealtCards < $cardCount) {
             foreach ($players as $player) {
-                WholeCard::create([
+                HoleCard::create([
                     'player_id' => $player->id,
                     'card_id' => $this->pick()->getCard()->value,
                     'hand_id' => $handId ?? null,

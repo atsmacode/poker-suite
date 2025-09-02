@@ -1,5 +1,5 @@
 <script setup>
-const { wholeCards } = defineProps({wholeCards: Object})
+const { HoleCards } = defineProps({HoleCards: Object})
 </script>
 <template>
     <div class="grid grid-cols-2">

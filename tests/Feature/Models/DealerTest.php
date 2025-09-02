@@ -69,7 +69,7 @@ test('the dealer can deal whole cards', function() {
 
     $dealer->dealTo($players, 2, $hand->id);
 
-    $players->each(fn ($player) => expect($player->wholeCards->where('hand_id', $hand->id)->count())->toBe(2));
+    $players->each(fn ($player) => expect($player->holeCards->where('hand_id', $hand->id)->count())->toBe(2));
 });
 
 test('the dealer can deal street cards', function() {

@@ -33,9 +33,9 @@ class Hand extends Model
         return $this->hasMany(HandStreet::class);
     }
 
-    public function wholeCards(): HasMany
+    public function holeCards(): HasMany
     {
-        return $this->hasMany(WholeCard::class);
+        return $this->hasMany(HoleCard::class);
     }
 
     public function pot(): HasOne

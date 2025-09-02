@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('whole_cards', function (Blueprint $table) {
+        Schema::create('hole_cards', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignIdFor(Card::class);
             $table->foreignIdFor(Hand::class)->nullable();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('whole_cards');
+        Schema::dropIfExists('hole_cards');
     }
 };

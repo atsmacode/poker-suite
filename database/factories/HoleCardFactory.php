@@ -7,7 +7,7 @@ use App\Models\Hand;
 use App\Models\Player;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WholeCardFactory extends Factory
+class HoleCardFactory extends Factory
 {
     /**
      * Define the model's default state.
