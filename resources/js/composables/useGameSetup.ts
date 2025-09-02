@@ -59,13 +59,14 @@ export function useGameSetup() {
         tableSeats.value = seats;
     }
 
-    const setForScenario = () => {
+    const setForScenario = (id: number|null) => {
         forScenario.value = true;
+        scenarioId.value = id; 
     }
 
     watch(tableSeatCount, () => {
         // Only live update the seats for scenarios
-        if (scenarioId.value) {
+        if (forScenario.value ) {
             setupGame();
         }
     });

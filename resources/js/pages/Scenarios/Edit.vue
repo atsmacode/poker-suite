@@ -2,8 +2,22 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
+import { useGameSetup } from '@/composables/useGameSetup';
+import Scenario from '@/components/poker-suite/Scenario.vue';
 
-const { scenario } = defineProps({scenario: Object});
+const { scenario, gameState } = defineProps({scenario: Object, gameState: Object});
+
+const {
+    tableSeatCount,
+    seatOrder,
+    setSeats,
+    setRoute,
+    setForScenario
+} = useGameSetup();
+
+setRoute(route('scenarios.setup'));
+setSeats(gameState.data.seats);
+setForScenario(gameState.data.scenario.id);
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -20,10 +34,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="View Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
-            <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border p-4">
-                {{ scenario.name }} ...
-            </div>
-        </div>
+        <Scenario :selectedSeatCount="gameState.data.seats.length" :seatOrder @seats-changed="(n: number) => tableSeatCount = n" />
     </AppLayout>
 </template>
