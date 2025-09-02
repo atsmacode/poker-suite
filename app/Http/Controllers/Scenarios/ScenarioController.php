@@ -23,7 +23,7 @@ class ScenarioController extends Controller
 
     public function index()
     {
-        return Inertia::render('Scenarios/Index', [
+        return Inertia::render('scenarios/Index', [
             'scenarios' => ScenarioResource::collection(
                 Scenario::all()->keyBy->id
             )
@@ -32,7 +32,7 @@ class ScenarioController extends Controller
 
     public function create()
     {
-        return Inertia::render('Scenarios/Create', ['token' => csrf_token()]);
+        return Inertia::render('scenarios/Create', ['token' => csrf_token()]);
     }
 
     /**
@@ -57,7 +57,7 @@ class ScenarioController extends Controller
     {
         $gameState = $this->editScenario->handle($scenario);
 
-        return Inertia::render('Scenarios/Edit', [
+        return Inertia::render('scenarios/Edit', [
             'scenario' => $scenario,
             'gameState' => $gameState
         ]);

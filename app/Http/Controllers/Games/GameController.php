@@ -19,19 +19,19 @@ class GameController extends Controller
 
     public function index()
     {
-        return Inertia::render('Games/Index', ['games' => Game::select('games.id')->withoutScenarios()->get()]);
+        return Inertia::render('games/Index', ['games' => Game::select('games.id')->withoutScenarios()->get()]);
     }
 
     public function create()
     {
-        return Inertia::render('Games/Create', ['token' => csrf_token()]);
+        return Inertia::render('games/Create', ['token' => csrf_token()]);
     }
 
     public function store(GameSetupRequest $request)
     {
         $gameState = $this->requestHandler->game($request);
 
-        return Inertia::render('Games/Show', [
+        return Inertia::render('games/Show', [
             'game' => $gameState->getGame(),
             'gameState' => $gameState
         ]);
@@ -41,7 +41,7 @@ class GameController extends Controller
     {
         $gameState = $this->showGame->handle($game);
 
-        return Inertia::render('Games/Show', [
+        return Inertia::render('games/Show', [
             'game' => $game,
             'gameState' => $gameState
         ]);
