@@ -7,9 +7,7 @@ const emit = defineEmits(['seatsChanged']);
 
 seatCount.value = selectedCount;
 
-watch(seatCount, (newCount) => {
-    emit('seatsChanged', newCount);
-});
+watch(seatCount, (newCount) => { emit('seatsChanged', newCount) });
 </script>
 <template>
     <div>
