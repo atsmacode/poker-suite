@@ -43,10 +43,10 @@ setupGame();
         </div>
 
         <div class="flex flex-row gap-4 h-full mx-4">
-            <div class="gap-4 basis-1/2">
+            <div class="gap-4 basis-2/3">
                 <PokerTable :seatOrder />
             </div>
-            <div class="basis-1/2 p-4 border rounded-xl h-full">
+            <div class="basis-1/3 p-4 border rounded-xl h-full">
                 Data
             </div>
         </div>
