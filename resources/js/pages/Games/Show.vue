@@ -6,13 +6,7 @@ import PokerTable from '@/components/poker-suite/PokerTable.vue';
 import { useGameSetup } from '@/composables/useGameSetup';
 
 const { game, gameState } = defineProps({game: Object, gameState: Object});
-
-const {
-    seatOrder,
-    setSeats
-} = useGameSetup();
-
-setSeats(gameState.data.seats);
+const { seatOrder } = useGameSetup(gameState);
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

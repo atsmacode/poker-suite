@@ -23,13 +23,13 @@ const {
     setupGame,
     setToken,
     setRoute,
-    setForScenario,
-    setSeatCount
-} = useGameSetup();
+    setSeatCount,
+    setForScenario
+} = useGameSetup(null);
 
 setToken(token ?? '');
 setRoute(route('scenarios.setup'));
-setForScenario(null);
+setForScenario();
 setupGame();
 </script>
 <template>

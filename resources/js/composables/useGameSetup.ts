@@ -1,7 +1,7 @@
 import { computed, ref, watch } from "vue";
 import axios from "axios";
 
-export function useGameSetup() {
+export function useGameSetup(gameState: any) {
     const postRoute = ref('');
     const csrfToken = ref('');
     const forScenario = ref(false);
@@ -9,12 +9,24 @@ export function useGameSetup() {
     const gameId = ref(null);
     const tableSeats = ref([]);
     const tableSeatCount = ref(6);
+
     const setupRequest = ref({
         id: gameId,
         table: {seats: tableSeatCount},
         scenario: {id: scenarioId},
         for_scenario: forScenario
     });
+
+    // Set values from GameState if we have them
+    if (gameState) {
+        const data = gameState.data;
+
+        tableSeats.value = data.seats;
+        forScenario.value = data.scenario?.id ? true : false;
+        scenarioId.value = data.scenario?.id;
+        tableSeatCount.value = data.seats.length;
+        gameId.value = data.id;
+    }
 
     const seatOrder = computed(() => {
         const seats = tableSeats.value;
@@ -55,21 +67,11 @@ export function useGameSetup() {
         postRoute.value = route;
     }
 
-    const setSeats = (seats) => {
-        tableSeats.value = seats;
-    }
-
-    const setForScenario = (id: number|null) => {
-        forScenario.value = true;
-        scenarioId.value = id; 
-    }
-
     const setSeatCount = (count: number) => {
         tableSeatCount.value = count;
     }
-
-    const setGameId = (id: number) => {
-        gameId.value = id;
+    const setForScenario = () => {
+        forScenario.value = true;
     }
 
     watch(tableSeatCount, () => {
@@ -86,9 +88,7 @@ export function useGameSetup() {
         setupGame,
         setToken,
         setRoute,
-        setSeats,
-        setForScenario,
         setSeatCount,
-        setGameId
+        setForScenario
     };
 };
