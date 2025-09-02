@@ -34,6 +34,9 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="View Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Scenario :selectedSeatCount="gameState.data.seats.length" :seatOrder @seats-changed="setSeatCount" />
+        <Scenario
+            :selectedSeatCount="gameState.data.seats.length"
+            :seatOrder @seats-changed="setSeatCount"
+        />
     </AppLayout>
 </template>

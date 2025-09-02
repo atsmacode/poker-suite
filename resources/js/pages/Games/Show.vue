@@ -30,7 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
-            <PokerTable :seatOrder />
+            <PokerTable :seatOrder :players="gameState.data.players" />
         </div>
     </AppLayout>
 </template>

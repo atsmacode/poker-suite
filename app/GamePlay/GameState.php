@@ -57,4 +57,9 @@ class GameState
     {
         return $this->game->table->tableSeats;
     }
+
+    public function getPlayers(): Collection
+    {
+        return $this->game->table->players->keyBy->id;
+    }
 }

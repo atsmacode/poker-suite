@@ -19,7 +19,7 @@ watch(tableSeatCount, (newCount) => { emit('seatsChanged', newCount) });
         </div>
         <div class="flex flex-row gap-4 h-full mx-4">
             <div class="gap-4 basis-2/3">
-                <PokerTable :seatOrder />
+                <PokerTable :seatOrder :player="null" />
             </div>
             <div class="basis-1/3 p-4 border rounded-xl h-full">
                 <GameSidePanel />
