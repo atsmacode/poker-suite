@@ -14,8 +14,6 @@ class TableBuilder
 
         $this->buildSeats($table, $seats);
 
-        $table->refresh();
-
         return $table;
     }
 
@@ -25,8 +23,6 @@ class TableBuilder
         TableSeat::where('table_id', $table->id)->delete();
 
         $this->buildSeats($table, $seats);
-
-        $table->refresh();
 
         return $table;
     }
@@ -38,5 +34,7 @@ class TableBuilder
             ->sequence(fn (Sequence $sequence) => ['number' => $sequence->index + 1])
             ->for($table)
             ->create();
+
+        $table->refresh();
     }
 }
