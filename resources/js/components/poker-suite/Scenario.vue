@@ -8,9 +8,7 @@ const { seatOrder, selectedSeatCount } = defineProps({seatOrder: Object, selecte
 const emit = defineEmits(['seatsChanged']);
 const tableSeatCount = ref(0);
 
-watch(tableSeatCount, (newCount) => {
-    emit('seatsChanged', newCount);
-});
+watch(tableSeatCount, (newCount) => { emit('seatsChanged', newCount) });
 </script>
 <template>
     <div>

@@ -1,7 +1,7 @@
 <script setup>
 import WholeCards from './WholeCards.vue';
 
-const { seat, player } = defineProps({seat: Object}, {player: Object});
+const { seat, player } = defineProps({seat: Object, player: Object});
 </script>
 <template>
     <div class="rounded-xl p-2 border h-30 w-30 bg-black shadow-xl">
