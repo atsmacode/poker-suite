@@ -43,6 +43,7 @@ const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
                         <tr >
                             <th>Name</th>
                             <th>Status</th>
+                            <th>Scenario ID</th>
                             <th>Game ID</th>
                             <th></th>
                             <th></th>
@@ -57,13 +58,16 @@ const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
                                 {{ scenario.draft ? 'Draft' : 'Saved' }}
                             </td>
                             <td>
+                                {{ scenario.id }}
+                            </td>
+                            <td>
                                 {{ scenario.game_id }}
                             </td>
                             <td>
                                 <TextLink :href="route('scenarios.edit', scenario.id)">Open</TextLink>
                             </td>
                             <td>
-                                <button v-if="scenario.draft" @click="changeDraftStatus(scenario.id, true)">Save Draft</button>
+                                <button v-if="scenario.draft" @click="changeDraftStatus(scenario.id, false)">Save Draft</button>
                             </td>
                         </tr>
                     </tbody>
