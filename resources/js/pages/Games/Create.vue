@@ -20,8 +20,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 const { token } = defineProps({token: String});
 
 const {
-    tableSeatCount,
-    setupRequest
+    setupRequest,
+    setSeatCount
 } = useGameSetup();
 
 const submitForm = () => {
@@ -34,7 +34,7 @@ const submitForm = () => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="rounded-xl m-4 p-4 border rounded-xl">
             <form @submit.prevent="submitForm">
-                <SelectSeatCount @seats-changed="(n: number) => tableSeatCount = n" />
+                <SelectSeatCount @seats-changed="setSeatCount" />
                 <button type="submit">Save</button>
             </form>
         </div>

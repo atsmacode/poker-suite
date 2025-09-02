@@ -8,11 +8,11 @@ import Scenario from '@/components/poker-suite/Scenario.vue';
 const { scenario, gameState } = defineProps({scenario: Object, gameState: Object});
 
 const {
-    tableSeatCount,
     seatOrder,
     setSeats,
     setRoute,
-    setForScenario
+    setForScenario,
+    setSeatCount
 } = useGameSetup();
 
 setRoute(route('scenarios.setup'));
@@ -34,6 +34,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="View Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Scenario :selectedSeatCount="gameState.data.seats.length" :seatOrder @seats-changed="(n: number) => tableSeatCount = n" />
+        <Scenario :selectedSeatCount="gameState.data.seats.length" :seatOrder @seats-changed="setSeatCount" />
     </AppLayout>
 </template>

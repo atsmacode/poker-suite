@@ -64,6 +64,10 @@ export function useGameSetup() {
         scenarioId.value = id; 
     }
 
+    const setSeatCount = (count: number) => {
+        tableSeatCount.value = count;
+    }
+
     watch(tableSeatCount, () => {
         // Only live update the seats for scenarios
         if (forScenario.value ) {
@@ -79,6 +83,7 @@ export function useGameSetup() {
         setToken,
         setRoute,
         setSeats,
-        setForScenario
+        setForScenario,
+        setSeatCount
     };
 };

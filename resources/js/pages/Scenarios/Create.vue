@@ -19,12 +19,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 const { token } = defineProps({token: String});
 
 const {
-    tableSeatCount,
     seatOrder,
     setupGame,
     setToken,
     setRoute,
-    setForScenario
+    setForScenario,
+    setSeatCount
 } = useGameSetup();
 
 setToken(token ?? '');
@@ -36,6 +36,6 @@ setupGame();
     <Head title="Create Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Scenario :seatOrder @seats-changed="(n: number) => tableSeatCount = n" />
+        <Scenario :seatOrder @seats-changed="setSeatCount" />
     </AppLayout>
 </template>

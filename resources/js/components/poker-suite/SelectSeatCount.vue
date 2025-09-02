@@ -1,11 +1,11 @@
 <script setup>
 import { watch } from 'vue';
 
-const { selectedCount } = defineProps({selectedCount: Number, default: 6})
+const { selectedCount } = defineProps({selectedCount: Number})
 const seatCount = defineModel({seatCount: Number, default: 6});
 const emit = defineEmits(['seatsChanged']);
 
-seatCount.value = selectedCount;
+seatCount.value = selectedCount ?? 6;
 
 watch(seatCount, (newCount) => {
     emit('seatsChanged', newCount);
