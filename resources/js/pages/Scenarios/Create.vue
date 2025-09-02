@@ -25,7 +25,7 @@ const {
     setRoute,
     setSeatCount,
     setForScenario
-} = useGameSetup(null);
+} = useGameSetup();
 
 setToken(token ?? '');
 setRoute(route('scenarios.setup'));

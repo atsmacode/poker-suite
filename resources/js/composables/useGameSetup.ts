@@ -1,7 +1,7 @@
 import { computed, ref, watch } from "vue";
 import axios from "axios";
 
-export function useGameSetup(gameState: any) {
+export function useGameSetup(gameState?: any) {
     const postRoute = ref('');
     const csrfToken = ref('');
     const forScenario = ref(false);

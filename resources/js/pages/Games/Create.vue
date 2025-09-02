@@ -22,7 +22,7 @@ const { token } = defineProps({token: String});
 const {
     setupGameRequest,
     setSeatCount
-} = useGameSetup(null);
+} = useGameSetup();
 
 const submitForm = () => {
     return router.post(route('games.store'), setupGameRequest.value);
