@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Input\GameSetupInput;
+use App\Input\ScenarioSetupInput;
 use App\Models\Scenario;
 
 class ScenarioSetupService
@@ -11,13 +12,13 @@ class ScenarioSetupService
     {
     }
 
-    public function setup(GameSetupInput $input): Scenario
+    public function setup(ScenarioSetupInput $input): Scenario
     {
         // Create a new draft or load one currently in use
         $scenario = $input->scenarioId ? Scenario::find($input->scenarioId) : Scenario::draft();
 
         // Update or create table seats
-        $game = $this->gameSetup->setupOrUpdate($input);
+        $game = $this->gameSetup->setupScenario($input);
 
         // Return the current/updated scenario
         if ($input->scenarioId) {

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Scenarios;
 use App\Handlers\EditScenarioHandler;
 use App\Http\Controllers\Controller;
 use App\Http\RequestHandlers\GameSetupRequestHandler;
-use App\Http\Requests\GameSetupRequest;
 use App\Http\Requests\ScenarioSaveDraftRequest;
+use App\Http\Requests\ScenarioSetupRequest;
 use App\Http\Resources\GameStateResource;
 use App\Http\Resources\ScenarioResource;
 use App\Models\Scenario;
@@ -64,15 +64,6 @@ class ScenarioController extends Controller
     }
 
     /**
-     * Update a saved scenario. Separate from setup() because we
-     * may need to reset Hands/HandPlayers if seat counts change.
-     */
-    public function update(GameSetupRequest $request)
-    {
-        // 
-    }
-
-    /**
      * Delete a saved scenario.
      */
     public function destroy(Scenario $scenario)
@@ -83,7 +74,7 @@ class ScenarioController extends Controller
     /**
      * Setup or change game/table/seats for a draft scenario.
      */
-    public function setup(GameSetupRequest $request): GameStateResource
+    public function setup(ScenarioSetupRequest $request): GameStateResource
     {
         return $this->requestHandler->scenario($request);
     }

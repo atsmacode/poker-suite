@@ -10,20 +10,23 @@ export function useGameSetup(gameState: any) {
     const tableSeats = ref([]);
     const tableSeatCount = ref(6);
 
-    const setupRequest = ref({
-        id: gameId,
+    const setupGameRequest = ref({
         table: {seats: tableSeatCount},
-        scenario: {id: scenarioId},
-        for_scenario: forScenario
+    });
+
+    const setupScenarioRequest = ref({
+        game: {id: gameId},
+        table: {seats: tableSeatCount},
+        scenario: {id: scenarioId}
     });
 
     // Set values from GameState if we have them
     if (gameState) {
-        const data = gameState.data;
+        let data = gameState.data;
 
         tableSeats.value = data.seats;
-        forScenario.value = data.scenario?.id ? true : false;
         scenarioId.value = data.scenario?.id;
+        forScenario.value = data.scenario?.id ? true : false;
         tableSeatCount.value = data.seats.length;
         gameId.value = data.id;
     }
@@ -38,11 +41,11 @@ export function useGameSetup(gameState: any) {
         ];
     });
 
-    const setupGame = async () => {
+    const setup = async (request: any) => {
         try {
             const res = await axios.post(
                 postRoute.value,
-                setupRequest.value,
+                request.value,
                 {
                     headers: {'X-CSRF-TOKEN' : csrfToken.value}
                 }
@@ -60,9 +63,18 @@ export function useGameSetup(gameState: any) {
         }
     }
 
+    const setupGame = () => {
+        return setup(setupGameRequest);
+    }
+
+    const setupScenario = () => {
+        return setup(setupScenarioRequest);
+    }
+
     const setToken = (token: string) => {
         csrfToken.value = token;
     }
+
     const setRoute = (route: string) => {
         postRoute.value = route;
     }
@@ -77,15 +89,16 @@ export function useGameSetup(gameState: any) {
     watch(tableSeatCount, () => {
         // Only live update the seats for scenarios
         if (forScenario.value) {
-            setupGame();
+            setupScenario();
         }
     });
 
     return {
         tableSeatCount,
         seatOrder,
-        setupRequest,
+        setupGameRequest,
         setupGame,
+        setupScenario,
         setToken,
         setRoute,
         setSeatCount,

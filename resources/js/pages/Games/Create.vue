@@ -20,12 +20,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 const { token } = defineProps({token: String});
 
 const {
-    setupRequest,
+    setupGameRequest,
     setSeatCount
 } = useGameSetup(null);
 
 const submitForm = () => {
-    return router.post(route('games.store'), setupRequest.value);
+    return router.post(route('games.store'), setupGameRequest.value);
 };
 </script>
 <template>

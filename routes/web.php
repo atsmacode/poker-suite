@@ -26,7 +26,6 @@ Route::prefix('scenarios')
         Route::patch('/{scenario}/draft', 'draft')->name('draft');
         Route::get('/{scenario}/edit', 'edit')->name('edit');
         Route::get('/', 'index')->name('index');
-        Route::patch('/{scenario}', 'update')->name('update');
         Route::post('/setup', 'setup')->name('setup');
 
         Route::prefix('{scenario}/players')->name('players.')->group(function() {

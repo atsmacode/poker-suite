@@ -20,7 +20,7 @@ const { token } = defineProps({token: String});
 
 const {
     seatOrder,
-    setupGame,
+    setupScenario,
     setToken,
     setRoute,
     setSeatCount,
@@ -30,7 +30,7 @@ const {
 setToken(token ?? '');
 setRoute(route('scenarios.setup'));
 setForScenario();
-setupGame();
+setupScenario();
 </script>
 <template>
     <Head title="Create Scenario" />

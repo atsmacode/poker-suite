@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Input\GameSetupInput;
+use App\Input\ScenarioSetupInput;
 use Illuminate\Foundation\Http\FormRequest;
 
-class GameSetupRequest extends FormRequest
+class ScenarioSetupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,19 +23,22 @@ class GameSetupRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'game.id' => ['nullable', 'integer'],
+            'game.style' => ['string'],
+            'scenario.id' => ['nullable', 'integer'],
             'table.name' => ['string'],
             'table.seats' => ['required', 'integer'],
-            'game.style' => ['string'],
             'players' => ['nullable', 'array'],
             'players.*' => ['integer'],
         ];
     }
 
-    public function toInput(): GameSetupInput
+    public function toInput(): ScenarioSetupInput
     {
-        return new GameSetupInput(
-            seats: $this->input('table.seats'),
-            players: $this->input('players')
+        return new ScenarioSetupInput(
+            gameId: $this->input('game.id'),
+            scenarioId: $this->input('scenario.id'),
+            seats: $this->input('table.seats')
         );
     }
 }

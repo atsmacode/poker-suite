@@ -6,6 +6,7 @@ use App\Builders\GameBuilder;
 use App\Builders\TableBuilder;
 use App\Models\Game;
 use App\Input\GameSetupInput;
+use App\Input\ScenarioSetupInput;
 
 class GameSetupService
 {
@@ -17,7 +18,7 @@ class GameSetupService
     /**
      * For building a real game with fixed table seat count.
      */
-    public function setup(GameSetupInput $input): Game
+    public function setup(GameSetupInput|ScenarioSetupInput $input): Game
     {
         $table = $this->tableBuilder->build(
             $input->tableName,
@@ -25,7 +26,7 @@ class GameSetupService
         );
 
         // Auto-generate players for standard game setup
-        if (! $input->players && ! $input->for_scenario) {
+        if ($input instanceof GameSetupInput) {
             $this->tableBuilder->autoGeneratePlayers($table);
         }
 
@@ -41,7 +42,7 @@ class GameSetupService
     /**
      * For new games & changing seat counts in scenario UI.
      */
-    public function setupOrUpdate(GameSetupInput $input): Game
+    public function setupScenario(ScenarioSetupInput $input): Game
     {
         $game = $input->gameId ? Game::find($input->gameId) : null;
 
