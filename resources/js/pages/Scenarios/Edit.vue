@@ -19,6 +19,7 @@ const {
 setRoute(route('scenarios.setup'));
 setSeats(gameState.data.seats);
 setForScenario(gameState.data.scenario.id);
+setSeatCount(gameState.data.seats.length);
 setGameId(gameState.data.id);
 
 const breadcrumbs: BreadcrumbItem[] = [
