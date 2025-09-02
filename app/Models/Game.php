@@ -43,4 +43,12 @@ class Game extends Model
             ->whereNull('scenarios.id')
             ->orWhere('scenarios.draft', 0);
     }
+
+    #[Scope]
+    protected function withoutScenarios(Builder $query): void
+    {
+        $query
+            ->leftJoin('scenarios', 'games.id', '=', 'scenarios.game_id')
+            ->whereNull('scenarios.id');
+    }
 }
