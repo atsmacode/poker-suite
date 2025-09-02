@@ -8,7 +8,7 @@ export function useGameSetup() {
     const scenarioId = ref(null);
     const gameId = ref(null);
     const tableSeats = ref([]);
-    const tableSeatCount = ref(6);
+    const tableSeatCount = ref(null);
     const setupRequest = ref({
         id: gameId,
         table: {seats: tableSeatCount},
@@ -68,6 +68,10 @@ export function useGameSetup() {
         tableSeatCount.value = count;
     }
 
+    const setGameId = (id: number) => {
+        gameId.value = id;
+    }
+
     watch(tableSeatCount, () => {
         // Only live update the seats for scenarios
         if (forScenario.value ) {
@@ -84,6 +88,7 @@ export function useGameSetup() {
         setRoute,
         setSeats,
         setForScenario,
-        setSeatCount
+        setSeatCount,
+        setGameId
     };
 };

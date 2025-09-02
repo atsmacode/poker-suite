@@ -12,12 +12,14 @@ const {
     setSeats,
     setRoute,
     setForScenario,
-    setSeatCount
+    setSeatCount,
+    setGameId
 } = useGameSetup();
 
 setRoute(route('scenarios.setup'));
 setSeats(gameState.data.seats);
 setForScenario(gameState.data.scenario.id);
+setGameId(gameState.data.id);
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -36,7 +38,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <Scenario
             :selectedSeatCount="gameState.data.seats.length"
-            :seatOrder @seats-changed="setSeatCount"
+            :seatOrder
+            @seats-changed="setSeatCount"
         />
     </AppLayout>
 </template>
