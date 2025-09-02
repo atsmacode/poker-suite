@@ -39,7 +39,8 @@ class Game extends Model
     protected function withoutDrafts(Builder $query): void
     {
         $query
-            ->join('scenarios', 'games.id', '=', 'scenarios.game_id')
-            ->where('scenarios.draft', 0);
+            ->leftJoin('scenarios', 'games.id', '=', 'scenarios.game_id')
+            ->whereNull('scenarios.id')
+            ->orWhere('scenarios.draft', 0);
     }
 }

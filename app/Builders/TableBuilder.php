@@ -50,6 +50,8 @@ class TableBuilder
             // Fill all seats
             $table->tableSeats->each(function (TableSeat $tableSeat) {
                 $tableSeat->player()->associate(Player::factory()->create());
+
+                $tableSeat->save();
             });
         } else {
             // Fill specific number of seats...

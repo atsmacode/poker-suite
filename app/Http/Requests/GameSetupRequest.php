@@ -27,6 +27,7 @@ class GameSetupRequest extends FormRequest
             'table.name' => ['string'],
             'table.seats' => ['required', 'integer'],
             'game.style' => ['string'],
+            'for_scenario' => ['boolean'],
             'scenario.id' => ['nullable', 'integer'],
             'players' => ['nullable', 'array'],
             'players.*' => ['integer'],
@@ -36,6 +37,7 @@ class GameSetupRequest extends FormRequest
     public function toInput(): GameSetupInput
     {
         return new GameSetupInput(
+            for_scenario: $this->input('for_scenario'),
             scenarioId: $this->input('scenario.id'),
             gameId: $this->input('id'),
             seats: $this->input('table.seats'),

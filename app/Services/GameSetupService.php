@@ -25,7 +25,7 @@ class GameSetupService
         );
 
         // Auto-generate players for standard game setup
-        if (! $input->players && ! $input->scenarioId) {
+        if (! $input->players && ! $input->for_scenario) {
             $this->tableBuilder->autoGeneratePlayers($table);
         }
 

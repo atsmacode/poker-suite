@@ -17,6 +17,7 @@ class GameSetupInput
         public int $seats = 6,
         public string $gameStyle = 'plhe',
         public string $gameMode = 'test',
+        public bool $for_scenario = false,
         public ?int $scenarioId = null,
         ?array $players = []
     ) {

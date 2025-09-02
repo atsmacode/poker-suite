@@ -19,7 +19,7 @@ class GameController extends Controller
 
     public function index()
     {
-        return Inertia::render('Games/Index', ['games' => Game::withoutDrafts()->get()]);
+        return Inertia::render('Games/Index', ['games' => Game::select('games.id')->withoutDrafts()->get()]);
     }
 
     public function create()
@@ -31,7 +31,10 @@ class GameController extends Controller
     {
         $gameState = $this->requestHandler->game($request);
 
-        return Inertia::render('Games/Show', ['gameState' => $gameState]);
+        return Inertia::render('Games/Show', [
+            'game' => $gameState->getGame(),
+            'gameState' => $gameState
+        ]);
     }
 
     public function show(Game $game)

@@ -4,6 +4,7 @@ import axios from "axios";
 export function useGameSetup() {
     const postRoute = ref('');
     const csrfToken = ref('');
+    const forScenario = ref(false);
     const scenarioId = ref(null);
     const gameId = ref(null);
     const tableSeats = ref([]);
@@ -11,7 +12,8 @@ export function useGameSetup() {
     const setupRequest = ref({
         id: gameId,
         table: {seats: tableSeatCount},
-        scenario: {id: scenarioId}
+        scenario: {id: scenarioId},
+        for_scenario: forScenario
     });
 
     const seatOrder = computed(() => {
@@ -53,6 +55,14 @@ export function useGameSetup() {
         postRoute.value = route;
     }
 
+    const setSeats = (seats) => {
+        tableSeats.value = seats;
+    }
+
+    const setForScenario = () => {
+        forScenario.value = true;
+    }
+
     watch(tableSeatCount, () => {
         // Only live update the seats for scenarios
         if (scenarioId.value) {
@@ -66,6 +76,8 @@ export function useGameSetup() {
         setupRequest,
         setupGame,
         setToken,
-        setRoute
+        setRoute,
+        setSeats,
+        setForScenario
     };
 };

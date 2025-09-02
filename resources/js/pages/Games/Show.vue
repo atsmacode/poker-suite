@@ -2,8 +2,17 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
+import PokerTable from '@/components/poker-suite/PokerTable.vue';
+import { useGameSetup } from '@/composables/useGameSetup';
 
 const { game, gameState } = defineProps({game: Object, gameState: Object});
+
+const {
+    seatOrder,
+    setSeats
+} = useGameSetup();
+
+setSeats(gameState.data.seats);
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -21,9 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
-            <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border p-4">
-                Game #{{ game.id }} ...
-            </div>
+            <PokerTable :seatOrder />
         </div>
     </AppLayout>
 </template>
