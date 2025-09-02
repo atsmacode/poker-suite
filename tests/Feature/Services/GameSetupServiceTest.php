@@ -37,3 +37,16 @@ test('it can update table seats for an existing game', function() {
     
     expect($game->table->tableSeats->count())->toBe(6);
 });
+
+test('it can auto-generate players for a table', function() {
+    $service = app(GameSetupService::class);
+
+    $game = $service->setup(
+        new GameSetupInput(
+            gameId: null,
+            tableName: 'Unit Test Table'
+        )
+    );
+
+    $game->table->tableSeats->each(fn (TableSeat $tableSeat) => $this->assertNotNull($tableSeat->player_id));
+});

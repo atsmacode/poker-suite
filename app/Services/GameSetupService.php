@@ -24,7 +24,11 @@ class GameSetupService
             $input->seats
         );
 
-        // Add call to a PlayerBuilder class to load/create players
+        // Auto-generate players for standard game setup
+        if (! $input->players && ! $input->scenarioId) {
+            $this->tableBuilder->autoGeneratePlayers($table);
+        }
+
         // Call new method on TableBuilder to add players to seats
 
         return $this->gameBuilder->build(
