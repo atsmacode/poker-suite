@@ -1,7 +1,7 @@
 <script setup>
 import TableSeat from './TableSeat.vue';
 
-const { seatOrder } = defineProps(['seatOrder']);
+const { seatOrder } = defineProps({seatOrder: Object });
 </script>
 <template>
     <div>

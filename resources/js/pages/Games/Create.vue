@@ -16,7 +16,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const { token } = defineProps({'token': String});
+const { token } = defineProps({token: String});
 
 const {
     tableSeatCount,
