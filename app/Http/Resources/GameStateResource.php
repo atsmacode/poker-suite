@@ -21,6 +21,7 @@ class GameStateResource extends JsonResource
             'id' => $game->id,
             'seats' => $state->getSeats(),
             'players' => $state->getPlayers(),
+            'scenario' => null,
         ];
 
         if ($state->isScenario()) {
