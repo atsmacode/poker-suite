@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,17 +38,14 @@ class Game extends Model
     #[Scope]
     protected function withoutDrafts(Builder $query): void
     {
-        $query
-            ->leftJoin('scenarios', 'games.id', '=', 'scenarios.game_id')
-            ->whereNull('scenarios.id')
-            ->orWhere('scenarios.draft', 0);
+        $query->whereDoesntHave('scenario', function (Builder $query) {
+            $query->where('draft', '=', 1);
+        });
     }
 
     #[Scope]
     protected function withoutScenarios(Builder $query): void
     {
-        $query
-            ->leftJoin('scenarios', 'games.id', '=', 'scenarios.game_id')
-            ->whereNull('scenarios.id');
+        $query->whereDoesntHave('scenario');
     }
 }
