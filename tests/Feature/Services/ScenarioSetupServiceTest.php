@@ -1,6 +1,6 @@
 <?php
 
-use App\Input\GameSetupInput;
+use App\Input\ScenarioSetupInput;
 use App\Models\Game;
 use App\Services\ScenarioSetupService;
 
@@ -9,7 +9,7 @@ test('it can associate a game with a scenario', function() {
     $game = Game::factory()->create();
     
     $scenario = $scenarioService->setup(
-        new GameSetupInput(
+        new ScenarioSetupInput(
             gameId: $game->id
         )
     );

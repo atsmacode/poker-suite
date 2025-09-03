@@ -1,6 +1,7 @@
 <?php
 
 use App\Input\GameSetupInput;
+use App\Input\ScenarioSetupInput;
 use App\Models\Game;
 use App\Models\Table;
 use App\Models\TableSeat;
@@ -11,7 +12,6 @@ test('it can build a table for a game', function() {
     
     $game = $service->setup(
         new GameSetupInput(
-            gameId: null,
             tableName: 'Unit Test Table'
         )
     );
@@ -21,16 +21,16 @@ test('it can build a table for a game', function() {
     expect($game->table->name)->toBe('Unit Test Table');
 });
 
-test('it can update table seats for an existing game', function() {
+test('it can update table seats for a scenario', function() {
     $service = app(GameSetupService::class);
 
     $game = Game::factory()->create();
 
     TableSeat::factory(3)->for($game->table)->create();
     
-    $game = $service->setupOrUpdate(
-        new GameSetupInput(
-            gameId: $game->id,
+    $game = $service->setupScenario(
+        new ScenarioSetupInput(
+            $game->id,
             seats: 6
         )
     );
@@ -41,12 +41,7 @@ test('it can update table seats for an existing game', function() {
 test('it can auto-generate players for a table', function() {
     $service = app(GameSetupService::class);
 
-    $game = $service->setup(
-        new GameSetupInput(
-            gameId: null,
-            tableName: 'Unit Test Table'
-        )
-    );
+    $game = $service->setup(new GameSetupInput());
 
     $game->table->tableSeats->each(fn (TableSeat $tableSeat) => $this->assertNotNull($tableSeat->player_id));
 });
