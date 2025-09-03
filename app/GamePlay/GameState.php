@@ -55,7 +55,7 @@ class GameState
 
     public function getSeats(): Collection
     {
-        return $this->game->gameTable->tableSeats;
+        return $this->game->getSeats();
     }
 
     public function getPlayers(): Collection

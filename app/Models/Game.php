@@ -23,6 +23,7 @@ class Game extends Model
 
     protected $with = [
         'gameTable.players',
+        'gameTable.tableSeats',
     ];
 
     public function hands(): HasMany
@@ -43,6 +44,11 @@ class Game extends Model
     public function getPlayers(): Collection
     {
         return $this->gameTable->players;
+    }
+
+    public function getSeats(): Collection
+    {
+        return $this->gameTable->tableSeats;
     }
 
     #[Scope]
