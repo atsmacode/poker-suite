@@ -49,7 +49,7 @@ class GameSetupService
         if ($game) {
             // If a game setup is in progress, update the seats
             $this->tableBuilder->updateSeats(
-                $game->table,
+                $game->gameTable,
                 $input->seats
             );
 

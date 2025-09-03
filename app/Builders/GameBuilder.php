@@ -16,7 +16,7 @@ class GameBuilder
             'game_mode_id' => GameMode::fromName($mode)
         ]);
 
-        $game->table()->associate($table);
+        $game->gameTable()->associate($table);
         $game->save();
 
         return $game;

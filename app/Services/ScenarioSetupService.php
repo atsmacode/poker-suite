@@ -33,7 +33,7 @@ class ScenarioSetupService
 
         $scenario
             ->game
-            ->table
+            ->gameTable
             ->loadMissing('tableSeats');
 
         return $scenario;

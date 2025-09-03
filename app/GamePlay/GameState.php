@@ -55,11 +55,14 @@ class GameState
 
     public function getSeats(): Collection
     {
-        return $this->game->table->tableSeats;
+        return $this->game->gameTable->tableSeats;
     }
 
     public function getPlayers(): Collection
     {
-        return $this->game->table->players->keyBy->id;
+        return $this->game
+            ->getPlayers()
+            ->keyBy
+            ->id;
     }
 }

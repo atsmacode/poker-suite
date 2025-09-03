@@ -16,9 +16,9 @@ test('it can build a table for a game', function() {
         )
     );
 
-    $this->assertInstanceOf(Table::class, $game->table);
+    $this->assertInstanceOf(Table::class, $game->gameTable);
     
-    expect($game->table->name)->toBe('Unit Test Table');
+    expect($game->gameTable->name)->toBe('Unit Test Table');
 });
 
 test('it can update table seats for a scenario', function() {
@@ -26,7 +26,7 @@ test('it can update table seats for a scenario', function() {
 
     $game = Game::factory()->create();
 
-    TableSeat::factory(3)->for($game->table)->create();
+    TableSeat::factory(3)->for($game->gameTable)->create();
     
     $game = $service->setupScenario(
         new ScenarioSetupInput(
@@ -35,7 +35,7 @@ test('it can update table seats for a scenario', function() {
         )
     );
     
-    expect($game->table->tableSeats->count())->toBe(6);
+    expect($game->gameTable->tableSeats->count())->toBe(6);
 });
 
 test('it can auto-generate players for a table', function() {
@@ -43,5 +43,5 @@ test('it can auto-generate players for a table', function() {
 
     $game = $service->setup(new GameSetupInput());
 
-    $game->table->tableSeats->each(fn (TableSeat $tableSeat) => $this->assertNotNull($tableSeat->player_id));
+    $game->gameTable->tableSeats->each(fn (TableSeat $tableSeat) => $this->assertNotNull($tableSeat->player_id));
 });
