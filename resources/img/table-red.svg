@@ -17,7 +17,7 @@
 
   <!-- Inner outline -->
   <rect x="1050.0" y="1146.0" width="300" height="108"
-        fill="none" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="8"/>
+        fill="none" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="4"/>
 
   <!-- Centered smaller text -->
   <text x="1200.0" y="1200.0"
