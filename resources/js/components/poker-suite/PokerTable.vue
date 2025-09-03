@@ -13,16 +13,16 @@ const getPlayer = (playerId: number|null) => {
 </script>
 <template>
     <div>
-        <div class="relative border-30 border-emerald-900 rounded-full m-10 bg-emerald-950 text-center">
+        <div id="poker-table" class=" poker-table-blue relative border-30 border-blue-900 rounded-full m-10 bg-emerald-950 text-center">
             <div class="flex justify-between gap-4 m-5">
                 <TableSeat v-for="seat in seatOrder[0]" :seat :player="getPlayer(seat.player_id)" />
             </div>
             <div class="grid grid-cols-12 m-2 text-left">
                 <span class="font-extrabold text-xl col-start-4 col-end-6">Pot: #</span>
-                <span class="font-extrabold text-xl col-start-8 col-end-10">Other info: ...</span>
+                <span class="font-extrabold text-xl col-start-8 col-end-10">Other info:</span>
             </div>
             <div class="grid grid-cols-12">
-                <span class="border border-emerald-900 rounded h-30 col-start-3 col-end-11 p-2">Community cards</span>
+                <span class="rounded h-30 col-start-3 col-end-11 p-2"></span>
             </div>
             <div class="flex justify-between gap-4 m-5">
                 <TableSeat v-for="seat in seatOrder[1]" :seat :player="getPlayer(seat.player_id)"  />

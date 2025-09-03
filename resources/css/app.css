@@ -165,3 +165,20 @@
         @apply bg-background text-foreground;
     }
 }
+
+
+/* Custom */
+.poker-table-blue {
+    background: url('../img/table-blue.svg');
+    background-position: center;
+}
+
+.poker-table-red {
+    background: url('../img/table-red.svg');
+    background-position: center;
+}
+
+.poker-table-green {
+    background: url('../img/table-green.svg');
+    background-position: center;
+}
