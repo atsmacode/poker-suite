@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Input\GameSetupInput;
 use App\Input\ScenarioSetupInput;
 use App\Models\Scenario;
 
