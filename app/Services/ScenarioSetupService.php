@@ -19,6 +19,7 @@ class ScenarioSetupService
         // Update or create table seats
         $game = $this->gameSetup->setupScenario($input);
 
+        // Make sure we have latest seats
         $scenario->refresh();
 
         // Return the current/updated scenario
