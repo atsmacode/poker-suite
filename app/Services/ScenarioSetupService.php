@@ -19,6 +19,8 @@ class ScenarioSetupService
         // Update or create table seats
         $game = $this->gameSetup->setupScenario($input);
 
+        $scenario->refresh();
+
         // Return the current/updated scenario
         if ($input->scenarioId) {
             return $scenario;
@@ -30,11 +32,6 @@ class ScenarioSetupService
             ->associate($game);
 
         $scenario->save();
-
-        $scenario
-            ->game
-            ->gameTable
-            ->loadMissing('tableSeats');
 
         return $scenario;
     }

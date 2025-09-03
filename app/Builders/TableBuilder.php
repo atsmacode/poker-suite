@@ -5,7 +5,6 @@ namespace App\Builders;
 use App\Models\Player;
 use App\Models\Table;
 use App\Models\TableSeat;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class TableBuilder
