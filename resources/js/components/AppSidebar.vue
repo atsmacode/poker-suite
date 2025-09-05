@@ -41,7 +41,7 @@ const footerNavItems: NavItem[] = [
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
-                        <Link :href="route('games.index')">
+                        <Link :href="route('scenarios.index')">
                             <AppLogo />
                         </Link>
                     </SidebarMenuButton>
