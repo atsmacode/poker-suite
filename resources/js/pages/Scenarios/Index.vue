@@ -51,7 +51,7 @@ const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-y bg-[#111111]" v-for="(scenario, n) in scenarios.data" :class="{'bg-[#202020]': (n/2) % 1}">
+                        <tr class="border-y bg-[#111111]" v-for="(scenario, n) in scenarios.data" :class="{'bg-[#202020]': n % 2}">
                             <td>
                                 {{ scenario.name }}
                             </td>

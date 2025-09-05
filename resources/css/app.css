@@ -170,7 +170,7 @@
 /* Custom */
 @layer components {
   .poker-btn-green {
-    @apply bg-green-900 hover:bg-green-800 p-2 cursor-pointer rounded-sm;
+    @apply bg-green-900 hover:bg-green-800 cursor-pointer
   }
 }
 

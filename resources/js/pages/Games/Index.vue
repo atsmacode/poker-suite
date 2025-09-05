@@ -35,7 +35,7 @@ defineProps({games: Object});
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-if="games.length > 0" class="border-y bg-[#111111]" v-for="(game, n) in games" :class="{'bg-[#202020]': (n/2) % 1}">
+                        <tr v-if="games.length > 0" class="border-y bg-[#111111]" v-for="(game, n) in games" :class="{'bg-[#202020]': n % 2}">
                             <td>
                                 {{ game.id }}
                             </td>
