@@ -5,6 +5,7 @@ import { Head } from '@inertiajs/vue3';
 import { useGameSetup } from '@/composables/useGameSetup';
 import SelectSeatCount from '@/components/poker-suite/SelectSeatCount.vue';
 import { router } from '@inertiajs/vue3';
+import Button from '@/components/ui/button/Button.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -34,8 +35,9 @@ const submitForm = () => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="rounded-xl m-4 p-4 border rounded-xl">
             <form @submit.prevent="submitForm">
-                <SelectSeatCount @seats-changed="setSeatCount" />
-                <button type="submit">Save</button>
+                <SelectSeatCount :class="'mb-4'" @seats-changed="setSeatCount" />
+
+                <Button :variant="'green'">Save</Button>
             </form>
         </div>
     </AppLayout>
