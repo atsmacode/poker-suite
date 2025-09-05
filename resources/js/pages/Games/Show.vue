@@ -23,7 +23,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Show Game" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
+        <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto poker-floor">
             <PokerTable :seatOrder :players="gameState.data.players" />
         </div>
     </AppLayout>
