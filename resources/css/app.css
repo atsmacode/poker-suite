@@ -168,6 +168,12 @@
 
 
 /* Custom */
+@layer components {
+  .poker-btn-green {
+    @apply bg-green-900 hover:bg-green-800 p-2 cursor-pointer rounded-sm;
+  }
+}
+
 .poker-table-logo {
     background-image: url('../img/table-logo.svg'), linear-gradient(180deg, #3ec87c 0%, #047248 100%);
     background-position: center;

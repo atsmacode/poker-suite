@@ -67,7 +67,7 @@ const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
                                 <TextLink :href="route('scenarios.edit', scenario.id)">Open</TextLink>
                             </td>
                             <td>
-                                <button v-if="scenario.draft" @click="changeDraftStatus(scenario.id, false)">Save Draft</button>
+                                <button class="poker-btn-green" v-if="scenario.draft" @click="changeDraftStatus(scenario.id, false)">Save Draft</button>
                             </td>
                         </tr>
                     </tbody>
