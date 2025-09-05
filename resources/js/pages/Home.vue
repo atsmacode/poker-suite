@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { Heart } from 'lucide-vue-next';
-import AppLogo from '@/components/AppLogo.vue';
+import AppLogoIcon from '@/components/AppLogoIcon.vue';
+import AppLogoText from '@/components/AppLogoText.vue';
 </script>
 
 <template>
@@ -47,7 +47,10 @@ import AppLogo from '@/components/AppLogo.vue';
                     class="relative text-white flex justify-center -mb-px aspect-335/376 w-full shrink-0 overflow-hidden rounded-t-lg bg-[#222] lg:mb-0 lg:-ml-px lg:aspect-auto lg:w-[438px] lg:rounded-t-none lg:rounded-r-lg dark:bg-[#222] text-center"
                 >
                     <div class="self-center">
-                        <AppLogo />
+                        <div class="grid justify-end">
+                            <AppLogoIcon />
+                        </div>
+                        <AppLogoText :class="'text-2xl'" />
                     </div>
                     <div
                         class="absolute inset-0 rounded-t-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:overflow-hidden lg:rounded-t-none lg:rounded-r-lg dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"

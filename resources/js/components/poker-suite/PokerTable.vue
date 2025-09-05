@@ -14,7 +14,7 @@ const getPlayer = (playerId: number|null) => {
 <template>
     <div>
         <div id="poker-table" class="poker-table-logo relative border-30 border-green-900 rounded-full m-10 bg-emerald-950 text-center drop-shadow-xl/100">
-            <div class="flex justify-between gap-4 m-5">
+            <div class="flex justify-between gap-4 m-4">
                 <TableSeat v-for="seat in seatOrder[0]" :seat :player="getPlayer(seat.player_id)" />
             </div>
             <div class="grid grid-cols-12 m-2 text-left">

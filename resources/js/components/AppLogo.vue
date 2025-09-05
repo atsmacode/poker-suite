@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Spade } from 'lucide-vue-next';
+import AppLogoText from './AppLogoText.vue';
 </script>
 
 <template>
@@ -8,6 +9,6 @@ import { Spade } from 'lucide-vue-next';
         <!-- <AppLogoIcon class="size-5 fill-current text-white dark:text-black" /> -->
     </div>
     <div class="ml-1 grid flex-1 text-left">
-        <span class="mb-0.5 truncate leading-tight font-semibold"><span class="text-green-600">Poker</span>Suite</span>
+        <AppLogoText />
     </div>
 </template>
