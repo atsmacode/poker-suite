@@ -37,10 +37,10 @@ const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
         </div>
 
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
-            <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
+            <div class="relative min-h-[100vh] flex-1 border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                 <table class="table-auto w-full">
                     <thead>
-                        <tr >
+                        <tr class="text-left">
                             <th>Name</th>
                             <th>Status</th>
                             <th>Scenario ID</th>
@@ -50,7 +50,7 @@ const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border" v-for="scenario in scenarios.data">
+                        <tr class="border-y bg-[#111111]" v-for="(scenario, n) in scenarios.data" :class="{'bg-[#202020]': (n/2) % 1}">
                             <td>
                                 {{ scenario.name }}
                             </td>
