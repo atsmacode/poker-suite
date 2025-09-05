@@ -92,7 +92,5 @@ class DatabaseSeeder extends Seeder
         foreach (EnumsMode::cases() as $mode) {
             GameMode::create(['id' => $mode->value, 'name' => $mode->name()]);
         }
-
-        Scenario::factory(20)->create();
     }
 }
