@@ -2,8 +2,9 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import TextLink from '@/components/TextLink.vue';
 import axios from 'axios';
+import { Link } from '@inertiajs/vue3';
+import Button from '@/components/ui/button/Button.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -32,7 +33,7 @@ const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex flex-row p-4">
             <div class="basis-64">
-                <TextLink :href="route('scenarios.create')">Create Scenario</TextLink>
+                <Button :variant="'green'"><Link :href="route('scenarios.create')">Create Scenario</Link></Button>
             </div>
         </div>
 
@@ -64,10 +65,10 @@ const changeDraftStatus = async (scenarioId: number, draft: boolean) => {
                                 {{ scenario.game_id }}
                             </td>
                             <td>
-                                <TextLink :href="route('scenarios.edit', scenario.id)">Open</TextLink>
+                                <Button><Link :href="route('scenarios.edit', scenario.id)">Open</Link></Button>
                             </td>
                             <td>
-                                <button class="poker-btn-green" v-if="scenario.draft" @click="changeDraftStatus(scenario.id, false)">Save Draft</button>
+                                <Button :variant="'green'" v-if="scenario.draft" @click="changeDraftStatus(scenario.id, false)">Save Draft</Button>
                             </td>
                         </tr>
                     </tbody>
