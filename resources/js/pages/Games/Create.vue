@@ -18,12 +18,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const { token } = defineProps({token: String});
-
-const {
-    setupGameRequest,
-    setSeatCount
-} = useGameSetup();
+const { setupGameRequest } = useGameSetup();
 
 const submitForm = () => {
     return router.post(route('games.store'), setupGameRequest.value);
@@ -35,7 +30,7 @@ const submitForm = () => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="rounded-xl m-4 p-4 border rounded-xl">
             <form @submit.prevent="submitForm">
-                <SelectSeatCount :class="'mb-4'" @seats-changed="setSeatCount" />
+                <SelectSeatCount :class="'mb-4'" />
 
                 <Button :variant="'green'">Save</Button>
             </form>
