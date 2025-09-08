@@ -23,7 +23,6 @@ const {
     setupScenario,
     setToken,
     setRoute,
-    setSeatCount,
     setForScenario
 } = useGameSetup();
 
@@ -36,6 +35,6 @@ setupScenario();
     <Head title="Create Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Scenario :seatOrder @seats-changed="setSeatCount" />
+        <Scenario :seatOrder />
     </AppLayout>
 </template>

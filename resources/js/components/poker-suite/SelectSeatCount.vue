@@ -1,18 +1,17 @@
 <script setup>
-import { watch } from 'vue';
+import { inject } from 'vue';
 
-const { selectedCount } = defineProps({selectedCount: {type: Number, default: 6}})
 const seatCount = defineModel({seatCount: Number});
-const emit = defineEmits(['seatsChanged']);
+const selectedCount = inject('selectedSeatCount');
 
 seatCount.value = selectedCount;
 
-watch(seatCount, (newCount) => { emit('seatsChanged', newCount) });
+const seatsChangedHandler = inject('seatsChangedHandler');
 </script>
 <template>
     <div>
         <label for="seats">Select seat count</label>
-        <select id="seats" name="seats" v-model="seatCount">
+        <select id="seats" name="seats" @change="seatsChangedHandler" v-model="seatCount">
             <option v-for="n in [6,7,8,9]" :value="n">{{ n }}</option>
         </select>
     </div>

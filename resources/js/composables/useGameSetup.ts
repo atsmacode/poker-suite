@@ -1,4 +1,4 @@
-import { computed, ref, watch } from "vue";
+import { computed, provide, ref, watch } from "vue";
 import axios from "axios";
 
 export function useGameSetup(gameState?: any) {
@@ -79,8 +79,8 @@ export function useGameSetup(gameState?: any) {
         postRoute.value = route;
     }
 
-    const setSeatCount = (count: number) => {
-        tableSeatCount.value = count;
+    const setSeatCount = (e: Event) => {
+        tableSeatCount.value = e.target.value;
     }
     const setForScenario = () => {
         forScenario.value = true;
@@ -92,6 +92,9 @@ export function useGameSetup(gameState?: any) {
             setupScenario();
         }
     });
+
+    provide('seatsChangedHandler', setSeatCount);
+    provide('selectedSeatCount', tableSeatCount.value);
 
     return {
         tableSeatCount,
