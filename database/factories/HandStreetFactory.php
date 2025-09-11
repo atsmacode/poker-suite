@@ -18,7 +18,6 @@ class HandStreetFactory extends Factory
     {
         return [
             'hand_id' => Hand::factory(),
-            'street_id' => Street::random()->value,
             'game_style_street_id' => GameStyle::HOLD_EM->value
         ];
     }

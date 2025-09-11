@@ -21,8 +21,8 @@ class HandStreet extends Model
         return $this->belongsTo(Hand::class);
     }
 
-    public function handStreetCards(): HasMany
+    public function communityCards(): HasMany
     {
-        return $this->hasMany(HandStreetCard::class);
+        return $this->hasMany(CommunityCard::class);
     }
 }

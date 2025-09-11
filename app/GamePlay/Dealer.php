@@ -5,7 +5,7 @@ namespace App\GamePlay;
 use App\Enums\Card;
 use App\Models\Deck;
 use App\Models\HandStreet;
-use App\Models\HandStreetCard;
+use App\Models\CommunityCard;
 use App\Models\HoleCard;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -113,7 +113,7 @@ class Dealer
         while ($dealtCards < $cardCount) {
             $card = $this->pick()->getCard();
 
-            HandStreetCard::create([
+            CommunityCard::create([
                 'card_id' => $card->value,
                 'hand_street_id' => $handStreet->id,
             ]);
@@ -128,7 +128,7 @@ class Dealer
     {
         $card = $this->pick($card)->getCard();
 
-        HandStreetCard::create([
+        CommunityCard::create([
             'card_id' => $card->value,
             'hand_street_id' => $handStreet->id,
         ]);

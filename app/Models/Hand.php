@@ -43,9 +43,9 @@ class Hand extends Model
         return $this->hasOne(Pot::class);
     }
 
-    public function handStreetCards(): HasManyThrough
+    public function communityCards(): HasManyThrough
     {
-        return $this->hasManyThrough(HandStreetCard::class, HandStreet::class);
+        return $this->hasManyThrough(CommunityCard::class, HandStreet::class);
     }
 
     public function complete(): void

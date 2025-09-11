@@ -34,7 +34,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('hand_street_cards', function (Blueprint $table) {
+        Schema::create('community_cards', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignIdFor(HandStreet::class);
             $table->foreignIdFor(Card::class);

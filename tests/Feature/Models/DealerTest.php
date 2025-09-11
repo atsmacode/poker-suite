@@ -78,7 +78,7 @@ test('the dealer can deal street cards', function() {
 
     $dealer->dealStreetCards($handStreet, 3);
 
-    expect($handStreet->handStreetCards->count())->toBe(3);
+    expect($handStreet->communityCards->count())->toBe(3);
 });
 
 test('the dealer can deal a specific street card', function() {
@@ -87,5 +87,5 @@ test('the dealer can deal a specific street card', function() {
 
     $dealer->dealThisStreetCard(Card::AS, $handStreet);
 
-    $this->assertContains(Card::AS->value, $handStreet->handStreetCards->pluck('card_id'));
+    $this->assertContains(Card::AS->value, $handStreet->communityCards->pluck('card_id'));
 });

@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\HandStreet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class HandStreetCardFactory extends Factory
+class CommunityCardFactory extends Factory
 {
     /**
      * Define the model's default state.
