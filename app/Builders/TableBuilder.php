@@ -56,4 +56,13 @@ class TableBuilder
             // Fill specific number of seats...
         }
     }
+
+    public function addPlayer(TableSeat $tableSeat, ?Player $player = null): void
+    {
+        if (! $player) {
+            $player = Player::factory()->create();
+        }
+
+        $tableSeat->player()->associate($player);
+    }
 }

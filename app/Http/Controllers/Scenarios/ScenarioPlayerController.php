@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Scenarios;
 
 use App\GamePlay\GameState;
 use App\Http\Controllers\Controller;
+use App\Http\RequestHandlers\ScenarioPlayerStoreRequestHandler;
 use App\Http\Requests\ScenarioPlayerDeleteRequest;
 use App\Http\Requests\ScenarioPlayerStoreRequest;
 use App\Http\Resources\GameStateResource;
@@ -14,14 +15,19 @@ use App\Http\Resources\GameStateResource;
  */
 class ScenarioPlayerController extends Controller
 {
+    public function __construct(
+        private ScenarioPlayerStoreRequestHandler $storePlayer
+    ) {
+    }
+
     /**
      * Adds a player to a seat.
      */
     public function store(ScenarioPlayerStoreRequest $request, int $scenarioId): GameStateResource
     {
-        // Handle request...
+        $gameState = $this->storePlayer->handle($request, $scenarioId);
 
-        return GameStateResource::make(new GameState);
+        return GameStateResource::make($gameState);
     }
 
     /**
