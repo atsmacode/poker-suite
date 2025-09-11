@@ -8,12 +8,17 @@ const { seat, player } = defineProps({seat: Object, player: {type: Object, defau
 
 const scenarioId = inject('scenarioId');
 const forScenario = inject('forScenario');
+const refreshGameState = inject('refreshGameState');
 
 const addPlayer = async () => {
     try {
         let res = await axios.post(route('scenarios.players.store', {id: scenarioId.value}), {table_seat_id: seat.id});
 
         console.log(res.data);
+
+        let gameState = res.data.data;
+
+        refreshGameState(gameState);
     } catch (err) {
         console.log(err);
     }

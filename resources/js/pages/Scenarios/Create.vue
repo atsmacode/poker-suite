@@ -23,7 +23,8 @@ const {
     setupScenario,
     setToken,
     setRoute,
-    setForScenario
+    setForScenario,
+    players
 } = useGameSetup();
 
 setToken(token ?? '');
@@ -35,6 +36,6 @@ setupScenario();
     <Head title="Create Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Scenario :seatOrder />
+        <Scenario :seatOrder :players />
     </AppLayout>
 </template>

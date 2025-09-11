@@ -9,7 +9,8 @@ const { scenario, gameState } = defineProps({scenario: Object, gameState: Object
 
 const {
     seatOrder,
-    setRoute
+    setRoute,
+    players
 } = useGameSetup(gameState);
 
 setRoute(route('scenarios.setup'));
@@ -29,6 +30,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="View Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Scenario :seatOrder :players="gameState.data.players" />
+        <Scenario :seatOrder :players />
     </AppLayout>
 </template>

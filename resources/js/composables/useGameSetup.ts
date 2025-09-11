@@ -9,6 +9,16 @@ export function useGameSetup(gameState?: any) {
     const gameId = ref(null);
     const tableSeats = ref([]);
     const tableSeatCount = ref(6);
+    const players = ref([]);
+
+    const refreshGameState = (gameState: any) => {
+        tableSeats.value = gameState.seats;
+        scenarioId.value = gameState.scenario?.id;
+        forScenario.value = gameState.scenario?.id ? true : false;
+        tableSeatCount.value = gameState.seats.length;
+        gameId.value = gameState.id;
+        players.value = gameState.players;
+    }
 
     const setupGameRequest = ref({
         table: {seats: tableSeatCount},
@@ -22,13 +32,7 @@ export function useGameSetup(gameState?: any) {
 
     // Set values from GameState if we have them
     if (gameState) {
-        let data = gameState.data;
-
-        tableSeats.value = data.seats;
-        scenarioId.value = data.scenario?.id;
-        forScenario.value = data.scenario?.id ? true : false;
-        tableSeatCount.value = data.seats.length;
-        gameId.value = data.id;
+        refreshGameState(gameState.data);
     }
 
     const seatOrder = computed(() => {
@@ -98,6 +102,7 @@ export function useGameSetup(gameState?: any) {
     provide('selectedSeatCount', tableSeatCount.value);
     provide('scenarioId', scenarioId);
     provide('forScenario', forScenario);
+    provide('refreshGameState', refreshGameState);
 
     return {
         tableSeatCount,
@@ -108,6 +113,7 @@ export function useGameSetup(gameState?: any) {
         setToken,
         setRoute,
         setSeatCount,
-        setForScenario
+        setForScenario,
+        players
     };
 };
