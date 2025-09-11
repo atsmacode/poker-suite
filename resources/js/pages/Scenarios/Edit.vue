@@ -29,6 +29,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="View Scenario" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Scenario :seatOrder />
+        <Scenario :seatOrder :players="gameState.data.players" />
     </AppLayout>
 </template>

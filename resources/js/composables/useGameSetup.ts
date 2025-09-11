@@ -82,6 +82,7 @@ export function useGameSetup(gameState?: any) {
     const setSeatCount = (e: Event) => {
         tableSeatCount.value = e.target.value;
     }
+
     const setForScenario = () => {
         forScenario.value = true;
     }
@@ -95,6 +96,8 @@ export function useGameSetup(gameState?: any) {
 
     provide('seatsChangedHandler', setSeatCount);
     provide('selectedSeatCount', tableSeatCount.value);
+    provide('scenarioId', scenarioId);
+    provide('forScenario', forScenario);
 
     return {
         tableSeatCount,

@@ -3,7 +3,7 @@ import GameSidePanel from './GameSidePanel.vue';
 import PokerTable from './PokerTable.vue';
 import SelectSeatCount from './SelectSeatCount.vue';
 
-const { seatOrder } = defineProps({seatOrder: Object});
+const { seatOrder, players } = defineProps({seatOrder: Object, players: Object});
 </script>
 <template>
     <div class="poker-floor h-full">
@@ -14,7 +14,7 @@ const { seatOrder } = defineProps({seatOrder: Object});
         </div>
         <div class="flex flex-row gap-4 mx-4">
             <div class="gap-4 basis-2/3">
-                <PokerTable :seatOrder />
+                <PokerTable :seatOrder :players />
             </div>
             <div class="basis-1/3 p-4 border rounded-xl bg-black">
                 <GameSidePanel />

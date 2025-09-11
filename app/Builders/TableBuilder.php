@@ -64,5 +64,7 @@ class TableBuilder
         }
 
         $tableSeat->player()->associate($player);
+
+        $tableSeat->save();
     }
 }
