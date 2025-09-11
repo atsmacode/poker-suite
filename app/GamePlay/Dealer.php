@@ -87,7 +87,7 @@ class Dealer
         return $this;
     }
 
-    public function dealTo(Collection $players, int $cardCount, ?int $handId = null): self
+    public function dealTo(Collection $players, int $cardCount, bool $faceUp, ?int $handId = null): self
     {
         $dealtCards = 0;
 
@@ -96,6 +96,7 @@ class Dealer
                 HoleCard::create([
                     'player_id' => $player->id,
                     'card_id' => $this->pick()->getCard()->value,
+                    'face_up' => $faceUp,
                     'hand_id' => $handId ?? null,
                 ]);
             }
@@ -106,7 +107,7 @@ class Dealer
         return $this->updateCards($handId);
     }
 
-    public function dealStreetCards(HandStreet $handStreet, int $cardCount): self
+    public function dealCommunityCards(HandStreet $handStreet, int $cardCount): self
     {
         $dealtCards = 0;
 
@@ -124,7 +125,7 @@ class Dealer
         return $this->updateCards($handStreet->hand->id);
     }
 
-    public function dealThisStreetCard(Card $card, HandStreet $handStreet): self
+    public function dealThisCommunityCard(Card $card, HandStreet $handStreet): self
     {
         $card = $this->pick($card)->getCard();
 
