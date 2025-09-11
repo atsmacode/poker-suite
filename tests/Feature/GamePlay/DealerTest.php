@@ -60,14 +60,14 @@ test('the dealer can update the cards in a deck', function() {
     );
 });
 
-test('the dealer can deal whole cards', function() {
+test('the dealer can deal hole cards', function() {
     $hand = Hand::factory()->create();
     $handId = $hand->id;
     $dealer = new Dealer($handId);
 
     $players = Player::factory(3)->create();
 
-    $dealer->dealTo($players, 2, false, $hand->id);
+    $dealer->dealHoleCards($players, 2, false, $hand->id);
 
     $players->each(fn ($player) => expect($player->holeCards->where('hand_id', $hand->id)->count())->toBe(2));
 });

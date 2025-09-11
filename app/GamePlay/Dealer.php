@@ -87,7 +87,7 @@ class Dealer
         return $this;
     }
 
-    public function dealTo(Collection $players, int $cardCount, bool $faceUp, ?int $handId = null): self
+    public function dealHoleCards(Collection $players, int $cardCount, bool $faceUp, ?int $handId = null): self
     {
         $dealtCards = 0;
 
