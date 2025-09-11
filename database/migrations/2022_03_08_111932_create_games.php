@@ -23,6 +23,17 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('game_style_streets', function (Blueprint $table) {
+            $table->increments('id');
+            $table->foreignIdFor(GameStyle::class);
+            $table->tinyInteger('sequence');
+            $table->string('name');
+            $table->tinyInteger('hole_cards');
+            $table->tinyInteger('face_up_hole_count');
+            $table->tinyInteger('community_cards');
+            $table->timestamps();
+        });
+
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignIdFor(Table::class);

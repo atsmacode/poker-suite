@@ -14,7 +14,7 @@ class GameSetupInput
     public function __construct(
         public string $tableName = 'Test Table',
         public int $seats = 6,
-        public string $gameStyle = 'plhe',
+        public string $gameStyle = 'hold_em',
         public string $gameMode = 'test',
         ?array $players = []
     ) {

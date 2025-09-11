@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\GameStyle;
 use App\Enums\Street;
 use App\Models\Hand;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,6 +19,7 @@ class HandStreetFactory extends Factory
         return [
             'hand_id' => Hand::factory(),
             'street_id' => Street::random()->value,
+            'game_style_street_id' => GameStyle::HOLD_EM->value
         ];
     }
 }

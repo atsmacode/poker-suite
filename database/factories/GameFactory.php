@@ -18,7 +18,7 @@ class GameFactory extends Factory
     {
         return [
             'table_id' => Table::factory(),
-            'game_style_id' => GameStyle::PLHE->value,
+            'game_style_id' => GameStyle::HOLD_EM->value,
             'game_mode_id' => GameMode::TEST->value,
         ];
     }

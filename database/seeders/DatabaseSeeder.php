@@ -13,6 +13,7 @@ use App\Models\Action;
 use App\Models\Card;
 use App\Models\GameMode;
 use App\Models\GameStyle;
+use App\Models\GameStyleStreet;
 use App\Models\HandType;
 use App\Models\Player;
 use App\Models\Rank;
@@ -82,11 +83,24 @@ class DatabaseSeeder extends Seeder
         Player::factory(6)->create();
 
         foreach (EnumsGameStyle::cases() as $style) {
-            GameStyle::create([
+            $settings = $style->settings();
+
+            $gameStyle = GameStyle::create([
                 'id' => $style->value,
-                'name' => $style->name(),
-                'abbreviation' => $style->abbreviation(),
+                'name' => $settings['name'],
+                'abbreviation' => $settings['abbreviation'],
             ]);
+
+            foreach ($settings['streets'] as $street) {
+                GameStyleStreet::create([
+                    'game_style_id' => $gameStyle->id,
+                    'name' => $street['name'],
+                    'sequence' => $street['sequence'],
+                    'hole_cards' => $street['hole_cards'],
+                    'face_up_hole_count' => $street['face_up_hole_count'],
+                    'community_cards' => $street['community_cards'],
+                ]);
+            }
         }
 
         foreach (EnumsMode::cases() as $mode) {

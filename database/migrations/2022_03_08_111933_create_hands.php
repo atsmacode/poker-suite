@@ -2,10 +2,10 @@
 
 use App\Models\Card;
 use App\Models\Game;
+use App\Models\GameStyleStreet;
 use App\Models\Hand;
 use App\Models\HandStreet;
 use App\Models\Player;
-use App\Models\Street;
 use App\Models\TableSeat;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -29,8 +29,8 @@ return new class extends Migration
 
         Schema::create('hand_streets', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignIdFor(Street::class);
             $table->foreignIdFor(Hand::class);
+            $table->foreignIdFor(GameStyleStreet::class);
             $table->timestamps();
         });
 
