@@ -7,6 +7,7 @@ use App\Models\Deck;
 use App\Models\HandStreet;
 use App\Models\CommunityCard;
 use App\Models\HoleCard;
+use App\Models\Player;
 use Illuminate\Database\Eloquent\Collection;
 
 class Dealer
@@ -103,6 +104,18 @@ class Dealer
 
             ++$dealtCards;
         }
+
+        return $this->updateCards($handId);
+    }
+
+    public function dealThisHoleCard(Player $player, Card $card, bool $faceUp, ?int $handId = null): self
+    {
+        HoleCard::create([
+            'player_id' => $player->id,
+            'card_id' => $card->value,
+            'face_up' => $faceUp,
+            'hand_id' => $handId ?? null,
+        ]);
 
         return $this->updateCards($handId);
     }

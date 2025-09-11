@@ -72,6 +72,18 @@ test('the dealer can deal hole cards', function() {
     $players->each(fn ($player) => expect($player->holeCards->where('hand_id', $hand->id)->count())->toBe(2));
 });
 
+test('the dealer can deal a specific hole card', function() {
+    $hand = Hand::factory()->create();
+    $handId = $hand->id;
+    $dealer = new Dealer($handId);
+
+    $player = Player::factory()->create();
+
+    $dealer->dealThisHoleCard($player, Card::AS, false, $hand->id);
+
+    $this->assertContains(Card::AS->value, $player->holeCards->pluck('card_id'));
+});
+
 test('the dealer can deal street cards', function() {
     $handStreet = HandStreet::factory()->create();
     $dealer = new Dealer($handStreet->hand->id);
