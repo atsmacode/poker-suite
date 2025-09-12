@@ -11,7 +11,7 @@ export function useGameSetup(gameState?: any) {
     const tableSeatCount = ref(6);
     const players = ref([]);
 
-    const refreshGameState = (gameState: any) => {
+    const refreshGameSetup = (gameState: any) => {
         tableSeats.value = gameState.seats;
         scenarioId.value = gameState.scenario?.id;
         forScenario.value = gameState.scenario?.id ? true : false;
@@ -32,7 +32,7 @@ export function useGameSetup(gameState?: any) {
 
     // Set values from GameState if we have them
     if (gameState) {
-        refreshGameState(gameState.data);
+        refreshGameSetup(gameState.data);
     }
 
     const seatOrder = computed(() => {
@@ -100,7 +100,7 @@ export function useGameSetup(gameState?: any) {
 
     provide('seatSelection', {setSeatCount, tableSeatCount})
     provide('scenario', {scenarioId, forScenario});
-    provide('refreshGameState', refreshGameState);
+    provide('refreshGameSetup', refreshGameSetup);
 
     return {
         tableSeatCount,

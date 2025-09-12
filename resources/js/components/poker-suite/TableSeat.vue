@@ -6,7 +6,7 @@ import { inject } from 'vue';
 
 const { seat, player } = defineProps({seat: Object, player: {type: Object, default: null}});
 const { scenarioId, forScenario } = inject('scenario');
-const refreshGameState = inject('refreshGameState');
+const refreshGameSetup = inject('refreshGameSetup');
 
 const addPlayer = async () => {
     try {
@@ -16,7 +16,7 @@ const addPlayer = async () => {
 
         let gameState = res.data.data;
 
-        refreshGameState(gameState);
+        refreshGameSetup(gameState);
     } catch (err) {
         console.log(err);
     }
