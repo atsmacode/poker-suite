@@ -88,7 +88,7 @@ export function useGameSetup(gameState?: any) {
     });
 
     provide('seatSelection', {setSeatCount, tableSeatCount})
-    provide('scenario', {scenarioId, forScenario});
+    provide('scenarioSetup', {scenarioId, forScenario});
     provide('refreshGameSetup', refreshGameSetup);
 
     return {
