@@ -9,7 +9,7 @@ const { scenarioId, forScenario } = inject('scenarioSetup', {scenarioId: null, f
 const refreshGameSetup = inject('refreshGameSetup', null);
 
 const empty = computed(() => ! seat.player_id);
-const emptyScenarioSeat = computed(() => empty.value && forScenario.value)
+const emptyScenarioSeat = computed(() => empty.value && forScenario.value);
 
 const addPlayer = async () => {
     try {
