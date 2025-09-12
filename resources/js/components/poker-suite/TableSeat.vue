@@ -5,9 +5,7 @@ import axios from 'axios';
 import { inject } from 'vue';
 
 const { seat, player } = defineProps({seat: Object, player: {type: Object, default: null}});
-
-const scenarioId = inject('scenarioId');
-const forScenario = inject('forScenario');
+const { scenarioId, forScenario } = inject('scenario');
 const refreshGameState = inject('refreshGameState');
 
 const addPlayer = async () => {
