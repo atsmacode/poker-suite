@@ -4,6 +4,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import { useGameSetup } from '@/composables/useGameSetup';
 import Scenario from '@/components/poker-suite/Scenario.vue';
+import { useGame } from '@/composables/useGame';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

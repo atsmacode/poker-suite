@@ -1,23 +1,24 @@
-import { computed, provide, ref, watch } from "vue";
+import { provide, ref, watch } from "vue";
 import axios from "axios";
+import { useGame } from "./useGame";
 
 export function useGameSetup(gameState?: any) {
+    const { seatOrder, players, refreshGame } = useGame(gameState);
+
     const postRoute = ref('');
     const csrfToken = ref('');
     const forScenario = ref(false);
     const scenarioId = ref(null);
     const gameId = ref(null);
-    const tableSeats = ref([]);
     const tableSeatCount = ref(6);
-    const players = ref([]);
 
     const refreshGameSetup = (gameState: any) => {
-        tableSeats.value = gameState.seats;
+        refreshGame(gameState);
+
         scenarioId.value = gameState.scenario?.id;
         forScenario.value = gameState.scenario?.id ? true : false;
         tableSeatCount.value = gameState.seats.length;
         gameId.value = gameState.id;
-        players.value = gameState.players;
     }
 
     const setupGameRequest = ref({
@@ -35,16 +36,6 @@ export function useGameSetup(gameState?: any) {
         refreshGameSetup(gameState.data);
     }
 
-    const seatOrder = computed(() => {
-        const seats = tableSeats.value;
-        const half = Math.ceil(tableSeats.value.length / 2);
-    
-        return [
-            seats.slice(0, half), // Upper row
-            seats.slice(half).reverse() // Lower row
-        ];
-    });
-
     const setup = async (request: any) => {
         try {
             const res = await axios.post(
@@ -59,9 +50,7 @@ export function useGameSetup(gameState?: any) {
 
             let gameState = res.data.data;
 
-            scenarioId.value = gameState.scenario?.id;
-            gameId.value = gameState.id;
-            tableSeats.value = gameState.seats;
+            refreshGameSetup(gameState);
         } catch (err: any) {
             console.log(err);
         }
