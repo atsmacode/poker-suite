@@ -67,7 +67,7 @@ test('the dealer can deal hole cards', function() {
 
     $players = Player::factory(3)->create();
 
-    $dealer->dealHoleCards($players, 2, false, $hand->id);
+    $dealer->dealHoleCards($players, 2, false, $hand);
 
     $players->each(fn ($player) => expect($player->holeCards->where('hand_id', $hand->id)->count())->toBe(2));
 });

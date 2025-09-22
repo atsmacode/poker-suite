@@ -89,7 +89,7 @@ class Dealer
         return $this;
     }
 
-    public function dealHoleCards(Collection $players, int $cardCount, bool $faceUp, ?int $handId = null): self
+    public function dealHoleCards(Collection $players, int $cardCount, bool $faceUp, ?Hand $hand = null): self
     {
         $dealtCards = 0;
 
@@ -99,14 +99,14 @@ class Dealer
                     'player_id' => $player->id,
                     'card_id' => $this->pick()->getCard()->value,
                     'face_up' => $faceUp,
-                    'hand_id' => $handId ?? null,
+                    'hand_id' => $hand?->id,
                 ]);
             }
 
             ++$dealtCards;
         }
 
-        return $this->updateCards($handId);
+        return $this->updateCards($hand->id);
     }
 
     public function dealThisHoleCard(Player $player, Card $card, bool $faceUp, ?Hand $hand = null): self
