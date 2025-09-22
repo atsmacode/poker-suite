@@ -38,17 +38,16 @@ test('a picked card is no longer in the deck', function() {
 
 test('the dealer can save a deck for a hand', function() {
     $hand = Hand::factory()->create();
-    $handId = $hand->id;
 
-    new Dealer($handId);
+    new Dealer($hand);
 
-    $this->assertDatabaseHas('decks', ['hand_id' => $handId]);
+    $this->assertDatabaseHas('decks', ['hand_id' => $hand->id]);
 });
 
 test('the dealer can update the cards in a deck', function() {
     $hand = Hand::factory()->create();
     $handId = $hand->id;
-    $dealer = new Dealer($handId);
+    $dealer = new Dealer($hand);
 
     $deck = $dealer->getDeck();
 
@@ -62,8 +61,7 @@ test('the dealer can update the cards in a deck', function() {
 
 test('the dealer can deal hole cards', function() {
     $hand = Hand::factory()->create();
-    $handId = $hand->id;
-    $dealer = new Dealer($handId);
+    $dealer = new Dealer($hand);
 
     $players = Player::factory(3)->create();
 
@@ -74,8 +72,7 @@ test('the dealer can deal hole cards', function() {
 
 test('the dealer can deal a specific hole card', function() {
     $hand = Hand::factory()->create();
-    $handId = $hand->id;
-    $dealer = new Dealer($handId);
+    $dealer = new Dealer($hand);
 
     $player = Player::factory()->create();
 
@@ -86,7 +83,7 @@ test('the dealer can deal a specific hole card', function() {
 
 test('the dealer can deal street cards', function() {
     $handStreet = HandStreet::factory()->create();
-    $dealer = new Dealer($handStreet->hand->id);
+    $dealer = new Dealer($handStreet->hand);
 
     $dealer->dealCommunityCards($handStreet, 3);
 
@@ -95,7 +92,7 @@ test('the dealer can deal street cards', function() {
 
 test('the dealer can deal a specific street card', function() {
     $handStreet = HandStreet::factory()->create();
-    $dealer = new Dealer($handStreet->hand->id);
+    $dealer = new Dealer($handStreet->hand);
 
     $dealer->dealThisCommunityCard(Card::AS, $handStreet);
 

@@ -16,14 +16,14 @@ class Dealer
     private Deck $deck;
     private Card $card;
 
-    public function __construct(?int $handId = null)
+    public function __construct(?Hand $hand = null)
     {
-        $this->setDeck($handId);
+        $this->forHand($hand);
     }
 
-    public function setDeck(?int $handId = null): self
+    public function forHand(?Hand $hand = null): self
     {
-        $this->deck = Deck::new($handId);
+        $this->deck = Deck::new($hand);
 
         return $this;
     }

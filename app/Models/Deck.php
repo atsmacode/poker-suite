@@ -28,9 +28,9 @@ class Deck extends Model
         'hand_id',
     ];
 
-    public static function new(?int $handId = null): self
+    public static function new(?Hand $hand = null): self
     {
-        return self::create(['cards' => Card::toIds(), 'hand_id' => $handId]);
+        return self::create(['cards' => Card::toIds(), 'hand_id' => $hand?->id]);
     }
 
     public function hand(): BelongsTo

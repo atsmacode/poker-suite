@@ -20,7 +20,7 @@ class HoleCardBuilder
         $hand = Hand::findOrFail($handId);
 
         $this->dealer
-            ->setDeck($hand->id)
+            ->forHand($hand)
             ->dealThisHoleCard($player, $card, $faceUp, $hand);
     }
 }
