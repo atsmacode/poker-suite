@@ -20,16 +20,12 @@ class ScenarioPlayerStoreRequestHandler
 
     public function handle(ScenarioPlayerStoreRequest $request, int $scenarioId): GameStateResource
     {
-        $player = $request->has('player_id') ? Player::find($request->input('player_id')) : null;
-        $tableSeat = TableSeat::find($request->input('table_seat_id'));
-
-        if (! $tableSeat) {
-            throw new \RuntimeException('Table seat not found');
-        }
+        $player = $request->has('player_id') ? Player::findOrFail($request->input('player_id')) : null;
+        $tableSeat = TableSeat::findOrFail($request->input('table_seat_id'));
 
         $this->tableBuilder->addPlayer($tableSeat, $player);
 
-        $scenario = Scenario::find($scenarioId);
+        $scenario = Scenario::findOrFail($scenarioId);
 
         $gameState = $this->gamePlay->runScenario($scenario);
 
