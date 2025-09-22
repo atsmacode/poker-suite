@@ -6,6 +6,7 @@ use App\Enums\Card;
 use App\Models\Deck;
 use App\Models\HandStreet;
 use App\Models\CommunityCard;
+use App\Models\Hand;
 use App\Models\HoleCard;
 use App\Models\Player;
 use Illuminate\Database\Eloquent\Collection;
@@ -108,16 +109,16 @@ class Dealer
         return $this->updateCards($handId);
     }
 
-    public function dealThisHoleCard(Player $player, Card $card, bool $faceUp, ?int $handId = null): self
+    public function dealThisHoleCard(Player $player, Card $card, bool $faceUp, ?Hand $hand = null): self
     {
         HoleCard::create([
             'player_id' => $player->id,
             'card_id' => $card->value,
             'face_up' => $faceUp,
-            'hand_id' => $handId ?? null,
+            'hand_id' => $hand?->id,
         ]);
 
-        return $this->updateCards($handId);
+        return $this->updateCards($hand->id);
     }
 
     public function dealCommunityCards(HandStreet $handStreet, int $cardCount): self

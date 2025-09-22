@@ -79,7 +79,7 @@ test('the dealer can deal a specific hole card', function() {
 
     $player = Player::factory()->create();
 
-    $dealer->dealThisHoleCard($player, Card::AS, false, $hand->id);
+    $dealer->dealThisHoleCard($player, Card::AS, false, $hand);
 
     $this->assertContains(Card::AS->value, $player->holeCards->pluck('card_id'));
 });
