@@ -13,7 +13,7 @@ class HoleCardBuilder
     {
     }
 
-    public function dealHoleCard(int $playerId, int $cardId, bool $faceUp, int $handId): void
+    public function buildHoleCard(int $playerId, int $cardId, bool $faceUp, int $handId): void
     {
         $card = Card::from($cardId);
         $player = Player::findOrFail($playerId);

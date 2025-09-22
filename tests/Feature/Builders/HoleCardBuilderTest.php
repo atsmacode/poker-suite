@@ -12,7 +12,7 @@ test('it can build a specific hole card', function() {
     $cardId = Card::_2C->value;
     
     $builder = new HoleCardBuilder(new Dealer());
-    $builder->dealHoleCard($player->id, $cardId, false, $hand->id);
+    $builder->buildHoleCard($player->id, $cardId, false, $hand->id);
 
     $holeCards = $player
         ->holeCards()
