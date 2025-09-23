@@ -9,7 +9,7 @@ test('it returns a successful response on store', function() {
     $hand = Hand::factory()->create();
     $player = Player::factory()->create();
 
-    $response = $this->post('/holecards', [
+    $response = $this->postJson('/holecards', [
         'player_id' => $player->id,
         'hand_id' => $hand->id,
         'card_id' => Card::_10C->value,
@@ -22,7 +22,7 @@ test('it returns a successful response on store', function() {
 test('it returns not found for non-existent hand', function() {
     $player = Player::factory()->create();
 
-    $response = $this->post('/holecards', [
+    $response = $this->postJson('/holecards', [
         'player_id' => $player->id,
         'hand_id' => 999,
         'card_id' => Card::_10C->value,
