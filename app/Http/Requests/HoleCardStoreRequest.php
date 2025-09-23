@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Card;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class HoleCardStoreRequest extends FormRequest
 {
@@ -23,7 +25,7 @@ class HoleCardStoreRequest extends FormRequest
     {
         return [
             'player_id' => ['required', 'integer'],
-            'card_id' => ['required', 'integer'],
+            'card_id' => ['required', 'integer', Rule::in(Card::toIds())],
             'hand_id' => ['required', 'integer'],
             'face_up' => ['required', 'boolean'],
         ];

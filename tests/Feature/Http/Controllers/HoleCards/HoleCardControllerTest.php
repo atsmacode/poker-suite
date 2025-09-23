@@ -31,3 +31,17 @@ test('it returns not found for non-existent hand', function() {
 
     $response->assertStatus(Response::HTTP_NOT_FOUND);
 });
+
+test('it returns not found for non-existent card', function() {
+    $hand = Hand::factory()->create();
+    $player = Player::factory()->create();
+
+    $response = $this->postJson('/holecards', [
+        'player_id' => $player->id,
+        'hand_id' => $hand->id,
+        'card_id' => 999,
+        'face_up' => false,
+    ]);
+
+    $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+});
