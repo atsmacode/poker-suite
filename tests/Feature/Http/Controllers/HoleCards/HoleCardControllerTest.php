@@ -32,7 +32,7 @@ test('it returns not found for non-existent hand', function() {
     $response->assertStatus(Response::HTTP_NOT_FOUND);
 });
 
-test('it returns not found for non-existent card', function() {
+test('it returns 422 for non-existent card', function() {
     $hand = Hand::factory()->create();
     $player = Player::factory()->create();
 

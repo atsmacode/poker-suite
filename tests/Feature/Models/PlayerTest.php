@@ -6,7 +6,7 @@ use App\Models\Stack;
 use App\Models\Table;
 use App\Models\HoleCard;
 
-test('a player can have whole cards', function() {
+test('a player can have hole cards', function() {
     $player = Player::factory()->has(HoleCard::factory(2))->create();
 
     $player->loadCount('holeCards');
