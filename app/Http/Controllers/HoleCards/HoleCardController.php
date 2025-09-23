@@ -4,7 +4,6 @@ namespace App\Http\Controllers\HoleCards;
 
 use App\Http\RequestHandlers\HoleCardStoreRequestHandler;
 use App\Http\Requests\HoleCardStoreRequest;
-use App\Http\Resources\GameStateResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
