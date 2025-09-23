@@ -3,6 +3,7 @@
 namespace App\Enums;
 
 use App\Concerns\CanRandomiseCases;
+use Symfony\Component\HttpFoundation\Response;
 
 enum Card: int
 {
@@ -141,7 +142,7 @@ enum Card: int
     public static function get(int $cardId): self
     {
         if (! in_array($cardId, self::toIds())) {
-            throw new \RuntimeException("No case found for {$cardId}");
+            throw new \Exception("No case found for {$cardId}", Response::HTTP_NOT_FOUND);
         }
 
         return self::tryFrom($cardId);
