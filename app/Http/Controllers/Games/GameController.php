@@ -8,6 +8,7 @@ use App\Http\RequestHandlers\GameSetupRequestHandler;
 use App\Http\Requests\GameSetupRequest;
 use App\Models\Game;
 use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class GameController extends Controller
 {
@@ -17,17 +18,17 @@ class GameController extends Controller
     ) {
     }
 
-    public function index()
+    public function index(): InertiaResponse
     {
         return Inertia::render('games/Index', ['games' => Game::withoutScenarios()->get()]);
     }
 
-    public function create()
+    public function create(): InertiaResponse
     {
         return Inertia::render('games/Create', ['token' => csrf_token()]);
     }
 
-    public function store(GameSetupRequest $request)
+    public function store(GameSetupRequest $request): InertiaResponse
     {
         $gameState = $this->requestHandler->game($request);
 
@@ -37,7 +38,7 @@ class GameController extends Controller
         ]);
     }
 
-    public function show(Game $game)
+    public function show(Game $game): InertiaResponse
     {
         $gameState = $this->showGame->handle($game);
 

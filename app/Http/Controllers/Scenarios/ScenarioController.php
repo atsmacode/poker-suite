@@ -11,6 +11,7 @@ use App\Http\Resources\GameStateResource;
 use App\Http\Resources\ScenarioResource;
 use App\Models\Scenario;
 use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class ScenarioController extends Controller
@@ -21,7 +22,7 @@ class ScenarioController extends Controller
     ) {
     }
 
-    public function index()
+    public function index(): InertiaResponse
     {
         return Inertia::render('scenarios/Index', [
             'scenarios' => ScenarioResource::collection(
@@ -30,7 +31,7 @@ class ScenarioController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): InertiaResponse
     {
         return Inertia::render('scenarios/Create', ['token' => csrf_token()]);
     }
@@ -53,7 +54,7 @@ class ScenarioController extends Controller
         return response()->json(['message' => 'Scenario draft saved'], Response::HTTP_OK);
     }
 
-    public function edit(Scenario $scenario)
+    public function edit(Scenario $scenario): InertiaResponse
     {
         $gameState = $this->editScenario->handle($scenario);
 
