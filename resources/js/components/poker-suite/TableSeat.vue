@@ -36,6 +36,6 @@ const addPlayer = async () => {
                 {{ ! empty ? player?.name : 'Empty Seat' }}
             </div>
         </div>
-        <Button class="absolute left-0 bottom-[-10px] w-full" v-if="emptyScenarioSeat" :variant="'default_append'" :size="'xs_append'" @click="addPlayer">Add Player</Button>
+        <Button class="w-full" v-if="emptyScenarioSeat" :variant="'default_append'" :size="'xs_append'" @click="addPlayer">Add Player</Button>
     </div>
 </template>
