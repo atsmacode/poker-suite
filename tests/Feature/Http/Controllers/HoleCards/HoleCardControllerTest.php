@@ -5,7 +5,7 @@ use App\Models\Hand;
 use App\Models\Player;
 use Symfony\Component\HttpFoundation\Response;
 
-test('it returns a successful response on store', function() {
+test('it returns 201 response on store', function() {
     $hand = Hand::factory()->create();
     $player = Player::factory()->create();
 
@@ -16,7 +16,7 @@ test('it returns a successful response on store', function() {
         'face_up' => false,
     ]);
 
-    $response->assertStatus(Response::HTTP_OK);
+    $response->assertStatus(Response::HTTP_CREATED);
 });
 
 test('it returns 422 for non-existent hand', function() {

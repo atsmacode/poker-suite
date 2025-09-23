@@ -7,6 +7,8 @@ use App\GamePlay\GameState;
 use App\Http\Requests\HoleCardStoreRequest;
 use App\Http\Resources\GameStateResource;
 use App\Models\Hand;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class HoleCardStoreRequestHandler
 {
@@ -14,7 +16,7 @@ class HoleCardStoreRequestHandler
     {
     }
 
-    public function handle(HoleCardStoreRequest $request): GameStateResource
+    public function handle(HoleCardStoreRequest $request): JsonResponse
     {
         $hand = Hand::findOrFail($request->input('hand_id'));
 
@@ -27,6 +29,8 @@ class HoleCardStoreRequestHandler
 
         $gameState = GameState::fromGame($hand->game);
     
-        return GameStateResource::make($gameState);
+        return GameStateResource::make($gameState)
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 }
