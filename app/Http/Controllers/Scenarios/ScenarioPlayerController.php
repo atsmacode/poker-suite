@@ -25,9 +25,7 @@ class ScenarioPlayerController extends Controller
      */
     public function store(ScenarioPlayerStoreRequest $request, int $scenarioId): GameStateResource
     {
-        $gameState = $this->storePlayer->handle($request, $scenarioId);
-
-        return GameStateResource::make($gameState);
+        return $this->storePlayer->handle($request, $scenarioId);
     }
 
     /**
