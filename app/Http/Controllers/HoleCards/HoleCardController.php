@@ -15,7 +15,7 @@ class HoleCardController
     {
     }
 
-    public function store(HoleCardStoreRequest $request): GameStateResource|JsonResponse
+    public function store(HoleCardStoreRequest $request): JsonResponse
     {
         try {
             return $this->storeHandler->handle($request);
