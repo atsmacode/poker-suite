@@ -19,3 +19,17 @@ test('it returns a successful response on store', function() {
 
     $response->assertStatus(Response::HTTP_OK);
 });
+
+test('it returns not found for non-existent hand', function() {
+    $player = Player::factory()->create();
+    $card = Card::_10C;
+
+    $response = $this->post('/holecards', [
+        'player_id' => $player->id,
+        'hand_id' => 999,
+        'card_id' => $card->value,
+        'face_up' => false,
+    ]);
+
+    $response->assertStatus(Response::HTTP_NOT_FOUND);
+});

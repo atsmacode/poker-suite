@@ -16,7 +16,7 @@ class HoleCardStoreRequestHandler
 
     public function handle(HoleCardStoreRequest $request): GameStateResource
     {
-        $hand = Hand::find($request->input('hand_id'));
+        $hand = Hand::findOrFail($request->input('hand_id'));
 
         $this->builder->buildHoleCard(
             $request->input('player_id'),
