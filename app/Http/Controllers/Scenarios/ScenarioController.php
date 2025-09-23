@@ -50,7 +50,7 @@ class ScenarioController extends Controller
             ? $scenario->setAsDraft()
             : $scenario->saveDraft();
 
-        return response()->json(['message' => 'Scenario draft saved']);
+        return response()->json(['message' => 'Scenario draft saved'], Response::HTTP_OK);
     }
 
     public function edit(Scenario $scenario)
