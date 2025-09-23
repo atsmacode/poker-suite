@@ -8,6 +8,8 @@ use App\Http\Resources\GameStateResource;
 use App\Services\GamePlayService;
 use App\Services\GameSetupService;
 use App\Services\ScenarioSetupService;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class GameSetupRequestHandler
 {
@@ -18,12 +20,14 @@ class GameSetupRequestHandler
     ) {
     }
 
-    public function scenario(ScenarioSetupRequest $request): GameStateResource
+    public function scenario(ScenarioSetupRequest $request): JsonResponse
     {
         $scenario = $this->scenarioSetup->setup($request->toInput());
         $gameState = $this->gamePlay->runScenario($scenario);
 
-        return GameStateResource::make($gameState);
+        return GameStateResource::make($gameState)
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function game(GameSetupRequest $request): GameStateResource

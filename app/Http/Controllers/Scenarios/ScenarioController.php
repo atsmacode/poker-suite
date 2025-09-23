@@ -7,9 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\RequestHandlers\GameSetupRequestHandler;
 use App\Http\Requests\ScenarioSaveDraftRequest;
 use App\Http\Requests\ScenarioSetupRequest;
-use App\Http\Resources\GameStateResource;
 use App\Http\Resources\ScenarioResource;
 use App\Models\Scenario;
+use Illuminate\Http\JsonResponse;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,7 +75,7 @@ class ScenarioController extends Controller
     /**
      * Setup or change game/table/seats for a draft scenario.
      */
-    public function setup(ScenarioSetupRequest $request): GameStateResource
+    public function setup(ScenarioSetupRequest $request): JsonResponse
     {
         return $this->requestHandler->scenario($request);
     }
