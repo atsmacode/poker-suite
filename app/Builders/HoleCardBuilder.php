@@ -15,7 +15,7 @@ class HoleCardBuilder
 
     public function buildHoleCard(int $playerId, int $cardId, bool $faceUp, int $handId): void
     {
-        $card = Card::from($cardId);
+        $card = Card::get($cardId);
         $player = Player::findOrFail($playerId);
         $hand = Hand::findOrFail($handId);
 

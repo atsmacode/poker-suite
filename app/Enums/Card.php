@@ -137,4 +137,13 @@ enum Card: int
     {
         return collect(self::cases())->map(fn ($card) => $card->value)->toArray();
     }
+
+    public static function get(int $cardId): self
+    {
+        if (! in_array($cardId, self::toIds())) {
+            throw new \RuntimeException("No case found for {$cardId}");
+        }
+
+        return self::tryFrom($cardId);
+    }
 }
