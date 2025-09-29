@@ -1,0 +1,1 @@
+import{B as l,c as n}from"./app-stjqkre4.js";function f(r){const s=l([]),a=l([]),t=e=>{s.value=e.seats,a.value=e.players};return r&&t(r.data),{seatOrder:n(()=>{const e=s.value,c=Math.ceil(s.value.length/2);return[e.slice(0,c),e.slice(c).reverse()]}),players:a,refreshGame:t}}export{f as u};

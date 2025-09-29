@@ -1,0 +1,1 @@
+import{S as e}from"./spade-C2A_N_Xv.js";import{d as o,f as r,o as s,u as a}from"./app-stjqkre4.js";const m=o({inheritAttrs:!1,__name:"AppLogoIcon",props:{className:{}},setup(p){return(t,n)=>(s(),r(a(e)))}});export{m as _};

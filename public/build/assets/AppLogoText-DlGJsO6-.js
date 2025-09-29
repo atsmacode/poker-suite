@@ -1,0 +1,1 @@
+import{a as r,o as a,b as c,g as _}from"./app-stjqkre4.js";const p=(t,e)=>{const o=t.__vccOpts||t;for(const[s,n]of e)o[s]=n;return o},i={},l={class:"mb-0.5 truncate leading-tight font-semibold"};function d(t,e){return a(),r("span",l,e[0]||(e[0]=[c("span",{class:"text-green-600"},"Poker",-1),_("Suite",-1)]))}const g=p(i,[["render",d]]);export{g as A,p as _};
