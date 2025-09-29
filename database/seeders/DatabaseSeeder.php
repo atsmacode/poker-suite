@@ -7,7 +7,6 @@ use App\Enums\Card as EnumsCard;
 use App\Enums\GameMode as EnumsMode;
 use App\Enums\GameStyle as EnumsGameStyle;
 use App\Enums\Rank as EnumsRank;
-use App\Enums\Street as EnumsStreet;
 use App\Enums\Suit as EnumsSuit;
 use App\Models\Action;
 use App\Models\Card;
@@ -18,7 +17,6 @@ use App\Models\HandType;
 use App\Models\Player;
 use App\Models\Rank;
 use App\Models\Scenario;
-use App\Models\Street;
 use App\Models\Suit;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -46,11 +44,6 @@ class DatabaseSeeder extends Seeder
                 'name' => $handType['name'],
                 'ranking' => $handType['ranking']
             ]);
-        }
-
-        foreach (EnumsStreet::cases() as $street) {
-            $street = $street->toArray();
-            Street::create(['id' => $street['id'], 'name' => $street['name']]);
         }
 
         foreach (EnumsRank::cases() as $rank) {
