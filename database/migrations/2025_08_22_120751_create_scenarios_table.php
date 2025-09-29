@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('scenarios', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(Game::class)->nullable(false)->constrained();
             $table->string('name');
             $table->boolean('draft')->default(1);

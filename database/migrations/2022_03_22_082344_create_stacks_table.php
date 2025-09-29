@@ -16,7 +16,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stacks', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->decimal('amount', 14, 2);
             $table->foreignIdFor(Player::class)->nullable(false)->constrained();
             $table->foreignIdFor(Table::class)->nullable(false)->constrained();

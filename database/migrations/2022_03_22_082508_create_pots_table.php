@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pots', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->decimal('amount', 14, 2);
             $table->foreignIdFor(Hand::class)->nullable(false)->constrained();
             $table->timestamps();

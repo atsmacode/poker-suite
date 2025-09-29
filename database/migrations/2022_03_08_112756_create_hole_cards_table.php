@@ -18,7 +18,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hole_cards', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(Card::class)->nullable(false)->constrained();
             $table->foreignIdFor(Hand::class)->nullable()->constrained();
             $table->foreignIdFor(HandStreet::class)->nullable()->constrained();

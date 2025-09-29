@@ -19,12 +19,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('actions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->unique();
         });
 
         Schema::create('player_actions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(Player::class)->nullable(false)->constrained();
             $table->foreignIdFor(HandPlayer::class)->nullable(false)->constrained();
             $table->foreignIdFor(HandStreet::class)->nullable(false)->constrained();

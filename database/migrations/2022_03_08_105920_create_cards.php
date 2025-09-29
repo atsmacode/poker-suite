@@ -16,20 +16,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ranks', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->string('abbreviation');
             $table->unsignedTinyInteger('ranking');
         });
 
         Schema::create('suits', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->string('abbreviation');
         });
 
         Schema::create('cards', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(Rank::class)->nullable(false)->constrained();
             $table->foreignIdFor(Suit::class)->nullable(false)->constrained();
             $table->unique(['rank_id', 'suit_id']);

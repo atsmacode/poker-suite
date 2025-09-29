@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('decks', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->json('cards');
             $table->foreignIdFor(Hand::class)->nullable()->constrained();
             $table->timestamps();

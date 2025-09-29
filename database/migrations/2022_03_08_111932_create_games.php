@@ -17,14 +17,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('game_styles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->string('abbreviation');
             $table->timestamps();
         });
 
         Schema::create('game_style_streets', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(GameStyle::class)->nullable(false)->constrained();
             $table->tinyInteger('sequence');
             $table->string('name');
@@ -35,12 +35,12 @@ return new class extends Migration
         });
 
         Schema::create('game_modes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
         });
 
         Schema::create('games', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(Table::class)->nullable(false)->constrained();
             $table->foreignIdFor(GameStyle::class)->nullable(false)->constrained();
             $table->foreignIdFor(GameMode::class)->nullable(false)->constrained();

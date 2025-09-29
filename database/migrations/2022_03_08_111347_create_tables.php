@@ -16,13 +16,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tables', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->timestamps();
         });
 
         Schema::create('table_seats', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(Table::class)->nullable(false)->constrained();
             $table->foreignIdFor(Player::class)->nullable()->constrained();
             $table->unsignedTinyInteger('number');

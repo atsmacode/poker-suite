@@ -21,28 +21,28 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hands', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->dateTime('completed_on')->nullable();
             $table->foreignIdFor(Game::class);
             $table->timestamps();
         });
 
         Schema::create('hand_streets', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(Hand::class)->nullable(false)->constrained();
             $table->foreignIdFor(GameStyleStreet::class)->nullable(false)->constrained();
             $table->timestamps();
         });
 
         Schema::create('community_cards', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(HandStreet::class)->nullable(false)->constrained();
             $table->foreignIdFor(Card::class)->nullable(false)->constrained();
             $table->timestamps();
         });
 
         Schema::create('hand_players', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignIdFor(Player::class)->nullable(false)->constrained();
             $table->foreignIdFor(Hand::class)->nullable(false)->constrained();
             $table->foreignIdFor(TableSeat::class, 'table_seat_id')->nullable(false)->constrained();
