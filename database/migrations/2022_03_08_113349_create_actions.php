@@ -19,7 +19,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('actions', function (Blueprint $table) {
-            $table->id();
+            $table->tinyIncrements('id');
             $table->string('name')->unique();
         });
 
@@ -29,7 +29,8 @@ return new class extends Migration
             $table->foreignIdFor(HandPlayer::class)->nullable(false)->constrained();
             $table->foreignIdFor(HandStreet::class)->nullable(false)->constrained();
             $table->foreignIdFor(Hand::class)->nullable(false)->constrained();
-            $table->foreignIdFor(Action::class)->nullable(false)->constrained();
+            $table->unsignedTinyInteger('action_id');
+            $table->foreign('action_id')->references('id')->on('actions')->nullable(false);
             $table->decimal('bet_amount', 14, 2)->default(0);
             $table->unsignedSmallInteger('sequence');
             $table->unique(['hand_id', 'sequence']);

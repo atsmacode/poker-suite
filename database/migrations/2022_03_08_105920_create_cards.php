@@ -16,22 +16,24 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ranks', function (Blueprint $table) {
-            $table->id();
+            $table->tinyIncrements('id');
             $table->string('name');
             $table->string('abbreviation');
             $table->unsignedTinyInteger('ranking');
         });
 
         Schema::create('suits', function (Blueprint $table) {
-            $table->id();
+            $table->tinyIncrements('id');
             $table->string('name');
             $table->string('abbreviation');
         });
 
         Schema::create('cards', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Rank::class)->nullable(false)->constrained();
-            $table->foreignIdFor(Suit::class)->nullable(false)->constrained();
+            $table->tinyIncrements('id');
+            $table->unsignedTinyInteger('rank_id');
+            $table->unsignedTinyInteger('suit_id');
+            $table->foreign('rank_id')->references('id')->on('ranks')->nullable(false);
+            $table->foreign('suit_id')->references('id')->on('suits')->nullable(false);
             $table->unique(['rank_id', 'suit_id']);
         });
     }

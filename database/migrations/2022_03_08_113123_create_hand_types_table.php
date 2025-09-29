@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hand_types', function (Blueprint $table) {
-            $table->id();
+            $table->tinyIncrements('id');
             $table->string('name');
             $table->unsignedTinyInteger('ranking');
         });

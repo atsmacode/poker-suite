@@ -19,10 +19,11 @@ return new class extends Migration
     {
         Schema::create('hole_cards', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Card::class)->nullable(false)->constrained();
+            $table->unsignedTinyInteger('card_id');
             $table->foreignIdFor(Hand::class)->nullable()->constrained();
             $table->foreignIdFor(HandStreet::class)->nullable()->constrained();
             $table->foreignIdFor(Player::class)->nullable(false)->constrained();
+            $table->foreign('card_id')->references('id')->on('cards')->nullable(false);
             $table->boolean('face_up')->default(0);
             $table->timestamps();
         });

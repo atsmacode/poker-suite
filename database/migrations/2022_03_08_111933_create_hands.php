@@ -30,14 +30,16 @@ return new class extends Migration
         Schema::create('hand_streets', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Hand::class)->nullable(false)->constrained();
-            $table->foreignIdFor(GameStyleStreet::class)->nullable(false)->constrained();
+            $table->unsignedTinyInteger('game_style_street_id');
+            $table->foreign('game_style_street_id')->references('id')->on('game_style_streets')->nullable(false);
             $table->timestamps();
         });
 
         Schema::create('community_cards', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(HandStreet::class)->nullable(false)->constrained();
-            $table->foreignIdFor(Card::class)->nullable(false)->constrained();
+            $table->unsignedTinyInteger('card_id');
+            $table->foreign('card_id')->references('id')->on('cards')->nullable(false);
             $table->timestamps();
         });
 
