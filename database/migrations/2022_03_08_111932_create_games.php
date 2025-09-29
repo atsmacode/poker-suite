@@ -17,15 +17,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('game_styles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('abbreviation');
             $table->timestamps();
         });
 
         Schema::create('game_style_streets', function (Blueprint $table) {
-            $table->increments('id');
-            $table->foreignIdFor(GameStyle::class);
+            $table->bigIncrements('id');
+            $table->foreignIdFor(GameStyle::class)->nullable(false)->constrained();
             $table->tinyInteger('sequence');
             $table->string('name');
             $table->tinyInteger('hole_cards');
@@ -34,18 +34,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('games', function (Blueprint $table) {
-            $table->increments('id');
-            $table->foreignIdFor(Table::class);
-            $table->foreignIdFor(GameStyle::class);
-            $table->foreignIdFor(GameMode::class);
-            $table->dateTime('completed_on')->nullable();
-            $table->timestamps();
+        Schema::create('game_modes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
         });
 
-        Schema::create('game_modes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
+        Schema::create('games', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignIdFor(Table::class)->nullable(false)->constrained();
+            $table->foreignIdFor(GameStyle::class)->nullable(false)->constrained();
+            $table->foreignIdFor(GameMode::class)->nullable(false)->constrained();
+            $table->dateTime('completed_on')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->boolean('ai')->default(0);
             $table->timestamps();

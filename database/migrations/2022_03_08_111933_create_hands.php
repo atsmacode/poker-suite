@@ -21,31 +21,31 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hands', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->dateTime('completed_on')->nullable();
             $table->foreignIdFor(Game::class);
             $table->timestamps();
         });
 
         Schema::create('hand_streets', function (Blueprint $table) {
-            $table->increments('id');
-            $table->foreignIdFor(Hand::class);
-            $table->foreignIdFor(GameStyleStreet::class);
+            $table->bigIncrements('id');
+            $table->foreignIdFor(Hand::class)->nullable(false)->constrained();
+            $table->foreignIdFor(GameStyleStreet::class)->nullable(false)->constrained();
             $table->timestamps();
         });
 
         Schema::create('community_cards', function (Blueprint $table) {
-            $table->increments('id');
-            $table->foreignIdFor(HandStreet::class);
-            $table->foreignIdFor(Card::class);
+            $table->bigIncrements('id');
+            $table->foreignIdFor(HandStreet::class)->nullable(false)->constrained();
+            $table->foreignIdFor(Card::class)->nullable(false)->constrained();
             $table->timestamps();
         });
 
         Schema::create('hand_players', function (Blueprint $table) {
-            $table->increments('id');
-            $table->foreignIdFor(Player::class);
-            $table->foreignIdFor(Hand::class);
-            $table->foreignIdFor(TableSeat::class, 'table_seat_id');
+            $table->bigIncrements('id');
+            $table->foreignIdFor(Player::class)->nullable(false)->constrained();
+            $table->foreignIdFor(Hand::class)->nullable(false)->constrained();
+            $table->foreignIdFor(TableSeat::class, 'table_seat_id')->nullable(false)->constrained();
             $table->boolean('is_dealer')->default(0);
             $table->boolean('small_blind')->default(0);
             $table->boolean('big_blind')->default(0);
