@@ -15,25 +15,29 @@ test('the dealer has a deck', function() {
 
 test('the dealer can shuffle the deck', function() {
     $dealer = new Dealer;
-    $cards = $dealer->getCards();
+    $before = $dealer->getCards()->pluck('card_id')->toArray();
+    $after  = $dealer->shuffle()->getCards()->pluck('card_id')->toArray();
 
-    $this->assertNotSame($cards, $dealer->shuffle()->getCards());
+    $this->assertNotEquals($before, $after);
 });
 
 test('the dealer can pick the next card', function() {
     $dealer = new Dealer;
-    $cards = $dealer->shuffle()->getCards();
-
-    $nextCard = Card::tryFrom($cards[0]);
+    $nextCard = Card::from($dealer->getCards()->first()->card_id);
 
     $this->assertSame($nextCard, $dealer->pick()->getCard());
 });
 
 test('a picked card is no longer in the deck', function() {
     $dealer = new Dealer;
-    $card = Card::AS;
+    $card   = Card::AS;
 
-    $this->assertNotContains($card->value, $dealer->pick($card)->getCards());
+    $dealer->pick($card);
+
+    $this->assertNotContains(
+        $card->value,
+        $dealer->getDeck()->remainingCards()->pluck('card_id')
+    );
 });
 
 test('the dealer can save a deck for a hand', function() {
@@ -44,19 +48,16 @@ test('the dealer can save a deck for a hand', function() {
     $this->assertDatabaseHas('decks', ['hand_id' => $hand->id]);
 });
 
-test('the dealer can update the cards in a deck', function() {
-    $hand = Hand::factory()->create();
-    $handId = $hand->id;
+test('dealt state is persisted for a hand deck', function() {
+    $hand   = Hand::factory()->create();
     $dealer = new Dealer($hand);
 
-    $deck = $dealer->getDeck();
+    $dealer->pick();
 
-    $dealer->shuffle()->updateCards($handId);
+    $reloaded = $dealer->loadSavedDeck($hand->id)->getDeck();
 
-    $this->assertNotSame(
-        $deck->cards,
-        $dealer->loadSavedDeck($handId)->getDeck()
-    );
+    expect($reloaded->deckCards()->where('dealt', true)->count())->toBe(1);
+    expect($reloaded->remainingCards()->count())->toBe(51);
 });
 
 test('the dealer can deal hole cards', function() {

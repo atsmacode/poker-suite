@@ -6,35 +6,41 @@ use App\Enums\Card;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Deck extends Model
 {
     use HasFactory;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'cards' => 'array',
-        ];
-    }
-
     protected $fillable = [
-        'cards',
         'hand_id',
     ];
 
     public static function new(?Hand $hand = null): self
     {
-        return self::create(['cards' => Card::toIds(), 'hand_id' => $hand?->id]);
+        $deck = self::create(['hand_id' => $hand?->id]);
+
+        $deck->deckCards()->createMany(
+            collect(Card::toIds())->map(fn (int $cardId) => [
+                'card_id' => $cardId,
+            ])->all()
+        );
+
+        return $deck;
     }
 
     public function hand(): BelongsTo
     {
         return $this->belongsTo(Hand::class);
+    }
+
+    public function deckCards(): HasMany
+    {
+        return $this->hasMany(DeckCard::class)->orderBy('position');
+    }
+
+    public function remainingCards(): HasMany
+    {
+        return $this->hasMany(DeckCard::class)->where('dealt', false)->orderBy('position');
     }
 }

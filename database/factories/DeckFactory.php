@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Enums\Card;
 use App\Models\Hand;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -16,7 +15,6 @@ class DeckFactory extends Factory
     public function definition()
     {
         return [
-            'cards' => Card::toIds(),
             'hand_id' => Hand::factory(),
         ];
     }

@@ -6,7 +6,7 @@ use App\Models\Hand;
 test('a new deck has 52 cards', function() {
     $deck = Deck::new();
 
-    expect(count($deck->cards))->toBe(52);
+    expect($deck->deckCards->count())->toBe(52);
 });
 
 test('a deck can belong to a hand', function() {

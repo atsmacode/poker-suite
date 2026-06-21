@@ -24,6 +24,7 @@ class Dealer
     public function forHand(?Hand $hand = null): self
     {
         $this->deck = Deck::new($hand);
+        $this->shuffle();
 
         return $this;
     }
@@ -33,18 +34,17 @@ class Dealer
         return $this->deck;
     }
 
-    public function getCards(): array
+    public function getCards(): Collection
     {
-        return $this->deck->cards;
+        return $this->deck->deckCards()->get();
     }
 
     public function shuffle(): self
     {
-        $cards = $this->deck->cards;
+        $cards     = $this->deck->remainingCards()->get();
+        $positions = collect(range(1, $cards->count()))->shuffle()->values();
 
-        shuffle($cards);
-
-        $this->deck->cards = $cards;
+        $cards->each(fn ($deckCard, int $index) => $deckCard->update(['position' => $positions[$index]]));
 
         return $this;
     }
@@ -56,24 +56,12 @@ class Dealer
 
     public function pick(?Card $choice = null): self
     {
-        $cards = $this->deck->cards;
+        $deckCard = $choice
+            ? $this->deck->remainingCards()->where('card_id', $choice->value)->firstOrFail()
+            : $this->deck->remainingCards()->first();
 
-        $cardId = $choice->value ?? array_shift($cards);
-
-        $cards = $choice ? collect($cards)->reject(fn ($card) => $card === $cardId) : $cards;
-
-        $this->card = Card::tryFrom($cardId);
-
-        $this->deck->cards = $cards;
-
-        return $this;
-    }
-
-    public function updateCards(int $handId): self
-    {
-        $deck = Deck::where('hand_id', $handId)->first();
-        $deck->cards = $this->deck->cards;
-        $deck->save();
+        $this->card = Card::from($deckCard->card_id);
+        $deckCard->update(['dealt' => true]);
 
         return $this;
     }
@@ -97,28 +85,30 @@ class Dealer
             foreach ($players as $player) {
                 HoleCard::create([
                     'player_id' => $player->id,
-                    'card_id' => $this->pick()->getCard()->value,
-                    'face_up' => $faceUp,
-                    'hand_id' => $hand?->id,
+                    'card_id'   => $this->pick()->getCard()->value,
+                    'face_up'   => $faceUp,
+                    'hand_id'   => $hand?->id,
                 ]);
             }
 
             ++$dealtCards;
         }
 
-        return $this->updateCards($hand->id);
+        return $this;
     }
 
     public function dealThisHoleCard(Player $player, Card $card, bool $faceUp, ?Hand $hand = null): self
     {
         HoleCard::create([
             'player_id' => $player->id,
-            'card_id' => $card->value,
-            'face_up' => $faceUp,
-            'hand_id' => $hand?->id,
+            'card_id'   => $card->value,
+            'face_up'   => $faceUp,
+            'hand_id'   => $hand?->id,
         ]);
 
-        return $this->updateCards($hand->id);
+        $this->pick($card);
+
+        return $this;
     }
 
     public function dealCommunityCards(HandStreet $handStreet, int $cardCount): self
@@ -129,25 +119,25 @@ class Dealer
             $card = $this->pick()->getCard();
 
             CommunityCard::create([
-                'card_id' => $card->value,
+                'card_id'        => $card->value,
                 'hand_street_id' => $handStreet->id,
             ]);
 
             ++$dealtCards;
         }
 
-        return $this->updateCards($handStreet->hand->id);
+        return $this;
     }
 
     public function dealThisCommunityCard(Card $card, HandStreet $handStreet): self
     {
-        $card = $this->pick($card)->getCard();
+        $this->pick($card);
 
         CommunityCard::create([
-            'card_id' => $card->value,
+            'card_id'        => $card->value,
             'hand_street_id' => $handStreet->id,
         ]);
 
-        return $this->updateCards($handStreet->hand->id);
+        return $this;
     }
 }
