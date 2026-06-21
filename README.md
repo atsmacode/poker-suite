@@ -7,3 +7,18 @@ I'm adding the extra feature of building Scenarios where you can select players,
 ![Scenario Screen](/screenshots/scenario_create.png)
 
 ![Scenario Index](/screenshots/scenario_index.png)
+
+# Docker
+
+To run within a container:
+
+```bash
+docker run -it \
+  --name poker-suite-claude \
+  -v "$(pwd)":/poker-suite \
+  -v "$HOME/.claude":/root/.claude \
+  -v "$HOME/.claude.json":/root/.claude.json \
+  -w /poker-suite \
+  node:20 \
+  bash -c "npm install -g @anthropic-ai/claude-code && claude"
+```
