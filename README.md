@@ -10,15 +10,15 @@ I'm adding the extra feature of building Scenarios where you can select players,
 
 # Docker
 
-To run within a container:
+Build the image, then run it:
 
 ```bash
+docker build -t poker-suite-claude .
+
 docker run -it \
   --name poker-suite-claude \
-  -v "$(pwd)":/poker-suite \
+  -v "$(pwd)":/workspace \
   -v "$HOME/.claude":/root/.claude \
   -v "$HOME/.claude.json":/root/.claude.json \
-  -w /poker-suite \
-  node:20 \
-  bash -c "npm install -g @anthropic-ai/claude-code && claude"
+  poker-suite-claude
 ```
