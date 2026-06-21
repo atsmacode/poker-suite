@@ -17,8 +17,8 @@ docker build -t poker-suite-claude .
 
 docker run -it \
   --name poker-suite-claude \
-  -v "$(pwd)":/workspace \
+  -v "$(pwd)":"$(pwd)" \
+  -w "$(pwd)" \
   -v "$HOME/.claude":/root/.claude \
-  -v "$HOME/.claude.json":/root/.claude.json \
   poker-suite-claude
 ```
