@@ -2,20 +2,25 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PlayerFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'user_id' => User::factory(),
+            'name' => fake()->name(),
             'ai' => 0,
         ];
+    }
+
+    public function ai(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'user_id' => null,
+            'ai' => 1,
+        ]);
     }
 }
