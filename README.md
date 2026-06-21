@@ -10,7 +10,7 @@ I'm adding the extra feature of building Scenarios where you can select players,
 
 # Docker
 
-Build the image, then run it:
+To dev with Claude, build the image, then run it:
 
 ```bash
 docker build -t poker-suite-claude .
